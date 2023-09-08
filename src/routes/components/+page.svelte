@@ -1,4 +1,5 @@
 <script lang="ts">
+	import NavLink from '$lib/components/Header/NavLink.svelte';
 	import { Button, Input, Logo, MetaverseButton } from '$lib/components/index';
 </script>
 
@@ -15,5 +16,8 @@
 	</div>
 	<div>
 		<Logo title="ZERO" subTitle="DESIGN STUDIO" />
+	</div>
+	<div>
+		<NavLink>Home</NavLink>
 	</div>
 </section>

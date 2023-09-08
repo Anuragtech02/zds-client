@@ -7,7 +7,7 @@
 	export let height: string = 'h-18';
 </script>
 
-<div class="flex justify-center items-center gap-2">
+<div class="flex justify-center items-center gap-2 max-w-[200px]">
 	<img src={url} alt="logo" class={`${width} ${height}`} />
 	<div class="flex flex-col align-stretch">
 		{#if title?.length > 0}

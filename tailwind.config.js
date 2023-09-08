@@ -25,6 +25,7 @@ export default {
 				},
 				borders: {
 					DEFAULT: '#ffffff',
+					100: '#ffffff',
 					300: '#C0C0C0',
 					400: '#1F1F1F5C',
 					500: '#3A3A3A'

@@ -4,15 +4,28 @@
 	export let active: boolean = false;
 </script>
 
-<span class="inline-block h-8">
+<span class="inline-block">
 	<a
 		href={url}
-		class={`flex items-center gap-2 text-sm font-medium text-fg ${className}`}
+		class={`relative flex items-center gap-2 text-sm text-fg ${className}`}
 		class:font-bold={active}
+		data-active={active}
 	>
 		<slot />
 	</a>
-	{#if active}
-		<span class="w-[6px] h-[6px] mt-1 rounded-full bg-fg block mx-auto" />
-	{/if}
 </span>
+
+<style>
+	[data-active='true']::after {
+		content: '';
+		position: absolute;
+		bottom: -6px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: block;
+		width: 6px;
+		height: 6px;
+		@apply bg-fg;
+		@apply rounded-full;
+	}
+</style>

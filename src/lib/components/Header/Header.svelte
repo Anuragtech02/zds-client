@@ -10,7 +10,11 @@
 		<div class="flex justify-between items-center py-4">
 			<Logo title="ZERO" subTitle="DESIGN STUDIO" />
 			<nav class="flex items-center gap-4">
-				<Input placeholder="Search" inputClassName="!rounded-full border-fg placeholder:text-fg" />
+				<Input
+					placeholder="Search"
+					inputClassName="!rounded-full border-fg placeholder:text-fg"
+					hideError
+				/>
 				<NavLink url="/" active={true}>Home</NavLink>
 				<NavLink url="/work">Work</NavLink>
 				<NavLink url="/about">About</NavLink>

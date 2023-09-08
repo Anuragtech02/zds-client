@@ -6,6 +6,7 @@
 	export let inputClassName: string = '';
 	export let error: string = '';
 	export let name: string = '';
+	export let hideError: boolean = false;
 
 	$: if (type === 'textarea') {
 		inputClassName = 'resize-none';
@@ -73,9 +74,11 @@
 			class:border-red-500={error?.length > 0}
 		/>
 	{/if}
-	<div class="h-4 mt-1">
-		{#if error?.length > 0}
-			<p class="text-xs text-red-500 text-left">{error}</p>
-		{/if}
-	</div>
+	{#if !hideError}
+		<div class="h-4 mt-1">
+			{#if error?.length > 0}
+				<p class="text-xs text-red-500 text-left">{error}</p>
+			{/if}
+		</div>
+	{/if}
 </div>

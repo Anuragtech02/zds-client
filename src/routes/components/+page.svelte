@@ -1,11 +1,10 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte';
-	import Input from '$lib/components/Input.svelte';
-	import MetaverseButton from '$lib/components/MetaverseButton.svelte';
+	import { Button, Input, Logo, MetaverseButton } from '$lib/components/index';
 </script>
 
 <section class="max-width-container">
 	<Button>Click me</Button>
 	<MetaverseButton />
 	<Input placeholder="Name" type="email" />
+	<Logo title="ZERO" subTitle="DESIGN STUDIO" />
 </section>

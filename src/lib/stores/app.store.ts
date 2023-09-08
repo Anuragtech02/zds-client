@@ -7,8 +7,6 @@ const seed: AppStore = {
 	height: 600
 };
 
-export const appStore = initAppStore();
-
 function initAppStore() {
 	const { subscribe, set, update } = writable(seed);
 	return {
@@ -20,3 +18,5 @@ function initAppStore() {
 		reset: () => set(seed)
 	};
 }
+
+export const appStore = initAppStore();

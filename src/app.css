@@ -11,11 +11,45 @@ html {
 		@apply text-[2.5rem] font-black text-center;
 	}
 	h2 {
+		@apply text-[1.875rem] font-bold text-center;
+	}
+	h3 {
+		@apply text-[1.5rem] font-bold text-center;
+	}
+	h4 {
+		@apply text-[1.25rem] font-bold text-center;
+	}
+	h5 {
+		@apply text-[1rem] font-bold text-center;
+	}
+	p,
+	span,
+	a,
+	li {
+		@apply text-sm text-center;
 	}
 
 	@screen md {
 		h1 {
 			@apply text-[3.75rem];
+		}
+		h2 {
+			@apply text-[2.5rem];
+		}
+		h3 {
+			@apply text-[1.875rem];
+		}
+		h4 {
+			@apply text-[1.5rem];
+		}
+		h5 {
+			@apply text-[1.25rem];
+		}
+		p,
+		span,
+		a,
+		li {
+			@apply text-base;
 		}
 	}
 
@@ -23,11 +57,32 @@ html {
 		h1 {
 			@apply text-[5rem];
 		}
+		h2 {
+			@apply text-[3.75rem];
+		}
+		h3 {
+			@apply text-[2.5rem];
+		}
+		h4 {
+			@apply text-[2rem];
+		}
+		h5 {
+			@apply text-[1.5rem];
+		}
+		p,
+		span,
+		a,
+		li {
+			@apply text-lg;
+		}
 	}
 	.gradient-1 {
 		/* background: linear-gradient(93.32deg, var(--color-accent1) 0%, var(--color-accent2) 118.85%); */
-		@apply bg-gradient-to-r from-accent1 to-accent2;
+		@apply bg-gradient-to-r from-accent-1 to-accent-2;
 	}
 	.text-gradient {
+	}
+	.max-width-container {
+		@apply max-w-[1440px] mx-auto px-4;
 	}
 }

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
+	import MetaverseButton from '$lib/components/MetaverseButton.svelte';
 </script>
 
-<h1 class="mt-[10rem] border-thin">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<Button>Click me</Button>
+<section class="max-width-container">
+	<Button>Click me</Button>
+	<MetaverseButton />
+</section>

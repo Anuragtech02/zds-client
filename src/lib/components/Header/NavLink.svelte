@@ -7,7 +7,7 @@
 <span class="inline-block">
 	<a
 		href={url}
-		class={`relative flex items-center gap-2 text-sm text-fg ${className}`}
+		class={`relative flex items-center gap-2 text-md text-fg ${className}`}
 		class:font-bold={active}
 		data-active={active}
 	>

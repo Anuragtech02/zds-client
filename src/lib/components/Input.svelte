@@ -16,7 +16,7 @@
 	}
 
 	const COMMON_CLASS =
-		'rounded-md py-2 px-5 outline-0 border border-borders-500 bg-bg-200 focus:border-borders hover:border-borders transition duration-150 ease-out hover:ease-in placeholder:text-fg-500';
+		'w-full rounded-md py-2 px-5 outline-0 border border-borders-500 bg-bg-200 focus:border-borders hover:border-borders transition duration-150 ease-out hover:ease-in placeholder:text-fg-500';
 </script>
 
 <div class={`${containerClassName}`}>
@@ -27,19 +27,55 @@
 			{placeholder}
 			{value}
 			class={`${COMMON_CLASS} ${inputClassName}`}
+			class:border-red-500={error?.length > 0}
 		/>
 	{:else if type === 'email'}
-		<input {name} type="email" {placeholder} {value} class={`${COMMON_CLASS} ${inputClassName}`} />
+		<input
+			{name}
+			type="email"
+			{placeholder}
+			{value}
+			class={`${COMMON_CLASS} ${inputClassName}`}
+			class:border-red-500={error?.length > 0}
+		/>
 	{:else if type === 'number'}
-		<input {name} type="number" {placeholder} {value} class={`${COMMON_CLASS} ${inputClassName}`} />
+		<input
+			{name}
+			type="number"
+			{placeholder}
+			{value}
+			class={`${COMMON_CLASS} ${inputClassName}`}
+			class:border-red-500={error?.length > 0}
+		/>
 	{:else if type === 'tel'}
-		<input {name} type="tel" {placeholder} {value} class={`${COMMON_CLASS} ${inputClassName}`} />
+		<input
+			{name}
+			type="tel"
+			{placeholder}
+			{value}
+			class={`${COMMON_CLASS} ${inputClassName}`}
+			class:border-red-500={error?.length > 0}
+		/>
 	{:else if type === 'textarea'}
-		<textarea {placeholder} {value} class={`${COMMON_CLASS} ${inputClassName}`} />
+		<textarea
+			{placeholder}
+			{value}
+			class={`${COMMON_CLASS} ${inputClassName}`}
+			class:border-red-500={error?.length > 0}
+		/>
 	{:else}
-		<input {name} type="text" {placeholder} {value} class={`${COMMON_CLASS} ${inputClassName}`} />
+		<input
+			{name}
+			type="text"
+			{placeholder}
+			{value}
+			class={`${COMMON_CLASS} ${inputClassName}`}
+			class:border-red-500={error?.length > 0}
+		/>
 	{/if}
-	{#if error?.length > 0}
-		<p class="text-sm text-red-500">{error}</p>
-	{/if}
+	<div class="h-4 mt-1">
+		{#if error?.length > 0}
+			<p class="text-xs text-red-500 text-left">{error}</p>
+		{/if}
+	</div>
 </div>

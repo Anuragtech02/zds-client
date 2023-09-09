@@ -15,12 +15,14 @@
 					inputClassName="!rounded-full border-fg-300 placeholder:!text-fg-300"
 					hideError
 				/>
-				<NavLink url="/" active={true}>Home</NavLink>
-				<NavLink url="/work">Work</NavLink>
-				<NavLink url="/about">About</NavLink>
-				<NavLink url="/services">Our Services</NavLink>
-				<NavLink url="/contact">Contact Us</NavLink>
-				<MetaverseButton />
+				<div class="hidden md:flex items-center gap-8">
+					<NavLink url="/" active={true}>Home</NavLink>
+					<NavLink url="/work">Work</NavLink>
+					<NavLink url="/about">About</NavLink>
+					<NavLink url="/services">Our Services</NavLink>
+					<NavLink url="/contact">Contact Us</NavLink>
+					<MetaverseButton />
+				</div>
 			</nav>
 		</div>
 	</div>

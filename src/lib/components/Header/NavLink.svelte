@@ -16,7 +16,8 @@
 </span>
 
 <style>
-	[data-active='true']::after {
+	[data-active='true']::after,
+	a:hover::after {
 		content: '';
 		position: absolute;
 		bottom: -6px;

@@ -12,7 +12,7 @@
 			<nav class="flex items-center gap-8">
 				<Input
 					placeholder="Search"
-					inputClassName="!rounded-full border-fg-300 placeholder:text-fg-300"
+					inputClassName="!rounded-full border-fg-300 placeholder:!text-fg-300"
 					hideError
 				/>
 				<NavLink url="/" active={true}>Home</NavLink>

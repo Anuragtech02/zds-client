@@ -95,8 +95,8 @@
 	}
 </script>
 
-<div class="w-full">
-	<div class="w-full flex justisfy-between items-start gap-4">
+<div class="relative w-full flex flex-col sm:flex-row">
+	<div class="w-full flex flex-1 justify-between items-start gap-4">
 		<div>
 			<div>
 				<svg viewBox="0 0 450 50">
@@ -115,9 +115,13 @@
 				</div>
 			</div>
 		</div>
-		<img src="/images/contact-img.png" alt="contact" class="" />
+		<img
+			src="/images/contact-img.png"
+			alt="contact"
+			class="relative pointer-events-none w-20 sm:w-36 md:w-50 sm:absolute sm:-top-4 sm:-right-10"
+		/>
 	</div>
-	<form class="mt-8 [&>div]:mt-2" on:submit={submitForm}>
+	<form class="mt-8 sm:mt-0 [&>div]:mt-2 flex-1 z-[1]" on:submit={submitForm}>
 		<Input
 			placeholder="Name"
 			type="text"

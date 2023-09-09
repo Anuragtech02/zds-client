@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Logo from '../Logo.svelte';
 	import MetaverseButton from '../Marketplace.svelte';
+	import HamburgerMenu from './HamburgerMenu.svelte';
 	import NavLink from './NavLink.svelte';
 	import Searchbar from './Searchbar.svelte';
 </script>
@@ -18,6 +19,9 @@
 					<NavLink url="/services">Our Services</NavLink>
 					<NavLink url="/contact">Contact Us</NavLink>
 					<MetaverseButton />
+				</div>
+				<div class="block sm:hidden">
+					<HamburgerMenu />
 				</div>
 			</nav>
 		</div>

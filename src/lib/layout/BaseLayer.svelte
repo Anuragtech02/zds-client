@@ -6,4 +6,6 @@
 	});
 </script>
 
-<slot />
+<main>
+	<slot />
+</main>

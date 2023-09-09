@@ -20,19 +20,20 @@ export default {
 					200: '#FFFFFF',
 					300: '#C0C0C0',
 					400: '#707070',
-					500: '3A3A3A',
+					500: '#3A3A3A',
 					600: '#181818'
 				},
 				borders: {
-					DEFAULT: '#C0C0C0',
+					DEFAULT: '#ffffff',
+					100: '#ffffff',
 					300: '#C0C0C0',
 					400: '#1F1F1F5C',
 					500: '#3A3A3A'
 				},
 				accent: {
 					DEFAULT: '#FF439D',
-					pink: '#FF439D',
-					blue: '#2518D1'
+					1: '#FF439D',
+					2: '#2518D1'
 				}
 			},
 			fontFamily: {

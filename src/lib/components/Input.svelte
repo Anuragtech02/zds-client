@@ -17,7 +17,7 @@
 	}
 
 	const COMMON_CLASS =
-		'w-full rounded-md py-2 px-5 outline-0 border border-borders-500 bg-bg-200 focus:border-borders hover:border-borders transition duration-150 ease-out hover:ease-in placeholder:text-fg-500';
+		'w-full rounded-md py-2 px-5 outline-0 border border-borders-500 bg-bg-200 focus:border-borders hover:border-borders transition duration-150 ease-out hover:ease-in placeholder:text-fg-300';
 </script>
 
 <div class={`${containerClassName}`}>

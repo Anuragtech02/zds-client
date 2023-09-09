@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header/Header.svelte';
 	import NavLink from '$lib/components/Header/NavLink.svelte';
 	import { Button, Input, Logo, Marketplace } from '$lib/components/index';
@@ -25,5 +26,8 @@
 	</div>
 	<div>
 		<ContactForm />
+	</div>
+	<div>
+		<Footer />
 	</div>
 </section>

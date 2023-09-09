@@ -44,6 +44,10 @@
 
 	function validateFields() {
 		let isValid = true;
+
+		const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+		const phoneRegex = /^[0-9]{10}$/;
+
 		if (contactForm.name.value === '') {
 			contactForm.name.error = 'Name is required';
 			isValid = false;
@@ -60,6 +64,17 @@
 			contactForm.message.error = 'Message is required';
 			isValid = false;
 		}
+
+		if (contactForm.email.value !== '' && !emailRegex.test(contactForm.email.value)) {
+			contactForm.email.error = 'Invalid email address';
+			isValid = false;
+		}
+
+		if (contactForm.phone.value !== '' && !phoneRegex.test(contactForm.phone.value)) {
+			contactForm.phone.error = 'Invalid phone number';
+			isValid = false;
+		}
+
 		return isValid;
 	}
 
@@ -103,10 +118,30 @@
 		<img src="/images/contact-img.png" alt="contact" class="" />
 	</div>
 	<form class="mt-8 [&>div]:mt-2" on:submit={submitForm}>
-		<Input placeholder="Name" type="text" error={contactForm.name.error} />
-		<Input placeholder="Email" type="email" error={contactForm.email.error} />
-		<Input placeholder="Phone" type="tel" error={contactForm.phone.error} />
-		<Input placeholder="Message" type="textarea" error={contactForm.message.error} />
+		<Input
+			placeholder="Name"
+			type="text"
+			error={contactForm.name.error}
+			bind:value={contactForm.name.value}
+		/>
+		<Input
+			placeholder="Email"
+			type="email"
+			error={contactForm.email.error}
+			bind:value={contactForm.email.value}
+		/>
+		<Input
+			placeholder="Phone"
+			type="tel"
+			error={contactForm.phone.error}
+			bind:value={contactForm.phone.value}
+		/>
+		<Input
+			placeholder="Message"
+			type="textarea"
+			error={contactForm.message.error}
+			bind:value={contactForm.message.value}
+		/>
 		<Button type="submit" className="mt-2">Submit</Button>
 	</form>
 </div>

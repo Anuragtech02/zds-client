@@ -26,7 +26,7 @@
 			{name}
 			type="password"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -35,7 +35,7 @@
 			{name}
 			type="email"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -44,7 +44,7 @@
 			{name}
 			type="number"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -53,14 +53,14 @@
 			{name}
 			type="tel"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
 	{:else if type === 'textarea'}
 		<textarea
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -69,7 +69,7 @@
 			{name}
 			type="text"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>

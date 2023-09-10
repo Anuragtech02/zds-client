@@ -7,6 +7,7 @@
 	export let error: string = '';
 	export let name: string = '';
 	export let hideError: boolean = false;
+	export let rows: number = 5;
 
 	$: if (type === 'textarea') {
 		inputClassName = 'resize-none';
@@ -17,7 +18,7 @@
 	}
 
 	const COMMON_CLASS =
-		'w-full rounded-md py-2 px-5 outline-0 border border-borders-500 bg-bg-200 focus:border-borders hover:border-borders transition duration-150 ease-out hover:ease-in placeholder:text-fg-500';
+		'w-full rounded-md py-2 px-5 outline-0 border border-borders-500 bg-bg-200 focus:border-borders hover:border-borders transition duration-150 ease-out hover:ease-in placeholder:text-fg-300';
 </script>
 
 <div class={`${containerClassName}`}>
@@ -26,7 +27,7 @@
 			{name}
 			type="password"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -35,7 +36,7 @@
 			{name}
 			type="email"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -44,7 +45,7 @@
 			{name}
 			type="number"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
@@ -53,23 +54,24 @@
 			{name}
 			type="tel"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>
 	{:else if type === 'textarea'}
 		<textarea
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
+			{rows}
 		/>
 	{:else}
 		<input
 			{name}
 			type="text"
 			{placeholder}
-			{value}
+			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
 		/>

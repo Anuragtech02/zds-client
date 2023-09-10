@@ -28,7 +28,7 @@
 <div class="flex justify-center items-center gap-8">
 	{#each icons as { name, link, width, height }}
 		<a href={link}>
-			<svelte:component this={ComponentConfig[name]} {width} {height} className="cursor-pointer" />
+			<svelte:component this={ComponentConfig[name]} {width} {height} />
 		</a>
 	{/each}
 </div>

@@ -1,0 +1,26 @@
+<script lang="ts">
+	export let className: string = '';
+</script>
+
+<span
+	class={`font-dela-gothic inline-block bg-gradient-band text-[3rem] z-[1] relative ${className}`}
+>
+	<slot />
+</span>
+
+<style>
+	.bg-gradient-band {
+		position: relative;
+		z-index: 1;
+	}
+	.bg-gradient-band::after {
+		content: '';
+		position: absolute;
+		bottom: -7px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		@apply gradient-1;
+	}
+</style>

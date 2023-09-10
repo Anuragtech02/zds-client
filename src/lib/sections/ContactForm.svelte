@@ -3,25 +3,8 @@
 	import Input from '$lib/components/Input.svelte';
 	import CallIcon from '$lib/icons/CallIcon.svelte';
 	import MailIcon from '$lib/icons/MailIcon.svelte';
-
-	interface ContactForm {
-		name: {
-			value: string;
-			error?: string;
-		};
-		email: {
-			value: string;
-			error?: string;
-		};
-		phone: {
-			value: string;
-			error?: string;
-		};
-		message: {
-			value: string;
-			error?: string;
-		};
-	}
+	import type { ContactForm } from '$lib/types/components';
+	import { isValidEmail, isValidPhone } from '$lib/utils';
 
 	let contactForm: ContactForm = {
 		name: {
@@ -45,18 +28,18 @@
 	function validateFields() {
 		let isValid = true;
 
-		const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-		const phoneRegex = /^[0-9]{10}$/;
+		const email = contactForm.email.value;
+		const phone = contactForm.phone.value;
 
 		if (contactForm.name.value === '') {
 			contactForm.name.error = 'Name is required';
 			isValid = false;
 		}
-		if (contactForm.email.value === '') {
+		if (email === '') {
 			contactForm.email.error = 'Email is required';
 			isValid = false;
 		}
-		if (contactForm.phone.value === '') {
+		if (phone === '') {
 			contactForm.phone.error = 'Phone is required';
 			isValid = false;
 		}
@@ -65,12 +48,12 @@
 			isValid = false;
 		}
 
-		if (contactForm.email.value !== '' && !emailRegex.test(contactForm.email.value)) {
+		if (email !== '' && !isValidEmail(email)) {
 			contactForm.email.error = 'Invalid email address';
 			isValid = false;
 		}
 
-		if (contactForm.phone.value !== '' && !phoneRegex.test(contactForm.phone.value)) {
+		if (phone !== '' && !isValidPhone(phone)) {
 			contactForm.phone.error = 'Invalid phone number';
 			isValid = false;
 		}
@@ -98,7 +81,7 @@
 <div class="relative w-full flex flex-col sm:flex-row">
 	<div class="w-full flex flex-1 justify-between items-start gap-4">
 		<div>
-			<div class="max-w-[350px]">
+			<div class="max-w-[400px]">
 				<svg viewBox="0 0 450 50">
 					<text y="50">GIVE US A</text>
 				</svg>
@@ -152,7 +135,7 @@
 
 <style>
 	svg {
-		font: bold 68px 'Dela Gothic One', cursive;
+		font: bold 67px 'Dela Gothic One', cursive;
 		width: 90%;
 		height: 60px;
 	}

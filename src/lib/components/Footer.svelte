@@ -5,11 +5,16 @@
 </script>
 
 <footer class="py-[100px]">
-	<div class="max-width-container w-full">
+	<div class="max-width-container">
 		<div class="flex flex-row justify-between items-center">
 			<Logo title="ZERO" subTitle="DESIGN STUDIO" />
-			<NavLinks />
+			<div class="hidden lg:block">
+				<NavLinks />
+			</div>
 			<SocialShareIcons />
+		</div>
+		<div class="block lg:hidden mt-8">
+			<NavLinks />
 		</div>
 		<hr class="w-full bg-white mt-8" />
 		<p class="mt-8">© 2023 Zero Design Studio. All rights reserved.</p>

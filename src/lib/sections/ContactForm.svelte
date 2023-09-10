@@ -4,7 +4,7 @@
 	import CallIcon from '$lib/icons/CallIcon.svelte';
 	import MailIcon from '$lib/icons/MailIcon.svelte';
 	import type { ContactForm } from '$lib/types/components';
-	import { isValidEmail, isValidPhone } from '$lib/utils';
+	import { isValidEmail, isValidPhone } from '$lib/utils/functions';
 
 	let contactForm: ContactForm = {
 		name: {

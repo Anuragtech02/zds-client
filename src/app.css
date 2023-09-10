@@ -7,6 +7,22 @@ html {
 }
 
 @layer base {
+	.font-dela-gothic {
+		font-family: 'Dela Gothic One', cursive;
+	}
+
+	.font-monsterrat {
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'Dela Gothic One', cursive;
+	}
 	h1 {
 		@apply text-[2.5rem] font-black text-center;
 	}
@@ -27,6 +43,7 @@ html {
 	a,
 	li {
 		@apply text-sm text-center;
+		font-family: 'Montserrat', sans-serif;
 	}
 
 	@screen md {

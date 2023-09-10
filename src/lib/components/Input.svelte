@@ -7,6 +7,7 @@
 	export let error: string = '';
 	export let name: string = '';
 	export let hideError: boolean = false;
+	export let rows: number = 5;
 
 	$: if (type === 'textarea') {
 		inputClassName = 'resize-none';
@@ -63,6 +64,7 @@
 			bind:value
 			class={`${COMMON_CLASS} ${inputClassName}`}
 			class:border-red-500={error?.length > 0}
+			{rows}
 		/>
 	{:else}
 		<input

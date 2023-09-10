@@ -98,11 +98,11 @@
 <div class="relative w-full flex flex-col sm:flex-row">
 	<div class="w-full flex flex-1 justify-between items-start gap-4">
 		<div>
-			<div>
+			<div class="max-w-[350px]">
 				<svg viewBox="0 0 450 50">
 					<text y="50">GIVE US A</text>
 				</svg>
-				<span class="inline-block text-[2rem] font-bold">SHOUT</span>
+				<span class="inline-block text-[3rem] font-bold font-dela-gothic mt-4">SHOUT</span>
 			</div>
 			<div class="mt-8">
 				<div class="flex justify-start items-center">
@@ -152,8 +152,8 @@
 
 <style>
 	svg {
-		font: bold 70px Century Gothic, Arial;
-		width: 100%;
+		font: bold 68px 'Dela Gothic One', cursive;
+		width: 90%;
 		height: 60px;
 	}
 

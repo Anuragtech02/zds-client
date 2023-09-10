@@ -1,10 +1,11 @@
 <script lang="ts">
 	export let url: string = '';
+	export let containerClassName: string = '';
 	export let className: string = '';
 	export let active: boolean = false;
 </script>
 
-<span class="inline-block">
+<span class={`inline-block ${containerClassName}`}>
 	<a
 		href={url}
 		class={`relative flex items-center gap-2 text-md text-fg ${className}`}

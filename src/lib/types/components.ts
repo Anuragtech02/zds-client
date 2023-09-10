@@ -25,3 +25,8 @@ export enum Socials {
 	Vimeo = 'Vimeo',
 	Youtube = 'Youtube'
 }
+
+export interface Link {
+	name: string;
+	url: string;
+}

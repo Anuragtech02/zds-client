@@ -13,16 +13,16 @@
 <main>
 	<span class="flex flex-row justify-center items-center gap-8">
 		{#if Facebook}
-			<FacebookIcon />
+			<FacebookIcon width={26} height={26} />
 		{/if}
 		{#if Instagram}
-			<InstagramIcon />
+			<InstagramIcon width={26} height={26} />
 		{/if}
 		{#if Youtube}
-			<YoutubeIcon />
+			<YoutubeIcon width={32} height={32} />
 		{/if}
 		{#if Vimeo}
-			<VimeoIcon />
+			<VimeoIcon width={26} height={26} />
 		{/if}
 	</span>
 </main>

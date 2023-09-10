@@ -18,3 +18,15 @@ export interface ContactForm {
 		error?: string;
 	};
 }
+
+export enum Socials {
+	Facebook = 'Facebook',
+	Instagram = 'Instagram',
+	Vimeo = 'Vimeo',
+	Youtube = 'Youtube'
+}
+
+export interface Link {
+	name: string;
+	url: string;
+}

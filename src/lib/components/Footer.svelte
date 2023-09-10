@@ -1,6 +1,6 @@
 <script lang="ts">
 	import NavLink from './Header/NavLink.svelte';
-	import IconContainer from './IconContainer.svelte';
+	import SocialShareIcons from './SocialShareIcons.svelte';
 	import Logo from './Logo.svelte';
 </script>
 
@@ -14,7 +14,7 @@
 			<NavLink url="/services">Our Services</NavLink>
 			<NavLink url="/contact">Contact Us</NavLink>
 		</nav>
-		<IconContainer Facebook Instagram Youtube Vimeo />
+		<SocialShareIcons />
 	</div>
 	<hr class="w-full bg-white mt-8" />
 	<p class="mt-8">© 2023 Zero Design Studio. All rights reserved.</p>

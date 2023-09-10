@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header/Header.svelte';
-	import NavLink from '$lib/components/Header/NavLink.svelte';
+	import NavLink from '$lib/components/Header/NavLinks/NavLink.svelte';
 	import { Button, Input, Logo, Marketplace } from '$lib/components/index';
 	import ContactForm from '$lib/sections/ContactForm.svelte';
 </script>

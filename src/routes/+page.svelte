@@ -1,11 +1,21 @@
 <script>
-	import HomeSecondSection from '$lib/components/HomeSecondSection.svelte';
-	import Slider from '$lib/components/Slider.svelte';
-	import Locations from '$lib/components/Locations.svelte';
-	import Slider from '$lib/components/Slider.svelte';
+	import HomeSecondSection from '$lib/sections/Home/HomeSecondSection.svelte';
+	import Hero from '$lib/sections/Home/Hero.svelte';
+	import AboutSection from '$lib/sections/AboutSection.svelte';
+	import ServicesSection from '$lib/sections/Home/ServicesSection.svelte';
+	import MarketplaceSection from '$lib/sections/Home/MarketplaceSection.svelte';
+	import BannerCTA from '$lib/sections/Home/BannerCTA.svelte';
+	import PartnersSection from '$lib/sections/Home/PartnersSection.svelte';
+	import LocationsSection from '$lib/sections/Home/LocationsSection.svelte';
+	import ContactSection from '$lib/sections/Home/ContactSection.svelte';
 </script>
 
-<!-- <Slider /> -->
-<div>
-	<Locations />
-</div>
+<Hero />
+<HomeSecondSection />
+<AboutSection />
+<ServicesSection />
+<MarketplaceSection />
+<BannerCTA />
+<PartnersSection />
+<LocationsSection />
+<ContactSection />

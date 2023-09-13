@@ -30,3 +30,9 @@ export interface Link {
 	name: string;
 	url: string;
 }
+
+export interface IVideoSliderItem {
+	video: string;
+	title: string;
+	description: string;
+}

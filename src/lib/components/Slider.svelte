@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let slides = [
+	import type { IVideoSliderItem } from '$lib/types/components';
+
+	export let slides: IVideoSliderItem[] = [
 		{
 			video: '/sample_videos/sample_video.mp4',
 			title: 'Animation & Visual Packaging',

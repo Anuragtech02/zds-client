@@ -1,23 +1,26 @@
 <script lang="ts">
 	export let text: string = 'TEXT HERE';
-	export let strokeWidth = 'stroke-[3]';
+	export let strokeWidth: 'w-stroke-1' | 'w-stroke-2' = 'w-stroke-1';
 	export let className: string = '';
-	export let viewBox: string = '0 0 450 50';
 </script>
 
-<svg {viewBox} class={`w-[90%] ${className}`}>
-	<text y="50" class={`${strokeWidth}`}>{text}</text>
-</svg>
+<span
+	class={`inline-block font-dela-gothic outlined-text ${className}`}
+	class:w-stroke-1={strokeWidth === 'w-stroke-1'}
+	class:w-stroke-2={strokeWidth === 'w-stroke-2'}
+>
+	{text}
+</span>
 
 <style>
-	svg {
-		font: bold 67px 'Dela Gothic One', cursive;
-		height: 60px;
+	.w-stroke-1 {
+		-webkit-text-stroke: 1px white;
 	}
-
-	text {
-		fill: none;
-		@apply stroke-fg;
+	.w-stroke-2 {
+		-webkit-text-stroke: 2px white;
+	}
+	.outlined-text {
+		-webkit-text-fill-color: transparent;
 		stroke-linejoin: round;
 	}
 </style>

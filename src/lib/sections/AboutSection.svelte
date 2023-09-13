@@ -5,42 +5,53 @@
 </script>
 
 <SectionLayout>
-	<div class="flex justify-start items-center">
-		<OutlinedText
-			className="w-[100px] min-w-[100px]"
-			viewBox="0 0 130 50"
-			strokeWidth="stroke-1"
-			text="WE"
-		/>
-		<TextWithBg className="ml-8">DESIGN</TextWithBg>
-		<OutlinedText
-			className="w-[130px] min-w-[130px] ml-8"
-			viewBox="0 0 185 50"
-			strokeWidth="stroke-1"
-			text="AND"
-		/>
-		<TextWithBg className="ml-8">DEVELOP</TextWithBg>
-	</div>
-	<br />
-	<div class="flex justify-start items-center gap-8">
-		<OutlinedText
-			className="w-[320px] min-w-[320px]"
-			viewBox="0 0 430 50"
-			strokeWidth="stroke-1"
-			text="CONTENT"
-		/>
-		<OutlinedText
-			className="w-[90px] min-w-[90px]"
-			viewBox="0 0 120 50"
-			strokeWidth="stroke-1"
-			text="OF"
-		/>
-		<OutlinedText
-			className="w-[120px] min-w-[120px]"
-			viewBox="0 0 180 50"
-			strokeWidth="stroke-1"
-			text="THE"
-		/>
-		<TextWithBg>FUTURE</TextWithBg>
+	<div class="flex justify-between items-center">
+		<div>
+			<div>
+				<div class="flex justify-start items-center gap-8">
+					<h2>
+						<OutlinedText viewBox="0 0 130 50" text="WE" />
+						<TextWithBg className="ml-6">DESIGN</TextWithBg>
+					</h2>
+					<h2>
+						<OutlinedText strokeWidth="w-stroke-1" text="AND" />
+					</h2>
+					<h2>
+						<TextWithBg>DEVELOP</TextWithBg>
+					</h2>
+				</div>
+				<div class="flex justify-start items-center gap-8">
+					<h2>
+						<OutlinedText strokeWidth="w-stroke-1" text="CONTENT" />
+					</h2>
+					<h2>
+						<OutlinedText strokeWidth="w-stroke-1" text="OF" />
+					</h2>
+					<h2>
+						<OutlinedText strokeWidth="w-stroke-1" text="THE" />
+					</h2>
+					<h2>
+						<TextWithBg>FUTURE</TextWithBg>
+					</h2>
+				</div>
+			</div>
+			<div class="mt-4">
+				<p class="text-left">
+					We are more than just animators; we are storytellers, visionaries, and creators of
+					immersive worlds. Our relentless quest of excellence in the art of animation is at the
+					essence of who we are.
+				</p>
+				<p class="text-left mt-4">
+					Our journey towards becoming one of the best animation studios in the business has been
+					one of dedication, innovation, and a deep-rooted passion.
+				</p>
+				<p class="text-left mt-4">
+					Our team of professionals blend cutting-edge technology with limitless creativity to
+					breathe life into your concepts. Whether you're seeking VFX wizardry, stunning animations,
+					or visually striking digital art, we've got you covered.
+				</p>
+			</div>
+		</div>
+		<img src="/images/about-image.png" alt="about" />
 	</div>
 </SectionLayout>

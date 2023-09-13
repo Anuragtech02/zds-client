@@ -39,11 +39,13 @@ html {
 		@apply text-[1rem] font-bold text-center;
 	}
 	p,
-	span,
 	a,
 	li {
 		@apply text-sm text-center;
 		font-family: 'Montserrat', sans-serif;
+	}
+	img {
+		max-width: 100%;
 	}
 
 	@screen md {
@@ -63,7 +65,6 @@ html {
 			@apply text-[1.25rem];
 		}
 		p,
-		span,
 		a,
 		li {
 			@apply text-base;
@@ -87,7 +88,6 @@ html {
 			@apply text-[1.5rem];
 		}
 		p,
-		span,
 		a,
 		li {
 			@apply text-lg;

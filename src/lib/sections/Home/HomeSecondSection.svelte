@@ -5,13 +5,13 @@
 <SectionLayout>
 	<div class="second-section-home flex flex-col justify-around min-h-screen p-16">
 		<div class="mb-auto sm:mb-0 self-start">
-			<p class="text-left md:text-[1.5rem] lg:text-[2rem]">We are Hybrid of</p>
-			<h2 class="text-left">Creative Agency &</h2>
+			<p class="text-left uppercase md:text-[1.5rem] lg:text-[2rem]">We are Hybrid of</p>
+			<h2 class="text-left uppercase">Creative Agency &</h2>
 			<span class="gradient-line" />
 		</div>
 		<div class="mb-auto sm:mb-0 self-end flex flex-col z-[3]">
-			<h2 class="text-right sm:text-left">Content</h2>
-			<h2 class="text-right sm:text-left">Production Studio</h2>
+			<h2 class="text-right sm:text-left uppercase">Content</h2>
+			<h2 class="text-right sm:text-left uppercase">Production Studio</h2>
 			<span class="gradient-line self-end" />
 		</div>
 		<a href="/" class="show-reel-btn z-[3]"> Show Reel </a>

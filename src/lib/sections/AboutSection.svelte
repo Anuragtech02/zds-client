@@ -1,45 +1,74 @@
 <script lang="ts">
+	import { Button } from '$lib/components';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import TextWithBg from '$lib/components/TextWithBG.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import { gsap } from 'gsap';
+	// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { onMount } from 'svelte';
+
+	// gsap.registerPlugin(ScrollTrigger);
+
+	export let enableOurTeamCTA: boolean = true;
+	const p1 =
+		'We are more than just animators; we are storytellers, visionaries, and creators of immersive worlds. Our relentless quest of excellence in the art of animation is at the essence of who we are.';
+
+	onMount(() => {
+		const chars = document.querySelectorAll('.char');
+		const portion = 100 / chars.length;
+
+		chars.forEach((char, i) => {
+			gsap.to(char, {
+				color: 'white',
+				scrollTrigger: {
+					scrub: true,
+					start: `${portion * i}% top`,
+					end: `${portion * (i + 1)}% top`
+				}
+			});
+		});
+	});
 </script>
 
 <SectionLayout>
-	<div class="flex justify-between items-center">
+	<div class="flex justify-between lg:items-start xl:items-center gap-6">
 		<div>
-			<div>
-				<div class="flex justify-start items-center gap-8">
-					<h2>
-						<OutlinedText viewBox="0 0 130 50" text="WE" />
-						<TextWithBg className="ml-6">DESIGN</TextWithBg>
-					</h2>
-					<h2>
-						<OutlinedText strokeWidth="w-stroke-1" text="AND" />
-					</h2>
-					<h2>
-						<TextWithBg>DEVELOP</TextWithBg>
-					</h2>
+			<div class="flex justify-between items-center gap-2">
+				<div>
+					<div class="flex justify-start items-center gap-2 md:gap-8 [&>h3]:text-left flex-wrap">
+						<h3 class="w-full sm:w-auto">
+							<OutlinedText text="WE" />
+							<TextWithBg className="ml-2 md:ml-8">DESIGN</TextWithBg>
+						</h3>
+						<h3>
+							<OutlinedText strokeWidth="w-stroke-1" text="AND" />
+							<TextWithBg className="ml-2 md:ml-8">DEVELOP</TextWithBg>
+						</h3>
+					</div>
+					<div
+						class="flex justify-start items-center gap-2 md:gap-8 [&>h3:text-left] flex-wrap mt-4 sm:mt-0"
+					>
+						<h3>
+							<OutlinedText strokeWidth="w-stroke-1" text="CONTENT" />
+							<OutlinedText className="ml-2 md:ml-8" strokeWidth="w-stroke-1" text="OF" />
+						</h3>
+						<h3>
+							<OutlinedText strokeWidth="w-stroke-1" text="THE" />
+							<TextWithBg className="ml-2 md:ml-8">FUTURE</TextWithBg>
+						</h3>
+					</div>
 				</div>
-				<div class="flex justify-start items-center gap-8">
-					<h2>
-						<OutlinedText strokeWidth="w-stroke-1" text="CONTENT" />
-					</h2>
-					<h2>
-						<OutlinedText strokeWidth="w-stroke-1" text="OF" />
-					</h2>
-					<h2>
-						<OutlinedText strokeWidth="w-stroke-1" text="THE" />
-					</h2>
-					<h2>
-						<TextWithBg>FUTURE</TextWithBg>
-					</h2>
+				<div class="w-[25%] mr-0 hidden sm:block md:hidden flex justify-end">
+					<img src="/images/about-image.png" alt="about" />
 				</div>
 			</div>
-			<div class="mt-4">
+			<div class="mt-4 [&>p]:text-justify">
 				<p class="text-left">
-					We are more than just animators; we are storytellers, visionaries, and creators of
-					immersive worlds. Our relentless quest of excellence in the art of animation is at the
-					essence of who we are.
+					{#each p1.split('') as char, index}
+						<span class="char" style="transition-delay: {index * 0.05}s"
+							>{char === ' ' ? '\u00a0' : char}</span
+						>
+					{/each}
 				</p>
 				<p class="text-left mt-4">
 					Our journey towards becoming one of the best animation studios in the business has been
@@ -51,7 +80,23 @@
 					or visually striking digital art, we've got you covered.
 				</p>
 			</div>
+			{#if enableOurTeamCTA}
+				<Button className="mt-8">Our Team</Button>
+			{/if}
 		</div>
-		<img src="/images/about-image.png" alt="about" />
+		<div class="hidden md:block lg:w-[40%] xl:w-full">
+			<img src="/images/about-image.png" alt="about" />
+		</div>
 	</div>
 </SectionLayout>
+
+<style>
+	.char {
+		display: inline-block;
+		transition: color 0.5s;
+		color: black;
+	}
+	.char.highlight {
+		color: white;
+	}
+</style>

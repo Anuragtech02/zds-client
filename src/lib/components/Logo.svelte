@@ -9,10 +9,11 @@
 	<img src={url} alt="logo" class={'w-14 h-13 sm:w-16 sm:h-15 md:w-20 md:h-18'} />
 	<div class="flex flex-col align-stretch">
 		{#if title?.length > 0}
-			<span
+			<p
 				class="block text-[1.5rem] sm:text-[1.8rem] md:text-[2.5rem] font-bold leading-8 md:leading-10"
-				>{title}</span
 			>
+				{title}
+			</p>
 		{/if}
 		{#if subTitle?.length > 0}
 			<p class="text-[0.5rem] sm:text-[0.6rem] md:text-sm">{subTitle}</p>

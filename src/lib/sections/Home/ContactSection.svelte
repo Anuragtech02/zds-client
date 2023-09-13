@@ -3,6 +3,8 @@
 	import ContactForm from '../ContactForm.svelte';
 </script>
 
-<SectionLayout>
-	<ContactForm />
+<SectionLayout type="wrapper" className="max-w-[100vw] overflow-x-hidden">
+	<div class="max-width-container">
+		<ContactForm />
+	</div>
 </SectionLayout>

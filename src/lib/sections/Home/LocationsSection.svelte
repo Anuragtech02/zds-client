@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Grid from '$lib/icons/Grid.svelte';
+
 	export let locations = [
 		{
 			name: 'Delhi',
@@ -26,7 +28,7 @@
 <div
 	class="min-h-screen relative flex flex-col justify-around md:justify-start md:gap-32 location-section"
 >
-	<h2>Locations</h2>
+	<h3 class="uppercase">Locations</h3>
 	<div
 		class="locations-container flex justify-between lg:justify-center md:gap-8 flex-wrap items-start gap-[1rem] p-[1rem]"
 	>
@@ -45,7 +47,9 @@
 		{/each}
 	</div>
 	<!-- <img src="/images/Grid.svg" alt="grid" class="background-image" /> -->
-	<div class="background-image" />
+	<div class="background-image max-w-[100vw] overflow-x-hidden">
+		<Grid />
+	</div>
 </div>
 
 <style>
@@ -76,15 +80,15 @@
 	} */
 	.background-image {
 		z-index: -1;
-		height: 60%;
+		height: 100%;
 		width: 100%;
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		background-image: url('/images/Grid.png');
+		/* background-image: url('/images/Grid.png'); */
 		/* background-repeat: repeat-x; */
-		background-repeat: no-repeat;
+		/* background-repeat: no-repeat; */
 		/* background-size: 250% 250%; */
-		background-position: bottom;
+		/* background-position: bottom; */
 	}
 </style>

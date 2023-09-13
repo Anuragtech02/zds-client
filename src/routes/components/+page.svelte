@@ -3,6 +3,7 @@
 	import Header from '$lib/components/Header/Header.svelte';
 	import NavLink from '$lib/components/Header/NavLinks/NavLink.svelte';
 	import { Button, Input, Logo, Marketplace } from '$lib/components/index';
+	import AboutSection from '$lib/sections/AboutSection.svelte';
 	import ContactForm from '$lib/sections/ContactForm.svelte';
 </script>
 
@@ -26,6 +27,9 @@
 	</div>
 	<div>
 		<ContactForm />
+	</div>
+	<div>
+		<AboutSection />
 	</div>
 	<div>
 		<Footer />

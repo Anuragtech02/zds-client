@@ -13,12 +13,12 @@
 				<OutlinedText text="Check Out Our" />
 				<span class="block sm:inline-block"> Marketplace </span>
 			</h3>
-			<p class="text-left mt-4">
+			<p class="text-left mt-4 leading-10">
 				Explore a world of artistic excellence and cutting-edge multimedia resources curated to
 				inspire your next project. Our Marketplace is a treasure trove of artistic inspiration and
 				offers an array of exceptional creative tools.
 			</p>
-			<Button className="mt-10">Explore Now</Button>
+			<Button className="mt-12">Explore Now</Button>
 		</div>
 		<div class="relative flex-1 w-full md:w-auto">
 			<SingleStarIcon className="absolute -top-7 -left-7" />

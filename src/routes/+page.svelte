@@ -1,7 +1,9 @@
 <script>
+	import Locations from '$lib/components/Locations.svelte';
 	import Slider from '$lib/components/Slider.svelte';
 </script>
 
-<div style="height: 50vh;">
-	<Slider />
+<!-- <Slider /> -->
+<div>
+	<Locations />
 </div>

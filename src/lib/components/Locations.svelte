@@ -28,7 +28,7 @@
 >
 	<h2>Locations</h2>
 	<div
-		class="locations-container flex justify-between md:justify-center md:gap-8 flex-wrap items-start gap-[1rem] p-[1rem]"
+		class="locations-container flex justify-between lg:justify-center md:gap-8 flex-wrap items-start gap-[1rem] p-[1rem]"
 	>
 		{#each locations as { name, image }}
 			<div class="location relative overflow-hidden">
@@ -81,10 +81,10 @@
 		position: absolute;
 		bottom: 0;
 		right: 0;
-		background-image: url('/images/Grid.svg');
+		background-image: url('/images/Grid.png');
 		/* background-repeat: repeat-x; */
 		background-repeat: no-repeat;
-		background-size: 250% 250%;
+		/* background-size: 250% 250%; */
 		background-position: bottom;
 	}
 </style>

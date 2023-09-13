@@ -1,6 +1,8 @@
 <script>
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
+	import SingleStarIcon from '$lib/icons/SingleStarIcon.svelte';
+	import TwinStarsIcon from '$lib/icons/TwinStarsIcon.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 </script>
 
@@ -18,7 +20,9 @@
 			</p>
 			<Button className="mt-10">Explore Now</Button>
 		</div>
-		<div class="flex-1 w-full md:w-auto">
+		<div class="relative flex-1 w-full md:w-auto">
+			<SingleStarIcon className="absolute -top-7 -left-7" />
+			<TwinStarsIcon className="absolute -bottom-7 -right-7" />
 			<div class="flex justify-between items-stretch flex-col sm:flex-row gap-6 [&>div]:rounded-xl">
 				<div class="flex-1 overflow-hidden max-h-[400px]">
 					<img

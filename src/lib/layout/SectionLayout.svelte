@@ -3,6 +3,6 @@
 	export let type: 'container' | 'wrapper' = 'container';
 </script>
 
-<section class={`py-[50px] ${type === 'container' ? 'max-width-container' : ''} ${className}`}>
+<section class={`py-[100px] ${type === 'container' ? 'max-width-container' : ''} ${className}`}>
 	<slot />
 </section>

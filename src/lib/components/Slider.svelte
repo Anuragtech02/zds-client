@@ -25,8 +25,8 @@
 <div class="slider">
 	<div class="slides">
 		{#each slides as slide, i}
-			<div class="slide {i === currentSlide ? 'active' : ''}">
-				<div class="content">
+			<div class="slide {i === currentSlide ? 'active' : ''} flex justify-between items-center">
+				<div class="content flex-1">
 					<img
 						src="/images/ThreeIntersectingCircles.svg"
 						alt="circles"
@@ -35,9 +35,7 @@
 					<p class="heading-slide">{slide.title}</p>
 					<p class="desccription-slide">{slide.description}</p>
 				</div>
-				<video loop class="image" src={slide.video} autoplay={true} muted={true}>
-					<track kind="captions" />
-				</video>
+				<video loop class="image" src={slide.video} autoplay={true} muted={true} />
 			</div>
 		{/each}
 	</div>
@@ -63,6 +61,8 @@
 		padding: 4rem;
 		overflow: hidden;
 		min-height: 600px;
+		border: 1px solid #3a3a3a;
+		border-radius: 1rem;
 	}
 
 	.slides {
@@ -73,23 +73,22 @@
 		justify-content: center;
 		align-items: center;
 		transition: transform 0.5s ease-in-out;
-		border-radius: 1rem;
 	}
 
 	.slide {
-		padding: 4rem;
+		padding: 0rem;
 		position: absolute;
 		top: 0;
 		left: 0;
 		flex: 1;
 		width: 100%;
-		height: 100%;
+		/* height: 100%; */
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		opacity: 0;
 		transition: opacity 0.5s ease-in-out;
-		border: 1px solid #3a3a3a;
+		/* border: 1px solid #3a3a3a; */
 		border-radius: 1rem;
 	}
 
@@ -97,11 +96,11 @@
 		opacity: 1;
 	}
 
-	.slide img {
+	/* .slide img {
 		max-width: 100%;
 		max-height: 100%;
 		object-fit: cover;
-	}
+	} */
 
 	.content {
 		color: #fff;
@@ -167,11 +166,11 @@
 		line-height: 40px;
 	}
 	.intersecting-circles {
-		height: 70px;
+		width: 70px;
 	}
 	@media screen and (max-width: 1100px) {
 		.intersecting-circles {
-			height: 55px;
+			width: 50px;
 		}
 		.slide {
 			flex-direction: column-reverse;
@@ -208,7 +207,7 @@
 	}
 	@media screen and (max-width: 425px) {
 		.intersecting-circles {
-			height: 40px;
+			width: 30px;
 		}
 		.slider {
 			height: 100%;

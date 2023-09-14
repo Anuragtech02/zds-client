@@ -4,7 +4,7 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 </script>
 
-<div class="relative h-screen flex justify-center items-center">
+<div class="relative h-screen flex justify-center items-center max-w-[100vw] overflow-x-hidden">
 	<PartnersCircleGlow className="absolute -top-4 -left-4" />
 	<SectionLayout className="w-full">
 		<h2 class="uppercase">

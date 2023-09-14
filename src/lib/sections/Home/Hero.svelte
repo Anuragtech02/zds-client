@@ -15,6 +15,22 @@
 				amount: 0.3
 			}
 		});
+
+		// fade in up btn
+		gsap.to('.our-work-btn', 1.8, {
+			y: 0,
+			ease: 'power4.out',
+			delay: 0.3,
+			opacity: 1
+		});
+
+		// left reveal
+		gsap.from('.left-reveal', 1.8, {
+			x: -100,
+			ease: 'power4.out',
+			delay: 0.4,
+			opacity: 0
+		});
 	});
 </script>
 
@@ -42,14 +58,13 @@
 						</h1>
 					</div>
 				</div>
-				<!-- <h1 class="text-left uppercase">
-					<span class="text-reveal">Engage.</span> <br />
-				</h1> -->
-				<p class="max-w-[400px] px-4 text-left border-l-2 mt-10 sm:mt-0 md:ml-20">
-					Translating Ideas & Imaginations Into Creative Audio-Visual Communication Experiences.
-				</p>
+				<div class="overflow-hidden border-l-2 max-w-[400px] mt-10 sm:mt-0 md:ml-20">
+					<p class="left-reveal px-4 text-left w-full">
+						Translating Ideas & Imaginations Into Creative Audio-Visual Communication Experiences.
+					</p>
+				</div>
 			</div>
-			<Button className="mt-20">Our Work</Button>
+			<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0">Our Work</Button>
 		</div>
 	</div>
 </SectionLayout>

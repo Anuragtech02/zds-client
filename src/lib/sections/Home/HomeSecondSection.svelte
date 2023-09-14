@@ -1,4 +1,5 @@
 <script>
+	import Button from '$lib/components/Button.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 </script>
 
@@ -14,7 +15,9 @@
 			<h2 class="text-right sm:text-left uppercase">Production Studio</h2>
 			<span class="gradient-line self-end" />
 		</div>
-		<a href="/" class="show-reel-btn z-[3]"> Show Reel </a>
+		<div class="relative z-[2] w-full flex justify-center">
+			<Button className="bg-bg-400">Show Reel</Button>
+		</div>
 		<div class="background-image-vr" />
 	</div>
 </SectionLayout>

@@ -26,7 +26,7 @@
 </script>
 
 <div
-	class="min-h-screen relative flex flex-col justify-around md:justify-start md:gap-32 location-section"
+	class="h-[600px] relative flex flex-col justify-around md:justify-start md:gap-32 location-section"
 >
 	<h2 class="uppercase">Locations</h2>
 	<div

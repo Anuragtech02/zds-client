@@ -5,9 +5,33 @@
 	import NavLink from './NavLinks/NavLink.svelte';
 	import NavLinks from './NavLinks/NavLinks.svelte';
 	import Searchbar from './Searchbar.svelte';
+
+	let header: HTMLElement;
+
+	// hide on scroll down
+	let lastScroll = 0;
+	const hideOnScroll = () => {
+		const currentScroll = window.pageYOffset;
+		if (currentScroll <= 0) {
+			header.style.transform = 'translateY(0)';
+			return;
+		}
+
+		if (currentScroll > lastScroll) {
+			header.style.transform = 'translateY(-100%)';
+		} else {
+			header.style.transform = 'translateY(0)';
+		}
+		lastScroll = currentScroll;
+	};
 </script>
 
-<header class="w-full bg-bg-300 backdrop-blur-xl">
+<svelte:window
+	on:scroll={() => {
+		hideOnScroll();
+	}}
+/>
+<header bind:this={header} class="header fixed top-0 left-0 w-full bg-bg-300 backdrop-blur-xl z-50">
 	<div class="max-width-container">
 		<div class="flex justify-between items-center py-4">
 			<Logo title="ZERO" subTitle="DESIGN STUDIO" />
@@ -40,5 +64,8 @@
 		.burger-menu {
 			display: block;
 		}
+	}
+	.header {
+		transition: transform 0.3s ease-in-out;
 	}
 </style>

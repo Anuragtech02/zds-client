@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Logo from '../Logo.svelte';
-	import MetaverseButton from '../Marketplace.svelte';
+	import MetaverseButton from '../MarketplaceButton.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
 	import NavLink from './NavLinks/NavLink.svelte';
 	import NavLinks from './NavLinks/NavLinks.svelte';

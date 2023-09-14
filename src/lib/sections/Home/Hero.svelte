@@ -31,12 +31,12 @@
 					<div class="relative h-[70px] md:h-[80px] lg:h-[100px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute">Engage.</h1>
 					</div>
-					<div class="relative md:mt-10 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
+					<div class="relative md:mt-12 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute">
 							<OutlinedText text="Entertain." className="text-reveal" /> <br />
 						</h1>
 					</div>
-					<div class="relative md:mt-6 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
+					<div class="relative md:mt-4 h-[80px] md:h-[100px] xl:h-[130px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute uppercase">
 							<OutlinedText text="Evolve." className="text-reveal" /> <br />
 						</h1>

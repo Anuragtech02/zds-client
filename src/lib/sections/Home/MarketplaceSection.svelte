@@ -10,10 +10,10 @@
 	<div class="max-width-container">
 		<div class="flex justify-between flex-col md:flex-row items-start gap-10">
 			<div class="flex-1">
-				<h3 class="uppercase text-left">
+				<h2 class="uppercase text-left">
 					<OutlinedText text="Check Out Our" />
 					<span class="block sm:inline-block"> Marketplace </span>
-				</h3>
+				</h2>
 				<p class="text-left mt-4 leading-10">
 					Explore a world of artistic excellence and cutting-edge multimedia resources curated to
 					inspire your next project. Our Marketplace is a treasure trove of artistic inspiration and

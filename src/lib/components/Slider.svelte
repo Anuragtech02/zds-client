@@ -5,7 +5,8 @@
 		{
 			video: '/sample_videos/sample_video.mp4',
 			title: 'Animation & Visual Packaging',
-			description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+			description:
+				'Transform your brand with captivating animation and visual packaging that leaves a lasting impression.'
 		},
 		{
 			video: '/sample_videos/sample_video.mp4',
@@ -60,12 +61,13 @@
 		height: 100%;
 		padding: 4rem;
 		overflow: hidden;
-		min-height: 600px;
 		border: 1px solid #3a3a3a;
+		min-height: 500px;
 		border-radius: 1rem;
 	}
 
 	.slides {
+		min-height: 400px;
 		position: relative;
 		width: 100%;
 		height: 100%;
@@ -82,7 +84,7 @@
 		left: 0;
 		flex: 1;
 		width: 100%;
-		/* height: 100%; */
+		height: 100%;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -190,6 +192,7 @@
 			height: 50%;
 			margin: 0;
 			width: 100%;
+			border-radius: 1rem;
 		}
 		.desccription-slide {
 			width: 100%;
@@ -224,6 +227,7 @@
 		}
 		.image {
 			width: 100%;
+			border-radius: 1rem;
 		}
 		.desccription-slide {
 			font-size: 16px;

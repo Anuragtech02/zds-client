@@ -28,24 +28,24 @@
 		<div class="flex flex-col justify-between items-start w-full">
 			<div class="flex justify-start items-start sm:items-end flex-col sm:flex-row w-full">
 				<div class="w-full uppercase flex flex-col justify-center items-start">
-					<div class="relative h-[100px] w-full overflow-hidden">
+					<div class="relative h-[70px] md:h-[80px] lg:h-[100px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute">Engage.</h1>
 					</div>
-					<div class="relative h-[125px] w-full overflow-hidden">
+					<div class="relative md:mt-10 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute">
-							<OutlinedText text="Entertain." className="mt-4 text-reveal" /> <br />
+							<OutlinedText text="Entertain." className="text-reveal" /> <br />
 						</h1>
 					</div>
-					<div class="relative h-[125px] w-full overflow-hidden">
+					<div class="relative md:mt-6 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute uppercase">
-							<OutlinedText text="Evolve." className="mt-4 text-reveal" /> <br />
+							<OutlinedText text="Evolve." className="text-reveal" /> <br />
 						</h1>
 					</div>
 				</div>
 				<!-- <h1 class="text-left uppercase">
 					<span class="text-reveal">Engage.</span> <br />
 				</h1> -->
-				<p class="max-w-[400px] px-4 text-left border-l-2 ml-40">
+				<p class="max-w-[400px] px-4 text-left border-l-2 mt-10 sm:mt-0 md:ml-20">
 					Translating Ideas & Imaginations Into Creative Audio-Visual Communication Experiences.
 				</p>
 			</div>

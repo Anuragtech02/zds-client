@@ -23,39 +23,69 @@
 	let currentSlide = 0;
 </script>
 
-<div class="slider">
-	<div class="slides">
-		{#each slides as slide, i}
-			<div class="slide {i === currentSlide ? 'active' : ''} flex justify-between items-center">
-				<div class="content flex-1">
-					<img
-						src="/images/ThreeIntersectingCircles.svg"
-						alt="circles"
-						class="intersecting-circles"
-					/>
-					<p class="heading-slide">{slide.title}</p>
-					<p class="desccription-slide">{slide.description}</p>
+<div class="h-full w-full relative">
+	<div class="border-animation" />
+	<div class="slider">
+		<div class="slides">
+			{#each slides as slide, i}
+				<div class="slide {i === currentSlide ? 'active' : ''} flex justify-between items-center">
+					<div class="content flex-1">
+						<img
+							src="/images/ThreeIntersectingCircles.svg"
+							alt="circles"
+							class="intersecting-circles"
+						/>
+						<p class="heading-slide">{slide.title}</p>
+						<p class="desccription-slide">{slide.description}</p>
+					</div>
+					<video loop class="image" src={slide.video} autoplay={true} muted={true} />
 				</div>
-				<video loop class="image" src={slide.video} autoplay={true} muted={true} />
-			</div>
+			{/each}
+		</div>
+	</div>
+	<div class="indicators">
+		{#each slides as slide, i}
+			<input
+				type="radio"
+				id="slide{i}"
+				name="slider"
+				checked={i === currentSlide}
+				on:change={() => (currentSlide = i)}
+			/>
+			<label for="slide{i}" />
 		{/each}
 	</div>
 </div>
-<div class="indicators">
-	{#each slides as slide, i}
-		<input
-			type="radio"
-			id="slide{i}"
-			name="slider"
-			checked={i === currentSlide}
-			on:change={() => (currentSlide = i)}
-		/>
-		<label for="slide{i}" />
-	{/each}
-</div>
 
 <style>
+	@property --r {
+		syntax: '<angle>';
+		inherits: false;
+		initial-value: 0deg;
+	}
+	@keyframes rotating {
+		0% {
+			--r: 0deg;
+		}
+		100% {
+			--r: 360deg;
+		}
+	}
+
+	.border-animation {
+		position: absolute;
+		top: -2px;
+		left: -3px;
+		width: 100.5%;
+		height: 96%;
+		z-index: -1;
+		background-color: red;
+		border-radius: 1rem;
+		background: conic-gradient(from var(--r), #222 0%, #eee 10%, #222 20%);
+		animation: rotating 3s linear infinite;
+	}
 	.slider {
+		margin-top: 2rem;
 		position: relative;
 		width: 100%;
 		height: 100%;
@@ -64,6 +94,7 @@
 		border: 1px solid #3a3a3a;
 		min-height: 500px;
 		border-radius: 1rem;
+		background-color: black;
 	}
 
 	.slides {
@@ -92,6 +123,7 @@
 		transition: opacity 0.5s ease-in-out;
 		/* border: 1px solid #3a3a3a; */
 		border-radius: 1rem;
+		gap: 1.5rem;
 	}
 
 	.slide.active {
@@ -121,6 +153,7 @@
 	.image {
 		width: 50%;
 		border-radius: 1rem;
+		object-fit: cover;
 	}
 	.slide.active .content {
 		transform: translateY(0);
@@ -170,7 +203,7 @@
 	.intersecting-circles {
 		width: 70px;
 	}
-	@media screen and (max-width: 1100px) {
+	@media screen and (max-width: 1048px) {
 		.intersecting-circles {
 			width: 50px;
 		}
@@ -178,7 +211,7 @@
 			flex-direction: column-reverse;
 			gap: 1rem;
 			justify-content: space-around;
-			padding: 2rem;
+			/* padding: 2rem; */
 		}
 		.content {
 			align-items: flex-start;
@@ -189,7 +222,7 @@
 			width: 100%;
 		}
 		.image {
-			height: 50%;
+			height: 60%;
 			margin: 0;
 			width: 100%;
 			border-radius: 1rem;
@@ -197,18 +230,18 @@
 		.desccription-slide {
 			width: 100%;
 			font-size: 20px;
-			line-height: 40px;
+			line-height: 30px;
 		}
 		.heading-slide {
 			width: 100%;
 			font-size: 30px !important;
-			line-height: 40px !important;
+			line-height: 30px !important;
 		}
 		.slider {
 			padding: 2rem;
 		}
 	}
-	@media screen and (max-width: 425px) {
+	@media screen and (max-width: 550px) {
 		.intersecting-circles {
 			width: 30px;
 		}

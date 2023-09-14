@@ -6,33 +6,41 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 
 	onMount(() => {
-		gsap.from('.text-reveal', {
-			duration: 1.5,
-			opacity: 0,
-			y: '100%',
-			stagger: 0.3,
-			ease: 'power3.out'
+		gsap.from('.text-reveal', 1.8, {
+			y: 100,
+			ease: 'power4.out',
+			delay: 0.2,
+			skewY: 7,
+			stagger: {
+				amount: 0.3
+			}
 		});
 	});
 </script>
 
-<SectionLayout type="wrapper">
+<SectionLayout type="wrapper" className="py-0">
 	<img
 		src="/images/hero-gradient.png"
 		alt="hero-gradient"
 		class="absolute top-0 -left-[150px] pointer-events-none z-[0]"
 	/>
-	<div class="max-width-container relative z-[1]">
-		<div class="flex flex-col justify-between items-start h-[60vh]">
+	<div class="max-width-container relative z-[1] flex justify-between items-center h-screen">
+		<div class="flex flex-col justify-between items-start w-full">
 			<div class="flex justify-start items-start sm:items-end flex-col sm:flex-row w-full">
-				<div class="uppercase">
-					<h1 class="text-left">Engage.</h1>
-					<h1 class="text-left">
-						<OutlinedText text="Entertain." className="mt-4 text-reveal" /> <br />
-					</h1>
-					<h1 class="text-left uppercase">
-						<OutlinedText text="Evolve." className="mt-4 text-reveal" /> <br />
-					</h1>
+				<div class="w-full uppercase flex flex-col justify-center items-start">
+					<div class="relative h-[100px] w-full overflow-hidden">
+						<h1 class="text-reveal text-left absolute">Engage.</h1>
+					</div>
+					<div class="relative h-[125px] w-full overflow-hidden">
+						<h1 class="text-reveal text-left absolute">
+							<OutlinedText text="Entertain." className="mt-4 text-reveal" /> <br />
+						</h1>
+					</div>
+					<div class="relative h-[125px] w-full overflow-hidden">
+						<h1 class="text-reveal text-left absolute uppercase">
+							<OutlinedText text="Evolve." className="mt-4 text-reveal" /> <br />
+						</h1>
+					</div>
 				</div>
 				<!-- <h1 class="text-left uppercase">
 					<span class="text-reveal">Engage.</span> <br />
@@ -41,7 +49,7 @@
 					Translating Ideas & Imaginations Into Creative Audio-Visual Communication Experiences.
 				</p>
 			</div>
-			<Button>Our Work</Button>
+			<Button className="mt-20">Our Work</Button>
 		</div>
 	</div>
 </SectionLayout>

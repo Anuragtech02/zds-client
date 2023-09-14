@@ -27,6 +27,15 @@
 				}
 			});
 		});
+
+		// img float animation
+		gsap.to('.img-float-anim', {
+			y: 20,
+			duration: 2,
+			repeat: -1,
+			yoyo: true,
+			ease: 'power1.inOut'
+		});
 	});
 </script>
 
@@ -59,7 +68,7 @@
 					</div>
 				</div>
 				<div class="w-[25%] mr-0 hidden sm:block md:hidden flex justify-end">
-					<img src="/images/about-image.png" alt="about" />
+					<img src="/images/about-image.png" alt="about" class="img-float-anim" />
 				</div>
 			</div>
 			<div class="mt-4 [&>p]:text-justify">
@@ -85,7 +94,7 @@
 			{/if}
 		</div>
 		<div class="hidden md:block lg:w-[40%] xl:w-full">
-			<img src="/images/about-image.png" alt="about" />
+			<img src="/images/about-image.png" alt="about" class="img-float-anim" />
 		</div>
 	</div>
 </SectionLayout>

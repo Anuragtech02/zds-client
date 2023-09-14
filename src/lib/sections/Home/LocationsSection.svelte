@@ -28,7 +28,7 @@
 <div
 	class="min-h-screen relative flex flex-col justify-around md:justify-start md:gap-32 location-section"
 >
-	<h3 class="uppercase">Locations</h3>
+	<h2 class="uppercase">Locations</h2>
 	<div
 		class="locations-container flex justify-between lg:justify-center md:gap-8 flex-wrap items-start gap-[1rem] p-[1rem]"
 	>

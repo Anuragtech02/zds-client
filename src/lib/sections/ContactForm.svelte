@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
 	import Input from '$lib/components/Input.svelte';
+	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import CallIcon from '$lib/icons/CallIcon.svelte';
 	import MailIcon from '$lib/icons/MailIcon.svelte';
 	import type { ContactForm } from '$lib/types/components';
@@ -81,12 +82,10 @@
 <div class="relative w-full flex flex-col sm:flex-row">
 	<div class="w-full flex flex-1 justify-between items-start gap-4">
 		<div>
-			<div class="max-w-[400px]">
-				<svg viewBox="0 0 450 50">
-					<text y="50">GIVE US A</text>
-				</svg>
-				<span class="inline-block text-[3rem] font-bold font-dela-gothic mt-4">SHOUT</span>
-			</div>
+			<h2 class="uppercase text-left">
+				<OutlinedText text="GIVE US A" />
+				<span class="block">Shout</span>
+			</h2>
 			<div class="mt-8">
 				<div class="flex justify-start items-center">
 					<MailIcon />
@@ -132,18 +131,3 @@
 		<Button type="submit" className="mt-2">Submit</Button>
 	</form>
 </div>
-
-<style>
-	svg {
-		font: bold 67px 'Dela Gothic One', cursive;
-		width: 90%;
-		height: 60px;
-	}
-
-	text {
-		fill: none;
-		@apply stroke-fg;
-		stroke-width: 3px;
-		stroke-linejoin: round;
-	}
-</style>

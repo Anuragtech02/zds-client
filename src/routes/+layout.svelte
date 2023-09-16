@@ -5,7 +5,5 @@
 </script>
 
 <BaseLayer>
-	<PageLayout>
-		<slot />
-	</PageLayout>
+	<slot />
 </BaseLayer>

@@ -47,7 +47,7 @@
 		{/each}
 	</div>
 	<!-- <img src="/images/Grid.svg" alt="grid" class="background-image" /> -->
-	<div class="background-image max-w-[100vw] overflow-x-hidden">
+	<div class="background-image max-w-[100vw] overflow-hidden">
 		<Grid />
 	</div>
 </div>

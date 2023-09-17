@@ -270,5 +270,8 @@
 			font-size: 20px !important;
 			line-height: 30px !important;
 		}
+		.border-animation {
+			width: 101%;
+		}
 	}
 </style>

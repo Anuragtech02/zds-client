@@ -1,6 +1,9 @@
 <script lang="ts">
 	import WorkVideo from '$lib/sections/Work/WorkVideo.svelte';
-
+	import Muuri from 'muuri';
+	var focus = (node: any) => {
+		var grid = new Muuri('.grid-muuri');
+	};
 	let categories = [
 		'All Categories',
 		'web',
@@ -41,7 +44,7 @@
 		unique story of a collaborative effort, creativity, and unrestrained enthusiasm. Join us as we
 		take you on a visual journey through our diverse range of projects.
 	</div>
-	<div class="flex flex-wrap justify-center items-center lg:justify-start gap-8">
+	<div use:focus class="grid-muuri w-full h-full">
 		{#each [1, 2, 3, 4, 5] as video}
 			<WorkVideo />
 		{/each}
@@ -58,5 +61,8 @@
 		left: 45%;
 		border-radius: 100%;
 		background-color: #ff00ce;
+	}
+	.grid-muuri {
+		position: relative;
 	}
 </style>

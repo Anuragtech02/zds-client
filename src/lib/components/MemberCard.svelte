@@ -14,7 +14,7 @@
 </script>
 
 <div
-	class=" p-6 py-8 flex flex-col gap-6 bg-transparent backdrop-blur-sm rounded-md border-[1px] border-[#3A3A3A]"
+	class=" overflow-hidden p-6 py-8 flex flex-col gap-6 bg-transparent backdrop-blur-sm rounded-md border-[1px] border-[#3A3A3A]"
 >
 	<p class="text-left">
 		<TextWithGradient text={member.title} />

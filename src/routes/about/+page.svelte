@@ -122,12 +122,18 @@
 		<img src="/images/about-image.png" alt="about" class="img-float-anim" />
 	</div>
 </div>
-<div class="py-8">
+<div class="relative overflow-hidden py-8">
+	<div
+		class="absolute right-0 top-2 h-[40%] w-[50%]"
+		style="background-image: url(/images/net-bg.png);"
+	/>
 	<h3 class="text-left">
 		<OutlinedText text="OUR" />
 		TEAM
 	</h3>
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8">
+	<div
+		class="bg-transparent grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8"
+	>
 		{#each teamMembers as member}
 			<MemberCard {member} />
 		{/each}

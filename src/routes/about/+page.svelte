@@ -90,7 +90,7 @@
 	];
 </script>
 
-<div class="flex justify-between lg:items-start xl:items-center gap-6">
+<div class="flex justify-between lg:items-start xl:items-center gap-6 pb-24">
 	<div>
 		<div class="flex justify-between items-center gap-2">
 			<div>
@@ -122,6 +122,7 @@
 		<img src="/images/about-image.png" alt="about" class="img-float-anim" />
 	</div>
 </div>
+
 <div class="relative overflow-hidden py-8">
 	<div
 		class="absolute right-0 top-2 h-[40%] w-[50%]"
@@ -132,12 +133,18 @@
 		TEAM
 	</h3>
 	<div
-		class="bg-transparent grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8"
+		class="bg-transparent relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8"
 	>
 		{#each teamMembers as member}
 			<MemberCard {member} />
 		{/each}
 	</div>
+</div>
+<div class="relative">
+	<div
+		style="background-image: url(/images/decoration-left.png);"
+		class="absolute h-80 -top-[38rem] z-[-1] w-40 -left-32"
+	/>
 </div>
 
 <style>

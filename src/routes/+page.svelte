@@ -11,11 +11,11 @@
 </script>
 
 <Hero />
-<HomeSecondSection />
-<AboutSection />
+<!-- <HomeSecondSection /> -->
+<PartnersSection />
 <ServicesSection />
 <MarketplaceSection />
-<BannerCTA />
-<PartnersSection />
-<LocationsSection />
+<!-- <AboutSection /> -->
+<!-- <BannerCTA /> -->
+<!-- <LocationsSection /> -->
 <ContactSection />

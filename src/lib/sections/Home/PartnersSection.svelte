@@ -10,6 +10,28 @@
 	<PartnersCircleGlow className="absolute -top-4 -left-4" />
 	<SectionLayout className="w-full">
 		<h2 class="uppercase">
+			BRANDS
+			<OutlinedText text="we&apos;ve worked with" />
+		</h2>
+		<div
+			class="flex relative justify-between items-center gap-4 py-16 w-full brands-container overflow-hidden"
+		>
+			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">1</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">2</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">3</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">4</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">5</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">6</div>
+		</div>
+	</SectionLayout>
+</div>
+
+<!-- <div
+	class="relative h-screen flex justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
+>
+	<PartnersCircleGlow className="absolute -top-4 -left-4" />
+	<SectionLayout className="w-full">
+		<h2 class="uppercase">
 			Partners
 			<OutlinedText text="we&apos;ve worked with" />
 		</h2>
@@ -24,4 +46,25 @@
 			</div>
 		</div>
 	</SectionLayout>
-</div>
+</div> -->
+
+<style>
+	.brands-container::after {
+		content: '';
+		width: 16rem;
+		height: 100%;
+		background: linear-gradient(to right, #131011, transparent);
+		position: absolute;
+		top: 0;
+		left: -4rem;
+	}
+	.brands-container::before {
+		content: '';
+		width: 16rem;
+		height: 100%;
+		background: linear-gradient(to left, #131011, transparent);
+		position: absolute;
+		top: 0;
+		right: -4rem;
+	}
+</style>

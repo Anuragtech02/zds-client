@@ -13,10 +13,55 @@
 		'photography',
 		'app'
 	];
+	const works = [
+		{
+			id: 1,
+			title: 'Animation &  Visual Packaging',
+			category: 'web',
+			thumbnail:
+				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+		},
+		{
+			id: 2,
+			title: 'Animation &  Visual Packaging',
+			category: 'design',
+			thumbnail:
+				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+		},
+		{
+			id: 3,
+			title: 'Animation &  Visual Packaging',
+			category: 'web',
+			thumbnail:
+				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+		},
+		{
+			id: 4,
+			title: 'Animation &  Visual Packaging',
+			category: 'design',
+			thumbnail:
+				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+		},
+		{
+			id: 5,
+			title: 'Animation &  Visual Packaging',
+			category: 'web',
+			thumbnail:
+				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+		}
+	];
 	let selectedCategory = categories[0];
 	let categoryChangeHandler = (category: string) => {
 		selectedCategory = category;
 	};
+
+	$: filteredWorks = works.filter((work) => {
+		if (selectedCategory === 'All Categories') {
+			return true;
+		}
+		return work.category === selectedCategory;
+	});
+	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
 <div class="min-h-screen flex flex-col justify-start items-start gap-12">
@@ -45,9 +90,11 @@
 		take you on a visual journey through our diverse range of projects.
 	</div>
 	<div use:focus class="grid-muuri w-full h-full">
-		{#each [1, 2, 3, 4, 5] as video}
-			<WorkVideo />
-		{/each}
+		{#key filteredWorks}
+			{#each filteredWorks as video (video.id)}
+				<WorkVideo {video} />
+			{/each}
+		{/key}
 	</div>
 </div>
 

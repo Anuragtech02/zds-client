@@ -104,7 +104,7 @@ const services = [
 	}
 ];
 
-export function load({ params }) {
+export function load({ params }: any) {
 	const service = services.find((service) => service.id == params.serviceId);
 	if (!service) throw error(404);
 

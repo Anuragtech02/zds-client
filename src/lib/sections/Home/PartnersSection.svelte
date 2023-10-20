@@ -14,14 +14,14 @@
 			<OutlinedText text="we&apos;ve worked with" />
 		</h2>
 		<div
-			class="flex relative justify-between items-center gap-4 py-16 w-full brands-container overflow-hidden"
+			class="flex shrink-0 relative justify-between items-center gap-4 py-16 w-full brands-container overflow-hidden"
 		>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">1</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">2</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">3</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">4</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">5</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">6</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">1</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">2</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">3</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">4</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">5</div>
+			<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">6</div>
 		</div>
 	</SectionLayout>
 </div>

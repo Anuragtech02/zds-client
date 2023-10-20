@@ -31,7 +31,7 @@
 	<!-- <Slider /> -->
 	<div class="w-full flex flex-col justify-between items-center gap-4 py-16 pb-8">
 		{#each services as service}
-			<div class="flex justify-between items-center border p-8 rounded-md">
+			<div class="w-full flex justify-between items-center border p-8 rounded-md">
 				<p class="w-1/2">
 					{service.title}
 				</p>

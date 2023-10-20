@@ -10,7 +10,9 @@
 	export let bgImage = '/images/headingBG.png';
 </script>
 
-<section class="min-h-screen relative p-[2rem] sm:p-[4rem] md:p-[6rem] lg:py-[8rem] lg:px-[8rem]">
+<section
+	class="min-h-screen relative p-[2rem] sm:p-[4rem] md:p-[4rem] md:pt-[8rem] lg:py-[8rem] lg:px-[8rem]"
+>
 	<div class="flex flex-col w-full justify-end items-start pt-[5rem] mb-[12rem] lg:mb-[14rem]">
 		<p>{description}</p>
 		{#if icon != ''}

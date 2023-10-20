@@ -13,11 +13,11 @@
 
 <Hero />
 <!-- <HomeSecondSection /> -->
-<!-- <OurWork /> -->
+<OurWork />
 <PartnersSection />
 <ServicesSection />
 <MarketplaceSection />
 <!-- <AboutSection /> -->
-<!-- <BannerCTA /> -->
+<BannerCTA />
 <!-- <LocationsSection /> -->
 <ContactSection />

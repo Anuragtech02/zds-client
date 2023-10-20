@@ -4,9 +4,10 @@
 	let heading = video.title;
 	let category = video.category;
 	let src = video.thumbnail;
+	export let absolute = true;
 </script>
 
-<div class="item">
+<div class={`item ${absolute ? 'absolute' : ''}`}>
 	<div class="item-content">
 		<div class="h-full w-full relative">
 			<p class="absolute top-0 left-0 w-full p-2 px-4 text-left backdrop-blur rounded-t-xl">
@@ -26,7 +27,7 @@
 <style>
 	.item {
 		display: block;
-		position: absolute;
+
 		width: 550px;
 		aspect-ratio: 2;
 		margin: 1rem;

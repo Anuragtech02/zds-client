@@ -7,7 +7,7 @@
 <div
 	class="relative h-screen flex justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
 >
-	<PartnersCircleGlow className="absolute -top-4 -left-4" />
+	<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
 	<SectionLayout className="w-full">
 		<h2 class="uppercase">
 			BRANDS

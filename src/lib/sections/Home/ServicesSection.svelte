@@ -31,18 +31,21 @@
 	<!-- <Slider /> -->
 	<div class="w-full flex flex-col justify-between items-center gap-4 py-16 pb-8">
 		{#each services as service}
-			<div class="w-full flex justify-between items-center border p-8 rounded-md">
-				<p class="w-1/2">
+			<div
+				class="w-full flex flex-col md:flex-row justify-between items-center border p-8 rounded-md"
+			>
+				<p class="md:w-1/2">
 					{service.title}
 				</p>
-				<div class="w-1/2">
+				<div class="md:w-1/2 flex flex-col items-center justify-center md:items-start">
 					<img src={service.icon} class="h-16 w-16" alt="" />
 					<ul class="flex flex-wrap gap-2 items-center">
 						{#each service.services as s, i}
-							<li class="text-sm">{s}</li>
-							{#if i != service.services.length - 1}
-								•
-							{/if}
+							<li class="text-sm">
+								{#if i != 0}
+									•
+								{/if}{s}
+							</li>
 						{/each}
 					</ul>
 				</div>

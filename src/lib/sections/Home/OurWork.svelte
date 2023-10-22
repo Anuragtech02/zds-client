@@ -44,8 +44,8 @@
 	};
 </script>
 
-<div class="py-4 px-32 flex flex-col justify-center items-center">
-	<h2 class="self-start ml-16">
+<div class="py-4 px-8 flex flex-col justify-center items-center">
+	<h2 class="self-start lg:ml-16">
 		<OutlinedText text="OUR" className="mt-4" />
 		WORK
 	</h2>

@@ -4,10 +4,15 @@
 	let heading = video.title;
 	let category = video.category;
 	let src = video.thumbnail;
+	export let fixedWidth = true;
 	export let absolute = true;
 </script>
 
-<div class={`item ${absolute ? 'absolute' : ''}`}>
+<div
+	class={`item ${fixedWidth ? 'w-[300px] m-6 responsive-item' : 'w-full'} ${
+		absolute ? 'absolute' : ''
+	}`}
+>
 	<div class="item-content">
 		<div class="h-full w-full relative">
 			<p class="absolute top-0 left-0 w-full p-2 px-4 text-left backdrop-blur rounded-t-xl">
@@ -28,44 +33,40 @@
 	.item {
 		display: block;
 
-		width: 550px;
 		aspect-ratio: 2;
-		margin: 1rem;
 		z-index: 1;
 		background: #000;
 		color: #fff;
 	}
-	@media screen and (min-width: 1550px) {
-		.item {
-			width: 600px;
+	@media screen and (min-width: 450px) {
+		.item.responsive-item {
+			width: 300px;
+			margin: 1rem;
+		}
+	}
+	@media screen and (min-width: 550px) {
+		.item.responsive-item {
+			width: 400px;
+			margin: 1rem;
+		}
+	}
+	@media screen and (min-width: 750px) {
+		.item.responsive-item {
+			width: 500px;
+			margin: 1rem;
+		}
+	}
+	@media screen and (min-width: 1250px) {
+		.item.responsive-item {
+			width: 40%;
 			margin: 2rem;
 		}
 	}
 
 	@media screen and (min-width: 1850px) {
-		.item {
+		.item.responsive-item {
 			width: 700px;
 			margin: 2rem;
-		}
-	}
-
-	@media screen and (max-width: 750px) {
-		.item {
-			width: 500px;
-			margin: 1rem 0;
-		}
-	}
-
-	@media screen and (max-width: 550px) {
-		.item {
-			width: 400px;
-			margin: 1rem 0;
-		}
-	}
-	@media screen and (max-width: 450px) {
-		.item {
-			width: 300px;
-			margin: 1rem 0;
 		}
 	}
 

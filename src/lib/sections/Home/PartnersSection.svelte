@@ -5,11 +5,11 @@
 </script>
 
 <div
-	class="relative h-screen flex justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
+	class="relative flex flex-col justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
 >
-	<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
-	<SectionLayout className="w-full">
-		<h2 class="uppercase">
+	<SectionLayout className="w-full m-0" type="wrapper">
+		<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
+		<h2 class="uppercase max-width-container text-left">
 			BRANDS
 			<OutlinedText text="we&apos;ve worked with" />
 		</h2>
@@ -86,7 +86,6 @@
 		top: 0;
 		left: -4rem;
 		z-index: 1;
-
 	}
 	.brands-container::before {
 		content: '';
@@ -117,6 +116,5 @@
 	}
 	.slider-track {
 		animation: scroll 15s linear infinite forwards;
-
 	}
 </style>

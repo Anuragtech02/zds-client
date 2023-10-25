@@ -13,10 +13,7 @@ export const NAV_LINKS: Link[] = [
 		name: 'About',
 		url: '/about'
 	},
-	{
-		name: 'Our Services',
-		url: '/services'
-	},
+
 	{
 		name: 'Contact Us',
 		url: '/contact'

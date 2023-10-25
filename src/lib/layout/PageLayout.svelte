@@ -9,7 +9,8 @@
 		console.log('Page Layout mounted');
 	});
 	export let title = 'OUR WORK';
-	export let description = '';
+	export let icon = '';
+	export let description = 'WE ARE PROUD TO PRESENT';
 	export let bgImage = '/images/headingBG.png';
 	export let bgColor = '';
 	export let tagText = '';
@@ -17,6 +18,7 @@
 </script>
 
 <section
+
 	style={`background-color: ${bgColor}`}
 	class={`bg-[${bgColor}] min-h-screen relative p-[2rem] sm:p-[4rem] md:p-[6rem] lg:py-[8rem] lg:px-[8rem]`}
 >

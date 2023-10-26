@@ -1,5 +1,12 @@
 <script lang="ts">
-	export let video;
+	import { goto } from '$app/navigation';
+
+	export let video: {
+		id: number;
+		title: string;
+		category: string;
+		thumbnail: string;
+	};
 	console.log(video);
 	let heading = video.title;
 	let category = video.category;
@@ -14,7 +21,17 @@
 	}`}
 >
 	<div class="item-content">
-		<div class="h-full w-full relative">
+		<div
+			role="button"
+			tabindex="0"
+			on:keypress={() => {
+				goto(`/works/${video.id}`);
+			}}
+			on:click={() => {
+				goto(`/works/${video.id}`);
+			}}
+			class="h-full w-full relative"
+		>
 			<p class="absolute top-0 left-0 w-full p-2 px-4 text-left backdrop-blur rounded-t-xl">
 				{heading}
 			</p>

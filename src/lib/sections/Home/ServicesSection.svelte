@@ -1,19 +1,23 @@
 <script>
+	import { goto } from '$app/navigation';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import Slider from '$lib/components/Slider.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	let services = [
 		{
+			id: 1,
 			title: 'Multimedia Productions',
 			icon: '/images/services/R1.png',
 			services: ['Content Production', 'VFX', 'Animation & Visual Packaging', 'Anamorphic Content']
 		},
 		{
+			id: 2,
 			title: 'Event Experiences',
 			icon: '/images/services/R2.png',
 			services: ['Entertainment Technology ', 'Immersive Experiences', 'Multimedia Show Design']
 		},
 		{
+			id: 3,
 			title: 'Event Experiences',
 			icon: '/images/services/R3.png',
 			services: [
@@ -24,6 +28,7 @@
 			]
 		},
 		{
+			id: 4,
 			title: 'Entertainment Technology',
 			icon: '/images/services/R4.png',
 			services: [
@@ -42,6 +47,14 @@
 	<div class="w-full flex flex-col justify-between items-center gap-4 py-16 pb-8">
 		{#each services as service}
 			<div
+				role="button"
+				tabindex="0"
+				on:keypress={() => {
+					goto(`/service/${service.id}`);
+				}}
+				on:click={() => {
+					goto(`/service/${service.id}`);
+				}}
 				class="w-full flex flex-col md:flex-row justify-between items-center border border-[#3A3A3A] p-8 rounded-md"
 			>
 				<p class="md:w-1/2 pl-2 xl:pl-8 text-left text-lg lg:text-2xl">

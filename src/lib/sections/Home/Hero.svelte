@@ -4,6 +4,8 @@
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import { redirect } from '@sveltejs/kit';
+	import { goto } from '$app/navigation';
 
 	onMount(() => {
 		gsap.from('.text-reveal', 1.8, {
@@ -34,7 +36,7 @@
 	});
 </script>
 
-<SectionLayout type="wrapper" className="py-0">
+<SectionLayout type="wrapper" padding="pt-[50px]" className="py-0">
 	<img
 		src="/images/hero-gradient.png"
 		alt="hero-gradient"
@@ -64,7 +66,9 @@
 					</p>
 				</div>
 			</div>
-			<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0">Our Work</Button>
+			<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link="/work"
+				>Our Work</Button
+			>
 		</div>
 	</div>
 </SectionLayout>

@@ -6,50 +6,51 @@
 	};
 	let categories = [
 		'All Categories',
-		'web',
-		'design',
-		'illustration',
-		'branding',
-		'photography',
-		'app'
+		'Animation &  Visual Packaging',
+		'Content Mapping',
+		'Digital Art',
+		'VFX',
+		'Visual, Physical & Hybrid'
 	];
 	const works = [
 		{
 			id: 1,
-			title: 'Animation &  Visual Packaging',
-			category: 'web',
-			thumbnail:
-				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+			title: 'Lorem Ipsum Dolor',
+			category: 'Animation &  Visual Packaging',
+			thumbnail: '/images/work/R385.png'
 		},
 		{
 			id: 2,
-			title: 'Animation &  Visual Packaging',
-			category: 'design',
-			thumbnail:
-				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+			title: 'Lorem Ipsum Dolor',
+			category: 'Animation &  Visual Packaging',
+			thumbnail: '/images/work/R397.png'
 		},
 		{
 			id: 3,
-			title: 'Animation &  Visual Packaging',
-			category: 'web',
-			thumbnail:
-				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+			title: 'Lorem Ipsum Dolor',
+			category: 'Animation &  Visual Packaging',
+			thumbnail: '/images/work/R398.png'
 		},
 		{
 			id: 4,
-			title: 'Animation &  Visual Packaging',
-			category: 'design',
-			thumbnail:
-				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+			title: 'Lorem Ipsum Dolor',
+			category: 'Animation &  Visual Packaging',
+			thumbnail: '/images/work/R399.png'
 		},
 		{
 			id: 5,
-			title: 'Animation &  Visual Packaging',
-			category: 'web',
-			thumbnail:
-				'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+			title: 'Lorem Ipsum Dolor',
+			category: 'Animation &  Visual Packaging',
+			thumbnail: '/images/work/R400.png'
+		},
+		{
+			id: 6,
+			title: 'Lorem Ipsum Dolor',
+			category: 'Animation &  Visual Packaging',
+			thumbnail: '/images/work/R401.png'
 		}
 	];
+
 	let selectedCategory = categories[0];
 	let categoryChangeHandler = (category: string) => {
 		selectedCategory = category;
@@ -66,12 +67,12 @@
 
 <div class="min-h-screen flex flex-col justify-start items-start gap-12">
 	<div
-		class="w-full flex justify-start md:justify-around gap-4 items-center border-b-2 pb-4 overflow-x-scroll lg:overflow-hidden"
+		class="w-full flex justify-start xl:justify-around gap-4 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
 	>
 		{#each categories as category}
 			<button
 				class={`${
-					category === selectedCategory ? 'active-category' : ''
+					category === selectedCategory ? 'active-category text-white' : 'text-[#8D8D8D]'
 				} text-lg w-fit cursor-pointer relative whitespace-nowrap`}
 				on:click={categoryChangeHandler.bind(null, category)}
 			>

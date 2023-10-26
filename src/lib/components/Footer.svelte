@@ -25,7 +25,7 @@
 		<div class="block lg:hidden mt-8">
 			<NavLinks links={footerNavLinks} />
 		</div>
-		<hr class="w-full bg-white mt-8" />
+		<hr class="w-full bg-[#8D8D8D] mt-8" />
 		<div class="flex justify-between items-center flex-wrap">
 			<p class="mt-8">&copy; 2023 Zero Design Studio. All rights reserved.</p>
 			<div class="mt-8 gap-4 flex justify-around items-center flex-wrap">

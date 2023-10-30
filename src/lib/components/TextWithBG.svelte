@@ -1,35 +1,31 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
 
 	export let className: string = '';
 
-	gsap.registerPlugin(ScrollTrigger);
 	let customBand: any = null;
 	let bandContainer: any = null;
 
 	onMount(() => {
-		if (customBand) {
-			setTimeout(() => {
-				gsap.fromTo(
-					customBand,
-					{
-						width: '5%'
-					},
-					{
-						width: '105%',
-						duration: 1,
-						ease: 'power2.out',
-						scrollTrigger: {
-							trigger: bandContainer,
-							start: 'top bottom',
-							end: 'bottom top',
-							toggleActions: 'play reverse play reverse'
-						}
+		if (customBand && bandContainer) {
+			gsap.fromTo(
+				customBand,
+				{
+					width: '5%'
+				},
+				{
+					width: '105%',
+					duration: 1,
+					ease: 'power2.out',
+					scrollTrigger: {
+						trigger: bandContainer,
+						start: 'top bottom',
+						end: 'bottom top',
+						toggleActions: 'play reverse play reverse'
 					}
-				);
-			}, 300);
+				}
+			);
 		}
 	});
 </script>
@@ -38,7 +34,7 @@
 	bind:this={bandContainer}
 	class={`font-dela-gothic inline-block bg-gradient-band z-[1] relative ${className}`}
 >
-	<span bind:this={customBand} class="custom-bg-band" />
+	<span bind:this={customBand} class="custom-bg-band gradient-1" />
 	<slot />
 </span>
 
@@ -54,6 +50,5 @@
 		z-index: -1;
 		bottom: 10%;
 		overflow: hidden;
-		@apply gradient-1;
 	}
 </style>

@@ -8,14 +8,16 @@
 	import PartnersSection from '$lib/sections/Home/PartnersSection.svelte';
 	import LocationsSection from '$lib/sections/Home/LocationsSection.svelte';
 	import ContactSection from '$lib/sections/Home/ContactSection.svelte';
+	import OurWork from '$lib/sections/Home/OurWork.svelte';
 </script>
 
 <Hero />
-<HomeSecondSection />
-<AboutSection />
+<!-- <HomeSecondSection /> -->
+<OurWork />
+<PartnersSection />
 <ServicesSection />
 <MarketplaceSection />
+<!-- <AboutSection /> -->
 <BannerCTA />
-<PartnersSection />
-<LocationsSection />
+<!-- <LocationsSection /> -->
 <ContactSection />

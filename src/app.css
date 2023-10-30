@@ -40,7 +40,8 @@ html {
 	}
 	p,
 	a,
-	li {
+	li,
+	button {
 		@apply text-sm text-center;
 		font-family: 'Montserrat', sans-serif;
 	}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import BaseLayer from '$lib/layout/BaseLayer.svelte';
 	import Lenis from '@studio-freight/lenis';
+	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import '../app.css';
 	import { onMount } from 'svelte';
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Logo from '../Logo.svelte';
 	import MetaverseButton from '../MarketplaceButton.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
@@ -24,6 +25,10 @@
 		}
 		lastScroll = currentScroll;
 	};
+
+	function navigateToHome() {
+		goto('/');
+	}
 </script>
 
 <svelte:window
@@ -34,7 +39,7 @@
 <header bind:this={header} class="header fixed top-0 left-0 w-full bg-bg-300 backdrop-blur-xl z-50">
 	<div class="max-width-container">
 		<div class="flex justify-between items-center py-4">
-			<Logo title="ZERO" subTitle="DESIGN STUDIO" />
+			<Logo title="ZERO" subTitle="DESIGN STUDIO" on:click={navigateToHome} />
 			<div class="flex items-center">
 				<div class="nav-container items-center md:gap-4 xl:gap-8">
 					<Searchbar />

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import WorkVideo from '../Work/WorkVideo.svelte';
@@ -43,7 +45,7 @@
 	];
 </script>
 
-<SectionLayout>
+<SectionLayout padding="pb-[200px]">
 	<div class=" flex flex-col justify-center items-center">
 		<h2 class="self-start">
 			<OutlinedText text="OUR" className="mt-4" />
@@ -56,10 +58,8 @@
 				<WorkVideo fixedWidth={false} {video} absolute={false} />
 			{/each}
 		</div>
-		<button
-			class="mt-16 rounded-3xl backdrop-blur-sm bg-[#FFFFFF1A] border py-3 px-12 lg:py-4 hover:bg-white hover:text-black"
+		<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link="/work"
+			>Explore More</Button
 		>
-			Explore More
-		</button>
 	</div>
 </SectionLayout>

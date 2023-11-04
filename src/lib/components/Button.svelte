@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import type { ButtonVariants } from '$lib/types/components';
-
+	let onClick: () => void = () => {
+		goto(link);
+	};
+	export let link: string = '';
 	export let variant: ButtonVariants = 'primary';
 	export let className: string = '';
 	export let type: 'button' | 'submit' = 'button';
@@ -17,13 +21,17 @@
 </script>
 
 {#if type === 'submit'}
-	<button class={`${COMMON_CLASS} ${VARIANTS[variant]} ${className}`} type="submit">
+	<button
+		on:click={onClick}
+		class={`${COMMON_CLASS} ${VARIANTS[variant]} ${className}`}
+		type="submit"
+	>
 		<span class="flex justify-center items-center">
 			<slot />
 		</span>
 	</button>
 {:else}
-	<button class={`${COMMON_CLASS} ${VARIANTS[variant]} ${className}`}>
+	<button on:click={onClick} class={`${COMMON_CLASS} ${VARIANTS[variant]} ${className}`}>
 		<span class="flex justify-center items-center">
 			<slot />
 		</span>

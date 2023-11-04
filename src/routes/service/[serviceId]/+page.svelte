@@ -1,4 +1,6 @@
 <script>
+	import { goto } from '$app/navigation';
+
 	const services = [
 		{
 			id: 1,
@@ -128,6 +130,14 @@
 		<div class="w-full flex py-8 gap-4 overflow-x-auto">
 			{#each services as service}
 				<div
+					role="button"
+					tabindex="0"
+					on:keypress={() => {
+						goto(`/service/${service.id}`);
+					}}
+					on:click={() => {
+						goto(`/service/${service.id}`);
+					}}
 					class={`cursor-pointer h-[8rem] rounded-md w-[12rem] p-4 gap-2 flex flex-col justify-start items-start bg-[#FFFFFF1A] ${
 						service.id == data.id ? 'border-2' : ''
 					}`}

@@ -18,6 +18,5 @@
 <ServicesSection />
 <MarketplaceSection />
 <!-- <AboutSection /> -->
-<BannerCTA />
 <!-- <LocationsSection /> -->
 <ContactSection />

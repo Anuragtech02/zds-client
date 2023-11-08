@@ -19,3 +19,4 @@ export const NAV_LINKS: Link[] = [
 		url: '/contact'
 	}
 ];
+export const homeSections = ['Hero', 'Works', 'Brands', 'Service', 'MarketPlace', 'Form'];

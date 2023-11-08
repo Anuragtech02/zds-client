@@ -3,6 +3,8 @@
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import Slider from '$lib/components/Slider.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	export let data;
+	console.log(data);
 	let services = [
 		{
 			id: 1,

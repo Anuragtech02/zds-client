@@ -4,6 +4,12 @@
 	import SingleStarIcon from '$lib/icons/SingleStarIcon.svelte';
 	import TwinStarsIcon from '$lib/icons/TwinStarsIcon.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import { breakSentence } from '$lib/utils/functions';
+	export let data;
+	const { Title, Description, CTA_Text, CTA_Link } = data;
+	let { initialWords, lastWord } = breakSentence(Title);
+
+	console.log(data);
 </script>
 
 <SectionLayout className="max-w-[100vw] overflow-x-hidden">
@@ -11,15 +17,13 @@
 		<div class="flex justify-between flex-col md:flex-row items-start gap-10">
 			<div class="flex-1">
 				<h2 class="uppercase text-left">
-					<OutlinedText text="Check Out Our" />
-					<span class="block sm:inline-block"> Marketplace </span>
+					<OutlinedText text={initialWords} />
+					<span class="block sm:inline-block"> {lastWord} </span>
 				</h2>
 				<p class="text-left mt-4 leading-10">
-					Explore a world of artistic excellence and cutting-edge multimedia resources curated to
-					inspire your next project. Our Marketplace is a treasure trove of artistic inspiration and
-					offers an array of exceptional creative tools.
+					{Description}
 				</p>
-				<Button className="mt-12">Explore Now</Button>
+				<Button className="mt-12" link={CTA_Link}>{CTA_Text}</Button>
 			</div>
 			<div class="relative flex-1 w-full md:w-auto">
 				<SingleStarIcon className="absolute -top-7 -left-7" />

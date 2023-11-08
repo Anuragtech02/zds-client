@@ -2,6 +2,8 @@
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import PartnersCircleGlow from '$lib/icons/PartnersCircleGlow.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	export let data;
+	console.log(data);
 </script>
 
 <div

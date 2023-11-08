@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 html {
 	@apply text-fg bg-bg;
@@ -103,4 +104,7 @@ html {
 	.max-width-container {
 		@apply max-w-[1440px] mx-auto px-4;
 	}
+}
+* {
+	font-family: 'Arimo', sans-serif;
 }

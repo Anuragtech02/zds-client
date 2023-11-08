@@ -5,8 +5,10 @@
 	import CallIcon from '$lib/icons/CallIcon.svelte';
 	import MailIcon from '$lib/icons/MailIcon.svelte';
 	import type { ContactForm } from '$lib/types/components';
-	import { isValidEmail, isValidPhone } from '$lib/utils/functions';
-
+	import { breakSentence, isValidEmail, isValidPhone } from '$lib/utils/functions';
+	export let data: any;
+	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink } = data;
+	let { initialWords, lastWord } = breakSentence(Title);
 	let contactForm: ContactForm = {
 		name: {
 			value: '',
@@ -83,17 +85,17 @@
 	<div class="w-full flex flex-1 justify-between items-start gap-4">
 		<div>
 			<h2 class="uppercase text-left">
-				<OutlinedText text="GIVE US A" />
-				<span class="block">Shout</span>
+				<OutlinedText text={initialWords} />
+				<span class={lastWord}>Shout</span>
 			</h2>
 			<div class="mt-8">
 				<div class="flex justify-start items-center">
 					<MailIcon />
-					<p class="ml-4">info@zerodesignstudios.com</p>
+					<p class="ml-4">{ContactEmail}</p>
 				</div>
 				<div class="flex justify-start items-center mt-4">
 					<CallIcon />
-					<p class="ml-4">8837636101, 8837636101</p>
+					<p class="ml-4">{PhoneNumber}</p>
 				</div>
 			</div>
 		</div>
@@ -128,6 +130,6 @@
 			error={contactForm.message.error}
 			bind:value={contactForm.message.value}
 		/>
-		<Button type="submit" className="mt-2">Submit</Button>
+		<Button type="submit" link={CTALink} className="mt-2">{CTAText}</Button>
 	</form>
 </div>

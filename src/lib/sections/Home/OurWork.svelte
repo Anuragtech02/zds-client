@@ -4,7 +4,8 @@
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import WorkVideo from '../Work/WorkVideo.svelte';
-
+	export let data;
+	console.log(data);
 	const works = [
 		{
 			id: 1,

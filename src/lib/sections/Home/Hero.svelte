@@ -7,7 +7,7 @@
 	import { redirect } from '@sveltejs/kit';
 	import { goto } from '$app/navigation';
 	export let data;
-	const { Title, Description, CTAText, CTALink } = data;
+	const { Title, Description, CTAText, CTALink, Background_Video } = data;
 	let words = Title.split(',');
 	console.log(data);
 	onMount(() => {

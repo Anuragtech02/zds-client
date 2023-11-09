@@ -1,9 +1,16 @@
-<script>
+<script lang="ts">
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import PartnersCircleGlow from '$lib/icons/PartnersCircleGlow.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import { getImageUrl } from '$lib/utils/functions';
+	import { get } from 'svelte/store';
 	export let data;
 	console.log(data);
+	let brands = data.brands.data.map((b: any) => ({
+		id: b?.id,
+		name: b?.attributes?.Name,
+		logo: 'https://zds-cms.up.railway.app' + getImageUrl(b?.attributes?.image)
+	}));
 </script>
 
 <div
@@ -17,18 +24,16 @@
 		</h2>
 		<div class="overflow-hidden brands-container py-16 relative">
 			<div class="flex slider-track shrink-0 relative justify-between items-center gap-4 w-full">
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">1</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">2</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">3</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">4</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">5</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">6</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">1</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">2</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">3</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">4</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">5</div>
-				<div class=" bg-gray-200 p-4 border h-[100px] min-w-[280px]">6</div>
+				{#each brands as brand}
+					<div class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px]">
+						<img class="h-full w-full object-cover" src={brand.logo} alt={brand.name} />
+					</div>
+				{/each}
+				{#each brands as brand}
+					<div class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px]">
+						<img class="h-full w-full object-cover" src={brand.logo} alt={brand.name} />
+					</div>
+				{/each}
 			</div>
 		</div>
 	</SectionLayout>

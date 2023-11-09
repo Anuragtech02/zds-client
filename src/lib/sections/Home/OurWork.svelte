@@ -3,47 +3,17 @@
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import { getImageUrl } from '$lib/utils/functions';
 	import WorkVideo from '../Work/WorkVideo.svelte';
 	export let data;
-	console.log(data);
-	const works = [
-		{
-			id: 1,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R385.png'
-		},
-		{
-			id: 2,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R397.png'
-		},
-		{
-			id: 3,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R398.png'
-		},
-		{
-			id: 4,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R399.png'
-		},
-		{
-			id: 5,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R400.png'
-		},
-		{
-			id: 6,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R401.png'
-		}
-	];
+	let arr = data.works.data;
+	// console.log(arr);
+	const works = arr.map((a: any) => ({
+		id: a?.id,
+		title: a?.attributes.Work_Title,
+		category: a?.attributes?.category?.data?.attributes?.Name,
+		thumbnail: getImageUrl(a?.attributes?.Images[0]?.Image)
+	}));
 </script>
 
 <SectionLayout padding="pb-[200px]">

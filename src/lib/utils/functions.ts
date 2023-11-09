@@ -18,3 +18,10 @@ export function breakSentence(sentence: string) {
 		lastWord
 	};
 }
+
+export let getImageUrl = (image: any) => {
+	if (image) {
+		return image?.data?.attributes?.url;
+	}
+	return '';
+};

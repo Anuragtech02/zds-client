@@ -7,10 +7,10 @@
 		category: string;
 		thumbnail: string;
 	};
-	console.log(video);
+	// console.log(video);
 	let heading = video.title;
 	let category = video.category;
-	let src = video.thumbnail;
+	let src = 'https://zds-cms.up.railway.app' + video.thumbnail;
 	export let fixedWidth = true;
 	export let absolute = true;
 </script>

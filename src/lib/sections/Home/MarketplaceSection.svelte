@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SingleStarIcon from '$lib/icons/SingleStarIcon.svelte';
@@ -8,8 +8,11 @@
 	export let data;
 	const { Title, Description, CTA_Text, CTA_Link } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
-
 	console.log(data);
+	let images = data?.Images?.data?.map((i: any) => ({
+		id: i?.id,
+		url: 'https://zds-cms.up.railway.app' + i?.attributes?.url
+	}));
 </script>
 
 <SectionLayout className="max-w-[100vw] overflow-x-hidden">
@@ -32,18 +35,14 @@
 					class="flex justify-between items-stretch flex-col sm:flex-row gap-6 [&>div]:rounded-xl"
 				>
 					<div class="flex-1 overflow-hidden max-h-[400px]">
-						<img
-							src="/images/marketplace-1.png"
-							class="w-full h-full object-cover"
-							alt="marketplace-1"
-						/>
+						<img src={images[0].url} class="w-full h-full object-cover" alt="marketplace-1" />
 					</div>
 					<div class="flex-1 flex flex-col justify-center items-between gap-6">
 						<div class="flex-1">
-							<img src="/images/marketplace-2.png" alt="marketplace-1" class="w-full h-full" />
+							<img src={images[1].url} alt="marketplace-1" class="w-full h-full" />
 						</div>
 						<div class="flex-1">
-							<img src="/images/marketplace-3.png" alt="marketplace-1" class="w-full h-full" />
+							<img src={images[2].url} alt="marketplace-1" class="w-full h-full" />
 						</div>
 					</div>
 				</div>
@@ -52,18 +51,14 @@
 				>
 					<div class="flex-1 flex flex-col justify-center items-between gap-6">
 						<div class="flex-1">
-							<img src="/images/marketplace-4.png" alt="marketplace-1" class="w-full h-full" />
+							<img src={images[3].url} alt="marketplace-1" class="w-full h-full" />
 						</div>
 						<div class="flex-1">
-							<img src="/images/marketplace-5.png" alt="marketplace-1" class="w-full h-full" />
+							<img src={images[4].url} alt="marketplace-1" class="w-full h-full" />
 						</div>
 					</div>
 					<div class="flex-1 overflow-hidden max-h-[400px]">
-						<img
-							src="/images/marketplace-6.png"
-							alt="marketplace-1"
-							class="w-full h-full object-cover"
-						/>
+						<img src={images[5].url} alt="marketplace-1" class="w-full h-full object-cover" />
 					</div>
 				</div>
 			</div>

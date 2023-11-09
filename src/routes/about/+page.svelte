@@ -4,16 +4,20 @@
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import TextWithBg from '$lib/components/TextWithBG.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import { getImageUrl } from '$lib/utils/functions.js';
 	import { gsap } from 'gsap';
 	// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
 
 	// gsap.registerPlugin(ScrollTrigger);
+	export let data;
+	console.log(data);
+	let title = data.About_Title;
+	let description = data.About_Description;
+	let image = getImageUrl(data.Image);
 
 	export let enableOurTeamCTA: boolean = true;
-	const p1 =
-		'we excel in curating captivating, entertaining, and evolving experiences that span the realms of content, events, digital media, and more.';
-
+	const p1 = description;
 	onMount(() => {
 		const chars = document.querySelectorAll('.char');
 		const portion = 100 / chars.length;
@@ -38,56 +42,14 @@
 			ease: 'power1.inOut'
 		});
 	});
-	const teamMembers = [
-		{
-			title: 'The Catalyst',
-			name: 'Shubham Choubey',
-			role: 'Founder & Creative director',
-			image:
-				'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-			linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
-		},
-		{
-			title: 'The Catalyst',
-			name: 'Shubham Choubey',
-			role: 'Founder & Creative director',
-			image:
-				'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-			linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
-		},
-		{
-			title: 'The Catalyst',
-			name: 'Shubham Choubey',
-			role: 'Founder & Creative director',
-			image:
-				'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-			linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
-		},
-		{
-			title: 'The Catalyst',
-			name: 'Shubham Choubey',
-			role: 'Founder & Creative director',
-			image:
-				'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-			linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
-		},
-		{
-			title: 'The Catalyst',
-			name: 'Shubham Choubey',
-			role: 'Founder & Creative director',
-			image:
-				'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-			linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
-		},
-		{
-			title: 'The Catalyst',
-			name: 'Shubham Choubey',
-			role: 'Founder & Creative director',
-			image:
-				'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-			linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
-		}
-	];
+	let members = data.Team_Members.data.map((member: any) => ({
+		title: member.attributes.Good_At,
+		name: member.attributes.Name,
+		role: member.attributes.Designation,
+		image: getImageUrl(member.attributes.Image),
+		linkedIn: member?.attributes?.LinkedIn
+	}));
+	const teamMembers = members;
 </script>
 
 <div class="flex justify-between lg:items-start xl:items-center gap-6 pb-24">
@@ -119,7 +81,7 @@
 		</div>
 	</div>
 	<div class="hidden md:block lg:w-[40%] xl:w-full">
-		<img src="/images/about-image.png" alt="about" class="img-float-anim" />
+		<img src={image} alt="about" class="img-float-anim" />
 	</div>
 </div>
 

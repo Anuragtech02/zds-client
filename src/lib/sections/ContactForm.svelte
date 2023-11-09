@@ -7,6 +7,7 @@
 	import type { ContactForm } from '$lib/types/components';
 	import { breakSentence, isValidEmail, isValidPhone } from '$lib/utils/functions';
 	export let data: any;
+	console.log(data);
 	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
 	let contactForm: ContactForm = {
@@ -86,7 +87,7 @@
 		<div>
 			<h2 class="uppercase text-left">
 				<OutlinedText text={initialWords} />
-				<span class={lastWord}>Shout</span>
+				{lastWord}
 			</h2>
 			<div class="mt-8">
 				<div class="flex justify-start items-center">

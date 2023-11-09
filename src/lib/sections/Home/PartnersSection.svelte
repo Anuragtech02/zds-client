@@ -2,14 +2,17 @@
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import PartnersCircleGlow from '$lib/icons/PartnersCircleGlow.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
-	import { getImageUrl } from '$lib/utils/functions';
+	import { breakSentence, getImageUrl } from '$lib/utils/functions';
 	import { get } from 'svelte/store';
 	export let data;
 	console.log(data);
+	const title = data.title;
+	let { initialWords, lastWord } = breakSentence(title);
+
 	let brands = data.brands.data.map((b: any) => ({
 		id: b?.id,
 		name: b?.attributes?.Name,
-		logo: 'https://zds-cms.up.railway.app' + getImageUrl(b?.attributes?.image)
+		logo: getImageUrl(b?.attributes?.image)
 	}));
 </script>
 
@@ -19,8 +22,8 @@
 	<SectionLayout className="w-full m-0" type="wrapper">
 		<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
 		<h2 class="uppercase max-width-container text-left">
-			BRANDS
-			<OutlinedText text="we&apos;ve worked with" />
+			{initialWords}
+			<OutlinedText text={lastWord} />
 		</h2>
 		<div class="overflow-hidden brands-container py-16 relative">
 			<div class="flex slider-track shrink-0 relative justify-between items-center gap-4 w-full">

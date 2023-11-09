@@ -11,7 +11,7 @@
 	console.log(data);
 	let images = data?.Images?.data?.map((i: any) => ({
 		id: i?.id,
-		url: 'https://zds-cms.up.railway.app' + i?.attributes?.url
+		url: i?.attributes?.url
 	}));
 </script>
 
@@ -21,7 +21,7 @@
 			<div class="flex-1">
 				<h2 class="uppercase text-left">
 					<OutlinedText text={initialWords} />
-					<span class="block sm:inline-block"> {lastWord} </span>
+					<h2 class="block sm:inline-block">{lastWord}</h2>
 				</h2>
 				<p class="text-left mt-4 leading-10">
 					{Description}

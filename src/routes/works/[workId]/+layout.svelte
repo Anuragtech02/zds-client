@@ -1,6 +1,7 @@
 <script>
 	import FacebookIcon from '$lib/icons/FacebookIcon.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
+	import BannerCta from '$lib/sections/Home/BannerCTA.svelte';
 </script>
 
 <PageLayout
@@ -13,3 +14,4 @@
 >
 	<slot />
 </PageLayout>
+<BannerCta />

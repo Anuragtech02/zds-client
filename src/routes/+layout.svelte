@@ -4,7 +4,7 @@
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import '../app.css';
 	import { onMount } from 'svelte';
-
+	export let data;
 	onMount(() => {
 		const lenis = new Lenis();
 
@@ -22,5 +22,5 @@
 </script>
 
 <BaseLayer>
-	<slot />
+	<slot {data} />
 </BaseLayer>

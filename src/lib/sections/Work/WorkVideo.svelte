@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { cursorStore } from '$lib/stores/cursor.store';
+	import { onDestroy, onMount } from 'svelte';
+	let container: HTMLDivElement;
 
 	export let video: {
 		id: number;
@@ -8,17 +11,40 @@
 		thumbnail: string;
 	};
 	console.log(video);
+	export let fixedWidth = true;
+	export let absolute = true;
+
 	let heading = video.title;
 	let category = video.category;
 	let src = video.thumbnail;
-	export let fixedWidth = true;
-	export let absolute = true;
+
+	function showCursor() {
+		$cursorStore.type = 'link';
+		$cursorStore.showCursor = true;
+	}
+
+	function hideCursor() {
+		$cursorStore.type = 'default';
+		$cursorStore.showCursor = false;
+	}
+
+	onMount(() => {
+		container?.addEventListener('mouseenter', showCursor);
+		container?.addEventListener('mouseleave', hideCursor);
+	});
+	onDestroy(() => {
+		container?.removeEventListener('mouseenter', showCursor);
+		container?.removeEventListener('mouseleave', hideCursor);
+
+		$cursorStore.showCursor = false;
+	});
 </script>
 
 <div
 	class={`item ${fixedWidth ? 'w-[300px] m-6 responsive-item' : 'w-full'} ${
 		absolute ? 'absolute' : ''
 	}`}
+	bind:this={container}
 >
 	<div class="item-content">
 		<div

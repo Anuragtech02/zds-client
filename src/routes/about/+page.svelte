@@ -7,6 +7,7 @@
 	import { gsap } from 'gsap';
 	// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
+	import CheckerLottieAnimation from './CheckerLottieAnimation.svelte';
 
 	// gsap.registerPlugin(ScrollTrigger);
 
@@ -109,12 +110,13 @@
 			</div>
 		</div>
 		<div class="mt-4 [&>p]:text-justify">
-			<p class="text-left">
-				{#each p1.split('') as char, index}
+			<p class="text-left capitalize">
+				<!-- {#each p1.split('') as char, index}
 					<span class="char" style="transition-delay: {index * 0.05}s"
 						>{char === ' ' ? '\u00a0' : char}</span
 					>
-				{/each}
+				{/each} -->
+				{p1}
 			</p>
 		</div>
 	</div>
@@ -124,10 +126,10 @@
 </div>
 
 <div class="relative overflow-hidden py-8">
-	<div
-		class="absolute right-0 top-2 h-[40%] w-[50%]"
-		style="background-image: url(/images/net-bg.png);"
-	/>
+	<div class="absolute right-0 top-2 h-[40%] w-[50%] z-0">
+		<!-- <CheckerLottieAnimation /> -->
+		<img src="/checker-gif.gif" />
+	</div>
 	<h3 class="text-left">
 		<OutlinedText text="OUR" />
 		TEAM

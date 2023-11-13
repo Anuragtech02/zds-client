@@ -9,32 +9,50 @@ export function isValidPhone(phone: string) {
 }
 
 export function breakSentence(sentence: string) {
-	let words = sentence.split(',');
-	let lastWord = words[1];
+	const words = sentence.split(',');
+	const lastWord = words[1];
 	words.pop();
-	let initialWords = words[0];
+	const initialWords = words[0];
 	return {
 		initialWords,
 		lastWord
 	};
 }
 
-export let getImageUrl = (image: any) => {
-	const host = 'https://zds-cms.up.railway.app';
+export const getImageUrl = (
+	image: any,
+	size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original' = 'original'
+) => {
+	const host = import.meta.env.VITE_API_URI;
 	if (image) {
-		return host + image?.data?.attributes?.url;
+		switch (size) {
+			case 'original':
+				return host + image?.data?.attributes?.url;
+			case 'thumbnail':
+				return host + image?.data?.attributes?.formats?.thumbnail?.url;
+			case 'small':
+				return host + image?.data?.attributes?.formats?.small?.url;
+			case 'medium':
+				return host + image?.data?.attributes?.formats?.medium?.url;
+			case 'large':
+				return host + image?.data?.attributes?.formats?.large?.url;
+			default:
+				return host + image?.data?.attributes?.url;
+		}
 	}
 	return '';
 };
 
 export const fetchData = async (url: string, populate: string) => {
+	const API_URI = import.meta.env.VITE_API_URI;
+	console.log(API_URI + '/' + url + '?' + populate);
 	try {
-		const host = 'https://zds-cms.up.railway.app/api/';
-		const res = await fetch(host + url + '?' + populate);
+		const host = API_URI;
+		const res = await fetch(host + '/' + url + '?' + populate);
 		const data = await res.json();
 		return data.data.attributes;
 	} catch (err) {
-		console.log(err);
+		console.log('ERROR WHILE FETCHING', err);
 		return null;
 	}
 };

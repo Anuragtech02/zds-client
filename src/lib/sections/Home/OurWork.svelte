@@ -6,6 +6,7 @@
 	import { breakSentence, getImageUrl } from '$lib/utils/functions';
 	import WorkVideo from '../Work/WorkVideo.svelte';
 	export let data;
+
 	let arr = data.works.data;
 	let title = data.title;
 	let { initialWords, lastWord } = breakSentence(title);

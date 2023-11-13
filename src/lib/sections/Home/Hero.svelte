@@ -1,15 +1,22 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
-	import { redirect } from '@sveltejs/kit';
-	import { goto } from '$app/navigation';
-	export let data;
-	const { Title, Description, CTAText, CTALink, Background_Video } = data;
-	let words = Title.split(',');
+	export let data: any;
+	let words: string[] = [];
+	let Title: string, Description: string, CTAText: string, CTALink: string, Background_Video;
+	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
 	console.log(data);
+	if (data) {
+		Title = data.Title;
+		Description = data.Description;
+		CTAText = data.CTAText;
+		CTALink = data.CTALink;
+		Background_Video = data.Background_Video;
+	}
+	words = Title.split(',');
 	onMount(() => {
 		gsap.from('.text-reveal', 1.8, {
 			y: 100,

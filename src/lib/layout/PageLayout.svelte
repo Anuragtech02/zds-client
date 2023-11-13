@@ -18,7 +18,6 @@
 </script>
 
 <section
-
 	style={`background-color: ${bgColor}`}
 	class={`bg-[${bgColor}] min-h-screen relative p-[2rem] sm:p-[4rem] md:p-[6rem] lg:py-[8rem] lg:px-[8rem]`}
 >
@@ -57,6 +56,7 @@
 			</div>
 		{/if}
 	</div>
+
 	<div
 		class="absolute z-[-1] w-full bg-cover bg-right h-[300px] md:h-[420px] top-0 left-0"
 		style={`background:url(${bgImage}) right;`}

@@ -23,27 +23,28 @@ export const getImageUrl = (
 	image: any,
 	size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original' = 'original'
 ) => {
+	console.log('Came here', { image });
 	const host = import.meta.env.VITE_API_URI;
 	if (image) {
 		switch (size) {
 			case 'original':
-				return host + image?.data?.attributes?.url;
+				return image?.data?.attributes?.url;
 			case 'thumbnail':
-				return host + image?.data?.attributes?.formats?.thumbnail?.url;
+				return image?.data?.attributes?.formats?.thumbnail?.url;
 			case 'small':
-				return host + image?.data?.attributes?.formats?.small?.url;
+				return image?.data?.attributes?.formats?.small?.url;
 			case 'medium':
-				return host + image?.data?.attributes?.formats?.medium?.url;
+				return image?.data?.attributes?.formats?.medium?.url;
 			case 'large':
-				return host + image?.data?.attributes?.formats?.large?.url;
+				return image?.data?.attributes?.formats?.large?.url;
 			default:
-				return host + image?.data?.attributes?.url;
+				return image?.data?.attributes?.url;
 		}
 	}
 	return '';
 };
 
-export const fetchData = async (url: string, populate: string) => {
+export const fetchData = async (url: string, populate: string, fetch: any) => {
 	const API_URI = import.meta.env.VITE_API_URI;
 	console.log(API_URI + '/' + url + '?' + populate);
 	try {

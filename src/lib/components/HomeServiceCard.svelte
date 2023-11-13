@@ -43,11 +43,17 @@
 	// 	container.addEventListener('mouseenter', (e) => handleHover(e, true));
 	// 	container.addEventListener('mouseleave', (e) => handleHover(e, false));
 	// });
+
+	const handleSoundPlay = () => {
+		let tick = new Audio('/audio/tick.mp3');
+		tick.play();
+	};
 </script>
 
 <a
 	bind:this={container}
 	href={`/service/${service.id}`}
+	on:mouseenter={handleSoundPlay}
 	class="card-cont relative w-full flex flex-col md:flex-row justify-between items-center border border-[#3A3A3A] p-8 rounded-md my-2"
 >
 	<p class="md:w-1/2 pl-2 xl:pl-8 text-left text-lg lg:text-2xl">
@@ -108,7 +114,8 @@
 		height: 100%;
 		z-index: 0;
 		border-radius: 0.25rem;
-		transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+		transition: all 0.2s ease-in-out;
+		opacity: 0;
 		@apply gradient-1;
 	}
 	.card-cont:hover {
@@ -121,6 +128,7 @@
 	}
 	.card-cont:hover::before {
 		left: 10px;
+		opacity: 1;
 		top: -10px;
 	}
 </style>

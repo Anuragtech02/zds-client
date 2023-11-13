@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import type { ButtonVariants } from '$lib/types/components';
-	let onClick: () => void = () => {
+	export let onClick: () => void = () => {
 		goto(link);
 	};
 	export let link: string = '';

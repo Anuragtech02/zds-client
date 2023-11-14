@@ -51,7 +51,8 @@ export const fetchData = async (url: string, populate: string, fetch: any) => {
 		const host = API_URI;
 		const res = await fetch(host + '/' + url + '?' + populate);
 		const data = await res.json();
-		return data.data.attributes;
+		// console.log('Inner', data);
+		return data.data.attributes || data.data;
 	} catch (err) {
 		console.log('ERROR WHILE FETCHING', err);
 		return null;

@@ -5,12 +5,14 @@
 		id: number;
 		title: string;
 		category: string;
-		thumbnail: string;
+		slug: string;
+		// thumbnail: string;
+		Video: string;
 	};
 	// console.log(video);
 	let heading = video.title;
 	let category = video.category;
-	let src = video.thumbnail;
+	// let src = video.thumbnail;
 	export let fixedWidth = true;
 	export let absolute = true;
 </script>
@@ -25,10 +27,10 @@
 			role="button"
 			tabindex="0"
 			on:keypress={() => {
-				goto(`/works/${video.id}`);
+				goto(`/works/${video.slug}`);
 			}}
 			on:click={() => {
-				goto(`/works/${video.id}`);
+				goto(`/works/${video.slug}`);
 			}}
 			class="h-full w-full relative"
 		>
@@ -36,7 +38,10 @@
 				{heading}
 			</p>
 
-			<img {src} alt="img" class="rounded-xl object-cover h-full w-full" />
+			<!-- <img {src} alt="img" class="rounded-xl object-cover h-full w-full" /> -->
+			<video>
+				<source src={video.Video} type="video/mp4" />
+			</video>
 			<p class="absolute bottom-2 left-2 rounded-2xl px-4 py-1 backdrop-blur">
 				{category}
 			</p>

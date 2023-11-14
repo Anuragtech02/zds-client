@@ -7,7 +7,7 @@
 	import type { ContactForm } from '$lib/types/components';
 	import { breakSentence, isValidEmail, isValidPhone } from '$lib/utils/functions';
 	export let data: any;
-	console.log(data);
+	// console.log(data);
 	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
 	let contactForm: ContactForm = {

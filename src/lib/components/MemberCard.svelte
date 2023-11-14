@@ -19,7 +19,7 @@
 	<p class="text-left">
 		<TextWithGradient text={member.title} />
 	</p>
-	<img src={member.image} alt={member.name} />
+	<img src={member.image} alt={member.name} class="h-[300px] object-cover" />
 	<div class="flex gap-4 justify-between">
 		<div>
 			<p class="text-md text-left">

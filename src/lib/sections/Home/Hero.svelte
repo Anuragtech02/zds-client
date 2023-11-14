@@ -1,14 +1,30 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
-	import { redirect } from '@sveltejs/kit';
-	import { goto } from '$app/navigation';
 	import ShowreelPopup from '$lib/components/ShowreelPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
-
+	export let data: any;
+	let words: string[] = [];
+	let Title: string, Description: string, CTAText: string, CTALink: string, Background_Video;
+	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
+	// console.log(data);
+	if (data) {
+		Title = data.Title;
+		Description = data.Description;
+		CTAText = data.CTAText;
+		CTALink = data.CTALink;
+		Background_Video = data.Background_Video;
+	} else {
+		Title = '';
+		Description = '';
+		CTAText = '';
+		CTALink = '';
+		Background_Video = '';
+	}
+	words = Title.split(',');
 	onMount(() => {
 		gsap.from('.text-reveal', 1.8, {
 			y: 100,
@@ -49,30 +65,27 @@
 			<div class="flex justify-start items-start sm:items-end flex-col sm:flex-row w-full">
 				<div class="w-full uppercase flex flex-col justify-center items-start">
 					<div class="relative h-[70px] md:h-[80px] lg:h-[100px] w-full overflow-hidden">
-						<h1 class="text-reveal text-left absolute">Engage.</h1>
+						<h1 class="text-reveal text-left absolute">{words[0]}</h1>
 					</div>
 					<div class="relative md:mt-12 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute">
-							<OutlinedText text="Entertain." className="text-reveal" /> <br />
+							<OutlinedText text={words[1]} className="text-reveal" /> <br />
 						</h1>
 					</div>
 					<div class="relative md:mt-4 h-[80px] md:h-[100px] xl:h-[130px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute uppercase">
-							<OutlinedText text="Evolve." className="text-reveal" /> <br />
+							<OutlinedText text={words[2]} className="text-reveal" /> <br />
 						</h1>
 					</div>
 				</div>
 				<div class="overflow-hidden border-l-2 max-w-[400px] mt-10 sm:mt-0 md:ml-20">
 					<p class="left-reveal px-4 text-left w-full">
-						Translating Ideas & Imaginations Into Creative Audio-Visual Communication Experiences.
+						{Description}
 					</p>
 				</div>
 			</div>
-			<Button
-				className="mt-20 our-work-btn translate-y-[100px] opacity-0"
-				onClick={() => {
-					$popupStore.isShowreelOpen = true;
-				}}>Showreel</Button
+			<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link={CTALink}
+				>{CTAText}</Button
 			>
 		</div>
 	</div>

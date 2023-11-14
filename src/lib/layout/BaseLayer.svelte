@@ -1,17 +1,22 @@
-<script lang="ts">
+<script script lang="ts">
 	import CustomCursor from '$lib/components/CustomCursor.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header/Header.svelte';
 	import { onMount } from 'svelte';
-
+	export let data: any;
+	console.log({ data });
 	onMount(() => {
 		console.log('BaseLayer mounted');
 	});
 </script>
 
-<Header />
+<Header data={data.header} />
 <CustomCursor />
 <main>
 	<slot />
 </main>
-<Footer />
+<Footer
+	data={data?.footer}
+	links={data?.header?.links}
+	showMarketplaceButton={data?.header?.showMarketplaceButton}
+/>

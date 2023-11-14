@@ -1,10 +1,8 @@
 <script lang="ts">
 	import BaseLayer from '$lib/layout/BaseLayer.svelte';
 	import Lenis from '@studio-freight/lenis';
-	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import '../app.css';
 	import { onMount } from 'svelte';
-
 	onMount(() => {
 		const lenis = new Lenis();
 
@@ -19,8 +17,14 @@
 
 		requestAnimationFrame(raf);
 	});
+	export let data;
+	let commonData = {
+		header: data?.header,
+		footer: data?.footer
+	};
+	let pageData = data?.data;
 </script>
 
-<BaseLayer>
-	<slot />
+<BaseLayer data={commonData}>
+	<slot data={pageData} />
 </BaseLayer>

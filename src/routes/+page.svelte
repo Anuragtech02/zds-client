@@ -10,7 +10,10 @@
 	import ContactSection from '$lib/sections/Home/ContactSection.svelte';
 	import OurWork from '$lib/sections/Home/OurWork.svelte';
 	import { homeSections } from '$lib/utils/contants';
-	export let data: any;
+	import { homeStore } from '$lib/stores/hero.store';
+	let data: any;
+	$: data = $homeStore;
+	$: console.log(data);
 </script>
 
 <Hero data={data[homeSections[0]]} />

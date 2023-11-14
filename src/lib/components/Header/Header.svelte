@@ -8,7 +8,8 @@
 	import Searchbar from './Searchbar.svelte';
 
 	let header: HTMLElement;
-
+	export let data;
+	const { links, showMarketplaceButton, showSearchBar } = data;
 	// hide on scroll down
 	let lastScroll = 0;
 	const hideOnScroll = () => {
@@ -29,6 +30,7 @@
 	function navigateToHome() {
 		goto('/');
 	}
+	let NAV_LINKS = links.map((l: any) => ({ name: l.title, url: l.url }));
 </script>
 
 <svelte:window
@@ -42,9 +44,13 @@
 			<Logo title="ZERO" subTitle="DESIGN STUDIO" on:click={navigateToHome} />
 			<div class="flex items-center">
 				<div class="nav-container items-center md:gap-4 xl:gap-8">
-					<Searchbar />
-					<NavLinks />
-					<MetaverseButton />
+					{#if showSearchBar}
+						<Searchbar />
+					{/if}
+					<NavLinks links={NAV_LINKS} />
+					{#if showMarketplaceButton}
+						<MetaverseButton />
+					{/if}
 				</div>
 
 				<div class="burger-menu">

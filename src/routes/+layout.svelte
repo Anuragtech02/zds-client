@@ -17,8 +17,14 @@
 
 		requestAnimationFrame(raf);
 	});
+	export let data;
+	let commonData = {
+		header: data?.header,
+		footer: data?.footer
+	};
+	let pageData = data?.data;
 </script>
 
-<BaseLayer>
-	<slot />
+<BaseLayer data={commonData}>
+	<slot data={pageData} />
 </BaseLayer>

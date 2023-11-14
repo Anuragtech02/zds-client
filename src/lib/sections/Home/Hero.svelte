@@ -17,6 +17,12 @@
 		CTAText = data.CTAText;
 		CTALink = data.CTALink;
 		Background_Video = data.Background_Video;
+	} else {
+		Title = '';
+		Description = '';
+		CTAText = '';
+		CTALink = '';
+		Background_Video = '';
 	}
 	words = Title.split(',');
 	onMount(() => {

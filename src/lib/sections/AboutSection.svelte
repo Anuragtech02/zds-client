@@ -73,7 +73,7 @@
 			</div>
 			<div class="mt-4 [&>p]:text-justify">
 				<p class="text-left">
-					{#each p1.split('') as char, index}
+					{#each p1?.split('') as char, index}
 						<span class="char" style="transition-delay: {index * 0.05}s"
 							>{char === ' ' ? '\u00a0' : char}</span
 						>

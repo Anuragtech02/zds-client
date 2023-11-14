@@ -1,3 +1,4 @@
+import { homeStore } from '$lib/stores/hero.store';
 import { fetchData } from '$lib/utils/functions';
 
 /** @type {import('./$types').PageLoad} */
@@ -16,11 +17,20 @@ export async function load({ params, fetch }: any) {
 		'Works.works.Video_Thumbnail',
 		'Brands.brands.image'
 	];
+	const populateCommon = `populate=*`;
+
 	const urlParams = new URLSearchParams();
 	populate.forEach((value, index) => {
 		urlParams.append(`populate[${index}]`, value);
 	});
 
 	const data = await fetchData('home', urlParams.toString(), fetch);
-	return data;
+	const dataFooter = await fetchData('footer', populateCommon, fetch);
+	const dataHeader = await fetchData('header', populateCommon, fetch);
+	homeStore.set(data);
+	return {
+		data,
+		footer: dataFooter,
+		header: dataHeader
+	};
 }

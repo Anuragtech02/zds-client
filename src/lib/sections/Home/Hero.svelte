@@ -6,6 +6,8 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import { redirect } from '@sveltejs/kit';
 	import { goto } from '$app/navigation';
+	import ShowreelPopup from '$lib/components/ShowreelPopup.svelte';
+	import { popupStore } from '$lib/stores/popup.store';
 
 	onMount(() => {
 		gsap.from('.text-reveal', 1.8, {
@@ -66,9 +68,16 @@
 					</p>
 				</div>
 			</div>
-			<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link="/work"
-				>Our Work</Button
+			<Button
+				className="mt-20 our-work-btn translate-y-[100px] opacity-0"
+				onClick={() => {
+					$popupStore.isShowreelOpen = true;
+				}}>Showreel</Button
 			>
 		</div>
 	</div>
+
+	{#if $popupStore.isShowreelOpen}
+		<ShowreelPopup />
+	{/if}
 </SectionLayout>

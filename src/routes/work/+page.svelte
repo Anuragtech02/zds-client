@@ -1,63 +1,48 @@
 <script lang="ts">
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import WorkVideo from '$lib/sections/Work/WorkVideo.svelte';
+	import { getImageUrl } from '$lib/utils/functions.js';
 	import Muuri from 'muuri';
+
+	export let data;
+	console.log(data);
+	const { Page_Title, Page_Description, description, Work_Categories } = data;
+
 	var focus = (node: any) => {
 		var grid = new Muuri('.grid-muuri');
 	};
+
 	let categories = [
 		'All Categories',
-		'Animation &  Visual Packaging',
-		'Content Mapping',
-		'Digital Art',
-		'VFX',
-		'Visual, Physical & Hybrid'
+		...Work_Categories?.data?.map((category: any) => {
+			const Category_Name = category?.attributes?.Name;
+			return Category_Name;
+		})
 	];
-	const works = [
-		{
-			id: 1,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R385.png'
-		},
-		{
-			id: 2,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R397.png'
-		},
-		{
-			id: 3,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R398.png'
-		},
-		{
-			id: 4,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R399.png'
-		},
-		{
-			id: 5,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R400.png'
-		},
-		{
-			id: 6,
-			title: 'Lorem Ipsum Dolor',
-			category: 'Animation &  Visual Packaging',
-			thumbnail: '/images/work/R401.png'
-		}
-	];
+	let works = Work_Categories?.data?.map((category: any) => {
+		const work = category?.attributes?.Works?.data?.map((w: any) => {
+			const work_data = w?.attributes;
+			return {
+				id: w?.id,
+				category: category?.attributes?.Name,
+				title: work_data?.Title,
+				description: work_data?.Description,
+				slug: work_data?.slug,
+				thumbnail: getImageUrl(work_data?.Video_Thumbnail),
+				Video: getImageUrl(work_data?.Video)
+			};
+		});
+		return work;
+	});
+	works = works.flat();
+	console.log(works);
 
 	let selectedCategory = categories[0];
 	let categoryChangeHandler = (category: string) => {
 		selectedCategory = category;
 	};
 
-	$: filteredWorks = works.filter((work) => {
+	$: filteredWorks = works.filter((work: any) => {
 		if (selectedCategory === 'All Categories') {
 			return true;
 		}
@@ -66,10 +51,10 @@
 	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
-<PageLayout>
+<PageLayout title={Page_Title} description={Page_Description}>
 	<div class="min-h-screen flex flex-col justify-start items-start gap-12">
 		<div
-			class="w-full flex justify-start xl:justify-around gap-4 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
+			class="w-full flex justify-start xl:justify-start gap-4 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
 		>
 			{#each categories as category}
 				<button
@@ -82,16 +67,10 @@
 				</button>
 			{/each}
 		</div>
-		<div class="lg:w-[60%] text-lg">
-			Welcome to the heart of our creative journey- a showcase of our finest work across diverse
-			services. Explore our portfolio, where each project represents, not just our expertise, but
-			our unwavering dedication to turning ideas into captivating realities.
-		</div>
-		<div class="lg:w-[60%] text-lg">
-			Our portfolio is a testament to our versatility, innovation, and dedication. Each project is a
-			unique story of a collaborative effort, creativity, and unrestrained enthusiasm. Join us as we
-			take you on a visual journey through our diverse range of projects.
-		</div>
+		{#each description.split('\n') as d}
+			<div class="lg:w-[60%] text-lg">{d}</div>
+		{/each}
+
 		<div use:focus class="grid-muuri w-full h-full">
 			{#key filteredWorks}
 				{#each filteredWorks as video (video.id)}

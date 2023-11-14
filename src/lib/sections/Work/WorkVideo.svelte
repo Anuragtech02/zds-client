@@ -1,41 +1,22 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { cursorStore } from '$lib/stores/cursor.store';
-	import { onDestroy, onMount } from 'svelte';
+
 	let container: HTMLDivElement;
-	export let fixedWidth: boolean;
-	export let absolute: boolean;
+
 	export let video: {
 		id: number;
 		title: string;
 		category: string;
+		slug: string;
 		thumbnail: string;
+		Video: string;
 	};
 	// console.log(video);
 	let heading = video.title;
 	let category = video.category;
 	let src = video.thumbnail;
-
-	function showCursor() {
-		$cursorStore.type = 'link';
-		$cursorStore.showCursor = true;
-	}
-
-	function hideCursor() {
-		$cursorStore.type = 'default';
-		$cursorStore.showCursor = false;
-	}
-
-	onMount(() => {
-		container?.addEventListener('mouseenter', showCursor);
-		container?.addEventListener('mouseleave', hideCursor);
-	});
-	onDestroy(() => {
-		container?.removeEventListener('mouseenter', showCursor);
-		container?.removeEventListener('mouseleave', hideCursor);
-
-		$cursorStore.showCursor = false;
-	});
+	export let fixedWidth = true;
+	export let absolute = true;
 </script>
 
 <div
@@ -49,10 +30,10 @@
 			role="button"
 			tabindex="0"
 			on:keypress={() => {
-				goto(`/works/${video.id}`);
+				goto(`/works/${video.slug}`);
 			}}
 			on:click={() => {
-				goto(`/works/${video.id}`);
+				goto(`/works/${video.slug}`);
 			}}
 			class="h-full w-full relative"
 		>
@@ -61,6 +42,9 @@
 			</p>
 
 			<img {src} alt="img" class="rounded-xl object-cover h-full w-full" />
+			<!-- <video>
+				<source src={video.Video} type="video/mp4" />
+			</video> -->
 			<p class="absolute bottom-2 left-2 rounded-2xl px-4 py-1 backdrop-blur">
 				{category}
 			</p>

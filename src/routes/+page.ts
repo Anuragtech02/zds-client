@@ -1,9 +1,8 @@
 import { fetchData } from '$lib/utils/functions';
-import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageLoad} */
 
-export async function load({ params, fetch }) {
+export async function load({ params, fetch }: any) {
 	const populate = [
 		'Brands.brands',
 		'Hero',
@@ -12,9 +11,9 @@ export async function load({ params, fetch }) {
 		'Form.socials',
 		'Works.works',
 		'Hero.Background_Video',
-		'Works.works.Images',
+		'Works.works.Video',
 		'Works.works.category',
-		'Works.works.Images.Image',
+		'Works.works.Video_Thumbnail',
 		'Brands.brands.image'
 	];
 	const urlParams = new URLSearchParams();

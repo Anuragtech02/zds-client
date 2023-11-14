@@ -11,12 +11,13 @@
 	let title = data.title;
 	let { initialWords, lastWord } = breakSentence(title);
 
-	// console.log(arr);
+	console.log(arr);
 	const works = arr.map((a: any) => ({
-		id: a?.id,
-		title: a?.attributes.Work_Title,
+		slug: a?.attributes.slug,
+		title: a?.attributes.Title,
 		category: a?.attributes?.category?.data?.attributes?.Name,
-		thumbnail: getImageUrl(a?.attributes?.Images[0]?.Image)
+		Video: a?.attributes?.Video?.data?.attributes?.url,
+		thumbnail: getImageUrl(a?.attributes?.Video_Thumbnail, 'original')
 	}));
 </script>
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import HomeSecondSection from '$lib/sections/Home/HomeSecondSection.svelte';
 	import Hero from '$lib/sections/Home/Hero.svelte';
 	import AboutSection from '$lib/sections/AboutSection.svelte';
@@ -10,7 +10,7 @@
 	import ContactSection from '$lib/sections/Home/ContactSection.svelte';
 	import OurWork from '$lib/sections/Home/OurWork.svelte';
 	import { homeSections } from '$lib/utils/contants';
-	export let data;
+	export let data: any;
 </script>
 
 <Hero data={data[homeSections[0]]} />

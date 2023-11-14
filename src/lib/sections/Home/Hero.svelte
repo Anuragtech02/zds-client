@@ -10,7 +10,7 @@
 	let words: string[] = [];
 	let Title: string, Description: string, CTAText: string, CTALink: string, Background_Video;
 	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
-	console.log(data);
+	// console.log(data);
 	if (data) {
 		Title = data.Title;
 		Description = data.Description;

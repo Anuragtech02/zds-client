@@ -24,6 +24,8 @@
 
 	heading = Title.split(',');
 	description = Description.split(',');
+	let previousActiveWordIdx = -1;
+
 	onMount(() => {
 		gsap.from('.text-reveal', 1.8, {
 			y: 100,
@@ -44,7 +46,7 @@
 		});
 
 		// left reveal
-		gsap.from('.left-reveal', 1.8, {
+		gsap.from('.left-reveal-1', 1.8, {
 			x: -100,
 			ease: 'power4.out',
 			delay: 0.4,
@@ -54,16 +56,43 @@
 		// timer to update active word
 		setInterval(() => {
 			activeWordIdx = activeWordIdx === heading.length - 1 ? 0 : activeWordIdx + 1;
-			// change the margin to pand bottom of .left-reveal using gsap
-			if (activeWordIdx === 0 && container?.style) {
-				// container.style.alignItems = 'flex-start';
-			} else if (activeWordIdx === 1 && container?.style) {
-				// container.style.alignItems = 'center';
-			} else if (activeWordIdx === 2 && container?.style) {
-				// container.style.alignItems = 'flex-end';
-			}
 		}, 3000);
+
+		let previousActiveWordIdx = -1;
 	});
+	// GSAP animation functions
+	function animateIn(textElement: string) {
+		gsap.to(textElement, {
+			opacity: 1,
+			x: 0,
+			ease: 'power4.out',
+			duration: 1.8
+		});
+	}
+
+	function animateOut(textElement: string) {
+		gsap.to(textElement, {
+			opacity: 0,
+			x: -100,
+			ease: 'power4.in',
+			duration: 1.8
+		});
+	}
+	$: if (activeWordIdx !== undefined) {
+		if (previousActiveWordIdx !== -1) {
+			// Animate out the previous text element
+			if (previousActiveWordIdx === 0) animateOut('.left-reveal-1');
+			else if (previousActiveWordIdx === 1) animateOut('left-reveal-2');
+			else if (previousActiveWordIdx === 2) animateOut('left-reveal-3');
+		}
+
+		// Animate in the new text element
+		if (activeWordIdx === 0) animateIn('.left-reveal-1');
+		else if (activeWordIdx === 1) animateIn('left-reveal-2');
+		else if (activeWordIdx === 2) animateIn('left-reveal-3');
+
+		previousActiveWordIdx = activeWordIdx;
+	}
 </script>
 
 <SectionLayout type="wrapper" padding="pt-[50px]" className="py-0">
@@ -107,33 +136,33 @@
 				<div class="flex flex-col justify-between w-full">
 					<div class="flex justify-start items-center h-full w-full">
 						<div
-							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20 transition-all duration-300 ease-out"
+							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
 							class:opacity-0={activeWordIdx !== 0}
 							class:opacity-100={activeWordIdx === 0}
 						>
-							<p class="left-reveal px-4 text-left w-full min-w-[100%]">
+							<p class="left-reveal-1 px-4 text-left w-full min-w-[100%]">
 								{description[activeWordIdx]}
 							</p>
 						</div>
 					</div>
 					<div class="flex justify-start items-center h-full w-full">
 						<div
-							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20 transition-all duration-300 ease-out"
+							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
 							class:opacity-0={activeWordIdx !== 1}
 							class:opacity-100={activeWordIdx === 1}
 						>
-							<p class="left-reveal px-4 text-left w-full min-w-[100%]">
+							<p class="left-reveal-2 px-4 text-left w-full min-w-[100%]">
 								{description[activeWordIdx]}
 							</p>
 						</div>
 					</div>
 					<div class="flex justify-start items-center h-full w-full">
 						<div
-							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20 transition-all duration-300 ease-out"
+							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
 							class:opacity-0={activeWordIdx !== 2}
 							class:opacity-100={activeWordIdx === 2}
 						>
-							<p class="left-reveal px-4 text-left w-full min-w-[100%]">
+							<p class="left-reveal-3 px-4 text-left w-full min-w-[100%]">
 								{description[activeWordIdx]}
 							</p>
 						</div>

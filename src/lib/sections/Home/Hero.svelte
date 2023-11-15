@@ -10,7 +10,7 @@
 	export let data: any;
 
 	let container: HTMLDivElement;
-	let activeWordIdx = 0;
+	let activeWordIdx: number;
 	let heading: string[] = [];
 	let description: string[] = [];
 	let Title: string, Description: string, CTAText: string, CTALink: string, Background_Video;
@@ -27,6 +27,7 @@
 	let previousActiveWordIdx = -1;
 
 	onMount(() => {
+		activeWordIdx = 0;
 		gsap.from('.text-reveal', 1.8, {
 			y: 100,
 			ease: 'power4.out',

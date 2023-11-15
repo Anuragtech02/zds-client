@@ -3,6 +3,7 @@
 	import Lenis from '@studio-freight/lenis';
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import CustomCursor from '$lib/components/CustomCursor.svelte';
 	onMount(() => {
 		const lenis = new Lenis();
 
@@ -28,3 +29,4 @@
 <BaseLayer data={commonData}>
 	<slot data={pageData} />
 </BaseLayer>
+<CustomCursor />

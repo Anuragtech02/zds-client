@@ -6,7 +6,11 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import ShowreelPopup from '$lib/components/ShowreelPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
+
 	export let data: any;
+
+	let descriptionEl: HTMLDivElement;
+	let activeWordIdx = 0;
 	let words: string[] = [];
 	let Title: string, Description: string, CTAText: string, CTALink: string, Background_Video;
 	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
@@ -51,6 +55,22 @@
 			delay: 0.4,
 			opacity: 0
 		});
+
+		// timer to update active word
+		setInterval(() => {
+			activeWordIdx = activeWordIdx === words.length - 1 ? 0 : activeWordIdx + 1;
+			// change the margin to pand bottom of .left-reveal using gsap
+			if (activeWordIdx === 0) {
+				descriptionEl.style.marginTop === '0';
+				descriptionEl.style.marginBottom === 'auto';
+			} else if (activeWordIdx === 1) {
+				descriptionEl.style.marginTop === 'auto';
+				descriptionEl.style.marginBottom === 'auto';
+			} else if (activeWordIdx === 2) {
+				descriptionEl.style.marginTop === 'auto';
+				descriptionEl.style.marginBottom === '0';
+			}
+		}, 3000);
 	});
 </script>
 
@@ -65,27 +85,44 @@
 			<div class="flex justify-start items-start sm:items-end flex-col sm:flex-row w-full">
 				<div class="w-full uppercase flex flex-col justify-center items-start">
 					<div class="relative h-[70px] md:h-[80px] lg:h-[100px] w-full overflow-hidden">
-						<h1 class="text-reveal text-left absolute">{words[0]}</h1>
+						<h1 class="text-reveal text-left absolute">
+							<OutlinedText
+								text={words[0]}
+								className="text-reveal"
+								isActive={activeWordIdx === 0}
+							/> <br />
+						</h1>
 					</div>
 					<div class="relative md:mt-12 h-[80px] md:h-[100px] xl:h-[140px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute">
-							<OutlinedText text={words[1]} className="text-reveal" /> <br />
+							<OutlinedText
+								text={words[1]}
+								className="text-reveal"
+								isActive={activeWordIdx === 1}
+							/> <br />
 						</h1>
 					</div>
 					<div class="relative md:mt-4 h-[80px] md:h-[100px] xl:h-[130px] w-full overflow-hidden">
 						<h1 class="text-reveal text-left absolute uppercase">
-							<OutlinedText text={words[2]} className="text-reveal" /> <br />
+							<OutlinedText
+								text={words[2]}
+								className="text-reveal"
+								isActive={activeWordIdx === 2}
+							/> <br />
 						</h1>
 					</div>
 				</div>
 				<div class="overflow-hidden border-l-2 max-w-[400px] mt-10 sm:mt-0 md:ml-20">
-					<p class="left-reveal px-4 text-left w-full">
+					<p class="left-reveal px-4 text-left w-full" bind:this={descriptionEl}>
 						{Description}
 					</p>
 				</div>
 			</div>
-			<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link={CTALink}
-				>{CTAText}</Button
+			<Button
+				className="mt-20 our-work-btn translate-y-[100px] opacity-0"
+				onClick={() => {
+					$popupStore.isShowreelOpen = true;
+				}}>{CTAText}</Button
 			>
 		</div>
 	</div>

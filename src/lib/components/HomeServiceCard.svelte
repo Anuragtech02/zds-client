@@ -4,65 +4,30 @@
 
 	export let service: any;
 	let container: HTMLAnchorElement;
+	let tickAudio: HTMLAudioElement;
 
-	// function handleHover(e, isEntering) {
-	// 	const svg = container.querySelector('.circle-svg');
-	// 	const circle = svg.querySelector('circle');
-
-	// 	// Calculate the scale factor based on the container size
-	// 	const containerRect = container.getBoundingClientRect();
-	// 	const scaleFactor = Math.sqrt(
-	// 		Math.pow(containerRect.width, 2) + Math.pow(containerRect.height, 2)
-	// 	);
-
-	// 	// Position the transform-origin at the mouse coordinates
-	// 	const originX = e.clientX - containerRect.left + 'px';
-	// 	const originY = e.clientY - containerRect.top + 'px';
-
-	// 	// Set transform-origin and initial scale
-	// 	circle.style.transformOrigin = `${originX} ${originY}`;
-	// 	circle.style.transform = 'scale(0)';
-
-	// 	// Animate the scale with GSAP
-	// 	if (isEntering) {
-	// 		gsap.to(circle.style, {
-	// 			duration: 0.5,
-	// 			scale: scaleFactor,
-	// 			ease: 'power1.out'
-	// 		});
-	// 	} else {
-	// 		gsap.to(circle.style, {
-	// 			duration: 0.5,
-	// 			scale: 0,
-	// 			ease: 'power1.out'
-	// 		});
-	// 	}
-	// }
-
-	// onMount(() => {
-	// 	container.addEventListener('mouseenter', (e) => handleHover(e, true));
-	// 	container.addEventListener('mouseleave', (e) => handleHover(e, false));
-	// });
+	onMount(() => {
+		tickAudio = new Audio('/audio/tick.mp3');
+	});
 
 	const handleSoundPlay = () => {
-		let tick = new Audio('/audio/tick.mp3');
-		tick.play();
+		tickAudio.play();
 	};
 </script>
 
 <a
 	bind:this={container}
-	href={`/service/${service.id}`}
+	href={`/service/${service?.slug}`}
 	on:mouseenter={handleSoundPlay}
 	class="card-cont relative w-full flex flex-col md:flex-row justify-between items-center border border-[#3A3A3A] p-8 rounded-md my-2"
 >
 	<p class="md:w-1/2 pl-2 xl:pl-8 text-left text-lg lg:text-2xl">
-		{service.title}
+		{service?.Title}
 	</p>
 	<div class="md:w-1/2 flex flex-col items-center justify-center md:items-start">
-		<img src={service.icon} class="h-20 w-20 lg:h-28 lg:w-28" alt="" />
+		<img src={service?.Icon} class="h-20 w-20 lg:h-28 lg:w-28" alt="" />
 		<ul class="flex flex-wrap gap-2 items-center">
-			{#each service.services as s, i}
+			{#each service?.ShortDescriptionPoints as s, i}
 				<li class="text-sm">
 					{#if i != 0}
 						•

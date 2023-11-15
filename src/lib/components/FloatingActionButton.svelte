@@ -6,6 +6,9 @@
 	class="fixed right-20 bottom-20 z-50 floating-action-btn"
 	on:mouseenter={() => (showMenu = true)}
 	on:mouseleave={() => (showMenu = false)}
+	aria-haspopup="true"
+	role="button"
+	tabindex="0"
 >
 	<div
 		class="floating-icon rounded-full bg-white bg-opacity-10 border border-neutral-500 h-20 w-20 flex justify-center items-center p-3 cursor-pointer"

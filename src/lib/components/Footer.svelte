@@ -38,11 +38,13 @@
 		<hr class="w-full bg-[#8D8D8D] mt-8" />
 		<div class="flex justify-between items-center flex-wrap">
 			<p class="mt-8">{copywrightText}</p>
-			<div class="mt-8 gap-4 flex justify-around items-center flex-wrap">
-				<p class="font-semibold">Locations :</p>
-				{#each locations as location}
-					<p class="font-semibold">{location?.attributes?.Name}</p>
-				{/each}
+			<div class="flex flex-row justify-start mt-8 items-start gap-6">
+				<p class="font-semibold min-w-fit">Locations :</p>
+				<div class=" gap-4 flex justify-start items-center flex-wrap">
+					{#each locations as location}
+						<p class="font-semibold">{location?.attributes?.Name}</p>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>

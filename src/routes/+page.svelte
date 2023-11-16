@@ -20,7 +20,7 @@
 <OurWork data={data[homeSections[1]]} />
 <PartnersSection data={data[homeSections[2]]} />
 <ServicesSection data={data[homeSections[3]]} />
-<MarketplaceSection data={data[homeSections[4]]} />
+<!-- <MarketplaceSection data={data[homeSections[4]]} /> -->
 <FloatingActionButton />
 <!-- <AboutSection /> -->
 <!-- <LocationsSection /> -->

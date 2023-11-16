@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="fixed right-20 bottom-20 z-50 floating-action-btn"
+	class="fixed right-10 sm:right-20 bottom-20 z-50 floating-action-btn"
 	on:mouseenter={() => (showMenu = true)}
 	on:mouseleave={() => (showMenu = false)}
 	aria-haspopup="true"

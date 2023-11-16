@@ -5,7 +5,7 @@
 	let formData = data?.Form;
 </script>
 
-<p class="text-left my-4 mb-16">
+<p class="text-left my-16 mb-16">
 	{data?.description}
 </p>
 <img

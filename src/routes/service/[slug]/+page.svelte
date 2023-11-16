@@ -17,7 +17,6 @@
 	});
 	console.log(services);
 	let service = data.service.attributes;
-	console.log(service);
 	service = {
 		image: getImageUrl(service?.Thumbnail),
 		title: service?.Title,
@@ -26,6 +25,7 @@
 		icon: getImageUrl(service?.Icon),
 		slug: service?.slug
 	};
+	console.log(service);
 </script>
 
 <PageLayout title={service.title} icon={service.icon} description={''} bgImage="">
@@ -67,7 +67,7 @@
 						on:click={() => {
 							goto(`/service/${ser.slug}`);
 						}}
-						class={`cursor-pointer h-[6rem] rounded-md w-[14rem] p-2 gap-2 flex flex-col justify-start items-start bg-[#FFFFFF1A] ${
+						class={`cursor-pointer min-h-[6rem] rounded-md min-w-[14rem] p-2 gap-2 flex flex-col justify-start items-start bg-[#FFFFFF1A] ${
 							ser.slug == service.slug ? 'border-2' : ''
 						}`}
 					>

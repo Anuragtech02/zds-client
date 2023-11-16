@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
+	import DecorationLeft from '$lib/components/DecorationLeft.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import { breakSentence, getImageUrl } from '$lib/utils/functions';
@@ -39,3 +40,4 @@
 		>
 	</div>
 </SectionLayout>
+<DecorationLeft />

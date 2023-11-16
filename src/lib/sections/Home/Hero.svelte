@@ -24,6 +24,15 @@
 
 	heading = Title.split(',');
 	description = Description.split(',');
+
+	$: activeWordIdx &&
+		gsap.from('.left-reveal', 1.8, {
+			x: -100,
+			ease: 'power4.out',
+			delay: 0.4,
+			opacity: 0
+		});
+
 	onMount(() => {
 		gsap.from('.text-reveal', 1.8, {
 			y: 100,

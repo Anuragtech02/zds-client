@@ -30,7 +30,7 @@
 		}}
 		tabindex="-1"
 	>
-		<video src={videoUrl} controls class="h-full w-full object-contain">
+		<video src={videoUrl} controls class="h-full w-full object-contain" autoplay>
 			<track kind="captions" />
 		</video>
 	</div>

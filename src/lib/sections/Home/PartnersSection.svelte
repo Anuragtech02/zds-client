@@ -28,13 +28,25 @@
 		<div class="overflow-hidden brands-container py-16 relative">
 			<div class="flex slider-track shrink-0 relative justify-between items-center gap-4 w-full">
 				{#each brands as brand}
-					<div class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px]">
-						<img class="h-full w-full object-cover" src={brand.logo} alt={brand.name} />
+					<div
+						class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px] bg-transparent"
+					>
+						<img
+							class="h-full w-full object-cover bg-transparent"
+							src={brand.logo}
+							alt={brand.name}
+						/>
 					</div>
 				{/each}
 				{#each brands as brand}
-					<div class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px]">
-						<img class="h-full w-full object-cover" src={brand.logo} alt={brand.name} />
+					<div
+						class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px] bg-transparent"
+					>
+						<img
+							class="h-full w-full object-cover bg-transparent"
+							src={brand.logo}
+							alt={brand.name}
+						/>
 					</div>
 				{/each}
 			</div>

@@ -77,6 +77,12 @@
 		resetFormErrors();
 		if (validateFields()) {
 			console.log('Form submitted');
+			try {
+				window.alert('Form submitted');
+			} catch (error) {
+				window.alert('ERROR');
+			}
+
 			// TODO: Send form data to server
 		}
 	}

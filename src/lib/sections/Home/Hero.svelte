@@ -26,6 +26,14 @@
 	description = Description.split(',');
 	let previousActiveWordIdx = -1;
 
+	$: activeWordIdx !== undefined &&
+		gsap.from(`.left-reveal-${activeWordIdx + 1}`, 1.8, {
+			x: -100,
+			ease: 'power4.out',
+			delay: 0.4,
+			opacity: 0
+		});
+
 	onMount(() => {
 		activeWordIdx = 0;
 		gsap.from('.text-reveal', 1.8, {
@@ -47,53 +55,53 @@
 		});
 
 		// left reveal
-		gsap.from('.left-reveal-1', 1.8, {
-			x: -100,
-			ease: 'power4.out',
-			delay: 0.4,
-			opacity: 0
-		});
+		// gsap.from('.left-reveal-1', 1.8, {
+		// 	x: -100,
+		// 	ease: 'power4.out',
+		// 	delay: 0.4,
+		// 	opacity: 0
+		// });
 
 		// timer to update active word
 		setInterval(() => {
 			activeWordIdx = activeWordIdx === heading.length - 1 ? 0 : activeWordIdx + 1;
 		}, 3000);
 
-		let previousActiveWordIdx = -1;
+		// let previousActiveWordIdx = -1;
 	});
 	// GSAP animation functions
-	function animateIn(textElement: string) {
-		gsap.to(textElement, {
-			opacity: 1,
-			x: 0,
-			ease: 'power4.out',
-			duration: 1.8
-		});
-	}
+	// function animateIn(textElement: string) {
+	// 	gsap.to(textElement, {
+	// 		opacity: 1,
+	// 		x: 0,
+	// 		ease: 'power4.out',
+	// 		duration: 1.8
+	// 	});
+	// }
 
-	function animateOut(textElement: string) {
-		gsap.to(textElement, {
-			opacity: 0,
-			x: -100,
-			ease: 'power4.in',
-			duration: 1.8
-		});
-	}
-	$: if (activeWordIdx !== undefined) {
-		if (previousActiveWordIdx !== -1) {
-			// Animate out the previous text element
-			if (previousActiveWordIdx === 0) animateOut('.left-reveal-1');
-			else if (previousActiveWordIdx === 1) animateOut('left-reveal-2');
-			else if (previousActiveWordIdx === 2) animateOut('left-reveal-3');
-		}
+	// function animateOut(textElement: string) {
+	// 	gsap.to(textElement, {
+	// 		opacity: 0,
+	// 		x: -100,
+	// 		ease: 'power4.in',
+	// 		duration: 1.8
+	// 	});
+	// }
+	// $: if (activeWordIdx !== undefined) {
+	// 	if (previousActiveWordIdx !== -1) {
+	// 		// Animate out the previous text element
+	// 		if (previousActiveWordIdx === 0) animateOut('.left-reveal-1');
+	// 		else if (previousActiveWordIdx === 1) animateOut('left-reveal-2');
+	// 		else if (previousActiveWordIdx === 2) animateOut('left-reveal-3');
+	// 	}
 
-		// Animate in the new text element
-		if (activeWordIdx === 0) animateIn('.left-reveal-1');
-		else if (activeWordIdx === 1) animateIn('left-reveal-2');
-		else if (activeWordIdx === 2) animateIn('left-reveal-3');
+	// 	// Animate in the new text element
+	// 	if (activeWordIdx === 0) animateIn('.left-reveal-1');
+	// 	else if (activeWordIdx === 1) animateIn('left-reveal-2');
+	// 	else if (activeWordIdx === 2) animateIn('left-reveal-3');
 
-		previousActiveWordIdx = activeWordIdx;
-	}
+	// 	previousActiveWordIdx = activeWordIdx;
+	// }
 </script>
 
 <SectionLayout type="wrapper" padding="pt-[50px]" className="py-0">

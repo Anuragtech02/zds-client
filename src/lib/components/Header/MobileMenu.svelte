@@ -14,6 +14,7 @@
 	$: open = $menuStore.isActive;
 
 	function isActiveLink(link: string) {
+		if (window == undefined || window == null) return;
 		if (link === '/') {
 			return window.location.pathname === link;
 		}

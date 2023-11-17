@@ -3,6 +3,7 @@
 	import MarketplaceButton from '../MarketplaceButton.svelte';
 	import { gsap } from 'gsap';
 	import { menuStore } from '$lib/stores/menu.store';
+	import { fly } from 'svelte/transition';
 
 	export let data: any;
 	let open: boolean = true;
@@ -44,7 +45,7 @@
 		}
 	}
 
-	$: open, handleUpdateMenu();
+	$: open && window && handleUpdateMenu();
 	// });
 </script>
 
@@ -63,24 +64,30 @@
 	>
 		<circle bind:this={circle} class="fill-black/20" cx="100%" cy="0" r="40" stroke-width="3" />
 	</svg>
-	<ul
-		class="flex flex-col justify-start items-start z-[99] transition-opacity duration-300 ease-in-out"
-		class:opacity-1={open}
-		class:opacity-0={!open}
-	>
-		{#each links as link}
-			<li class="text-[3rem] md:text-[3rem] my-6" on:click={() => ($menuStore.isActive = false)}>
-				<a
-					class="text-[2rem] md:text-[3rem] font-semibold uppercase"
-					class:text-accent-1={isActiveLink(link.url)}
-					href={link.url}>{link.title}</a
-				>
-			</li>
-		{/each}
-		{#if showMarketplaceButton}
-			<li on:click={() => ($menuStore.isActive = false)}>
-				<MarketplaceButton />
-			</li>
-		{/if}
-	</ul>
+	{#if open}
+		{#key open}
+			<ul
+				class="flex flex-col justify-start items-start z-[99] transition-opacity duration-300 ease-in-out"
+			>
+				{#each links as link, i}
+					<li
+						in:fly={{ y: 200, duration: 300, delay: i * 0.2 }}
+						class="text-[3rem] md:text-[3rem] my-6"
+						on:click={() => ($menuStore.isActive = false)}
+					>
+						<a
+							class="text-[2rem] md:text-[3rem] font-semibold uppercase"
+							class:text-accent-1={isActiveLink(link.url)}
+							href={link.url}>{link.title}</a
+						>
+					</li>
+				{/each}
+				{#if showMarketplaceButton}
+					<li on:click={() => ($menuStore.isActive = false)}>
+						<MarketplaceButton />
+					</li>
+				{/if}
+			</ul>
+		{/key}
+	{/if}
 </div>

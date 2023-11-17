@@ -1,4 +1,5 @@
 <script lang="ts">
+	import DecorationLeft from '$lib/components/DecorationLeft.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import PartnersCircleGlow from '$lib/icons/PartnersCircleGlow.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
@@ -29,10 +30,10 @@
 			<div class="flex slider-track shrink-0 relative justify-between items-center gap-4 w-full">
 				{#each brands as brand}
 					<div
-						class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px] bg-transparent"
+						class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[320px] bg-transparent"
 					>
 						<img
-							class="h-full w-full object-cover bg-transparent"
+							class="h-full w-full object-contain bg-transparent"
 							src={brand.logo}
 							alt={brand.name}
 						/>
@@ -40,10 +41,10 @@
 				{/each}
 				{#each brands as brand}
 					<div
-						class="flex justify-center items-center bg-gray-200 border h-[150px] min-w-[320px] bg-transparent"
+						class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[320px] bg-transparent"
 					>
 						<img
-							class="h-full w-full object-cover bg-transparent"
+							class="h-full w-full object-contain bg-transparent"
 							src={brand.logo}
 							alt={brand.name}
 						/>

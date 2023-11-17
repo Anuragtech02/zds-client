@@ -17,7 +17,7 @@
 	};
 
 	const COMMON_CLASS =
-		'py-2 px-6 sm:py-3 sm:px-8 md:py-3 md:px-10 rounded-full transition duration-150 ease-out hover:ease-in hover:bg-fg hover:text-fg-600';
+		'py-2 px-6 sm:py-3 sm:px-8 md:py-3 md:px-12 rounded-full transition duration-150 ease-out hover:ease-in hover:bg-fg hover:text-fg-600';
 </script>
 
 {#if type === 'submit'}

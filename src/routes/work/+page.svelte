@@ -6,8 +6,8 @@
 
 	export let data;
 	console.log(data);
-	const { Page_Title, Page_Description, description, Work_Categories } = data;
-
+	const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
+	let imgSrc = getImageUrl(bgImage);
 	var focus = (node: any) => {
 		var grid = new Muuri('.grid-muuri');
 	};
@@ -51,10 +51,10 @@
 	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
-<PageLayout title={Page_Title} description={Page_Description}>
+<PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<div class="min-h-screen flex flex-col justify-start items-start gap-12">
 		<div
-			class="w-full flex justify-start xl:justify-start gap-4 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
+			class="w-full flex justify-start xl:justify-start gap-10 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
 		>
 			{#each categories as category}
 				<button
@@ -68,7 +68,7 @@
 			{/each}
 		</div>
 		{#each description.split('\n') as d}
-			<div class="lg:w-[60%] text-lg">{d}</div>
+			<div class="lg:w-[60%] text-lg text-[#FFFFFF] font-light">{d}</div>
 		{/each}
 
 		<div use:focus class="grid-muuri w-full h-full">

@@ -10,7 +10,11 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		urlParams.append(`populate[${index}]`, value);
 	});
 	// console.log('Search', urlParams.toString());
-	const data = await fetchData('services', urlParams.toString(), fetch);
+	let data = await fetchData('services', urlParams.toString(), fetch);
+	if (Array.isArray(data) && data.length > 1) {
+		data = data.filter((service) => service?.attributes?.slug === slug);
+	}
+	console.log('Data', data, slug);
 	const servicesParams = new URLSearchParams();
 	servicesParams.append(`populate[0]`, 'Icon');
 	const Services = await fetchData('services', servicesParams.toString(), fetch);

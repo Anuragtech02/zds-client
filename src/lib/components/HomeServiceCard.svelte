@@ -19,12 +19,12 @@
 	bind:this={container}
 	href={`/service/${service?.slug}`}
 	on:mouseenter={handleSoundPlay}
-	class="card-cont relative w-full flex flex-col md:flex-row justify-between items-center border border-[#3A3A3A] p-8 rounded-md my-2"
+	class="card-cont relative w-full flex flex-col md:flex-row justify-between items-start border border-[#3A3A3A] p-8 rounded-md my-2"
 >
 	<p class="md:w-1/2 pl-2 xl:pl-8 text-left text-lg lg:text-2xl">
 		{service?.Title}
 	</p>
-	<div class="md:w-1/2 flex flex-col items-center justify-center md:items-start">
+	<div class="md:w-1/2 flex flex-col items-start justify-center md:items-start">
 		<img src={service?.Icon} class="h-20 w-20 lg:h-28 lg:w-28" alt="" />
 		<ul class="flex flex-wrap gap-2 items-center">
 			{#each service?.ShortDescriptionPoints as s, i}

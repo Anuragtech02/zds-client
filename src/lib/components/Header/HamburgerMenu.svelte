@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
+	import { menuStore } from '$lib/stores/menu.store';
 
-	let isActive = false;
 	let menu: SVGSVGElement;
 	let top: SVGPathElement;
 	let middle: SVGPathElement;
@@ -78,7 +78,7 @@
 	}
 
 	function onClickHandler() {
-		if (isActive) {
+		if ($menuStore.isActive) {
 			TWEENS.top.reverse();
 			TWEENS.middle.reverse();
 			TWEENS.bottom.reverse();
@@ -88,12 +88,12 @@
 			TWEENS.bottom.play();
 		}
 
-		isActive = !isActive;
+		$menuStore.isActive = !$menuStore.isActive;
 	}
 </script>
 
 <svg
-	class="menu cursor-pointer w-8 h-8 sm:w-10 sm:h-10"
+	class="menu cursor-pointer w-8 h-8 sm:w-10 sm:h-10 z-[999]"
 	viewBox="0 0 39 39"
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"

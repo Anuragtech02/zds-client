@@ -4,6 +4,7 @@
 	import VimeoIcon from '$lib/icons/VimeoIcon.svelte';
 	import YoutubeIcon from '$lib/icons/YoutubeIcon.svelte';
 	import { onMount } from 'svelte';
+	import '../../app.css';
 
 	onMount(() => {
 		console.log('Page Layout mounted');

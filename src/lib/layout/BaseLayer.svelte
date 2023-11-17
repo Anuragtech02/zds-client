@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import Header from '$lib/components/Header/Header.svelte';
 	import { onMount } from 'svelte';
+	import '../../app.css';
 	export let data: any;
 	console.log({ data });
 	onMount(() => {

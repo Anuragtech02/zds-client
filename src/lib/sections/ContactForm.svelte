@@ -93,6 +93,7 @@
 		<div>
 			<h2 class="uppercase text-left">
 				<OutlinedText text={initialWords} />
+				<br />
 				{lastWord}
 			</h2>
 			<div class="mt-8">

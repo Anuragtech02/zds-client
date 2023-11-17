@@ -9,6 +9,7 @@
 	// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
 	import CheckerLottieAnimation from './CheckerLottieAnimation.svelte';
+	import DecorationLeft from '$lib/components/DecorationLeft.svelte';
 
 	// gsap.registerPlugin(ScrollTrigger);
 	export let data;
@@ -68,10 +69,10 @@
 				</div>
 			</div>
 			<div class="w-[25%] mr-0 hidden sm:block md:hidden flex justify-end">
-				<img src="/images/about-image.png" alt="about" class="img-float-anim" />
+				<img src={image} alt="about" />
 			</div>
 		</div>
-		<div class="mt-4 [&>p]:text-justify">
+		<div class="mt-12 [&>p]:text-justify">
 			<p class="text-left capitalize">
 				<!-- {#each p1.split('') as char, index}
 					<span class="char" style="transition-delay: {index * 0.05}s"
@@ -83,7 +84,7 @@
 		</div>
 	</div>
 	<div class="hidden md:block lg:w-[40%] xl:w-full">
-		<img src={image} alt="about" class="img-float-anim" />
+		<img src={image} alt="about" />
 	</div>
 </div>
 
@@ -97,18 +98,12 @@
 		TEAM
 	</h3>
 	<div
-		class="bg-transparent relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 py-8"
+		class="bg-transparent relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-8 py-8"
 	>
 		{#each teamMembers as member}
 			<MemberCard {member} />
 		{/each}
 	</div>
-</div>
-<div class="relative">
-	<div
-		style="background-image: url(/images/decoration-left.png);"
-		class="absolute h-80 -top-[38rem] z-[-1] w-40 -left-32"
-	/>
 </div>
 
 <style>

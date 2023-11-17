@@ -27,6 +27,9 @@
 			{#if description != ''}
 				<p>{description}</p>
 			{/if}
+			{#if icon != ''}
+				<img src={icon} alt="icon" class="w-20 h-20 mt-4" />
+			{/if}
 
 			<h2>{title}</h2>
 			{#if tagText != ''}

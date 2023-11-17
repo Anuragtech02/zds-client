@@ -10,6 +10,7 @@
 	import { onMount } from 'svelte';
 	import CheckerLottieAnimation from './CheckerLottieAnimation.svelte';
 	import DecorationLeft from '$lib/components/DecorationLeft.svelte';
+	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 
 	// gsap.registerPlugin(ScrollTrigger);
 	export let data;
@@ -101,6 +102,7 @@
 		{/each}
 	</div>
 </div>
+<FloatingActionButton />
 
 <style>
 	.char {

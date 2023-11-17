@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
+	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import { getImageUrl } from '$lib/utils/functions';
 
@@ -76,6 +77,7 @@
 			<div />
 		</div>
 	</div>
+	<FloatingActionButton />
 </PageLayout>
 
 <style>

@@ -6,6 +6,7 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import ShowreelPopup from '$lib/components/ShowreelPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
+	import { getImageUrl } from '$lib/utils/functions';
 
 	export let data: any;
 
@@ -13,15 +14,19 @@
 	let activeWordIdx: number;
 	let heading: string[] = [];
 	let description: string[] = [];
-	let Title: string, Description: string, CTAText: string, CTALink: string, Background_Video;
+	let Title: string,
+		Description: string,
+		CTAText: string,
+		CTALink: string,
+		Background_Video: string;
 	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
 	// console.log(data);
 	Title = data?.Title || '';
 	Description = data?.Description || '';
 	CTAText = data?.CTAText || '';
 	CTALink = data?.CTALink || '';
-	Background_Video = data?.Background_Video || '';
-
+	Background_Video = getImageUrl(data?.Background_Video) || '';
+	console.log(Background_Video);
 	heading = Title.split(',');
 	description = Description.split(',');
 	let previousActiveWordIdx = -1;
@@ -110,6 +115,7 @@
 		alt="hero-gradient"
 		class="absolute top-0 -left-[150px] pointer-events-none z-[0]"
 	/>
+	<video src={Background_Video} autoplay loop muted class="bg-video" />
 	<div class="max-width-container relative z-[1] flex justify-between items-center h-screen">
 		<div class="flex flex-col justify-between items-start w-full">
 			<div class="flex justify-start items-stretch flex-col sm:flex-row w-full">
@@ -191,3 +197,15 @@
 		<ShowreelPopup />
 	{/if}
 </SectionLayout>
+
+<style>
+	.bg-video {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -1;
+	}
+</style>

@@ -12,4 +12,4 @@
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<slot />
 </PageLayout>
-<DecorationLeft />
+<DecorationLeft bottom={'90%'} />

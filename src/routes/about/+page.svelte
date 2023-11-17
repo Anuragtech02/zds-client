@@ -63,7 +63,7 @@
 						<OutlinedText text="ZERO DESIGN STUDIO IS A" />
 						<TextWithBg>MULTIDISCIPLINARY</TextWithBg>
 						<OutlinedText strokeWidth="w-stroke-1" text="EXPERIENCE" />
-						<TextWithBg className="ml-2 md:ml-8">DESIGN</TextWithBg>
+						<TextWithBg>DESIGN</TextWithBg>
 						<OutlinedText strokeWidth="w-stroke-1" text="COMPANY" />
 					</h3>
 				</div>
@@ -89,10 +89,6 @@
 </div>
 
 <div class="relative overflow-hidden py-8">
-	<div class="absolute right-0 top-2 h-[40%] w-[50%] z-0">
-		<!-- <CheckerLottieAnimation /> -->
-		<img src="/checker-gif.gif" />
-	</div>
 	<h3 class="text-left">
 		<OutlinedText text="OUR" />
 		TEAM

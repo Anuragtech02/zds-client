@@ -49,7 +49,9 @@
 	// });
 </script>
 
-<div class="fixed flex flex-col justify-center items-center top-0 left-0 h-screen w-screen z-[99]">
+<div
+	class="fixed flex flex-col justify-center items-center top-0 left-0 h-screen w-screen z-[99] pointer-events-none"
+>
 	<div
 		bind:this={blurContainer}
 		class="absolute w-full h-full backdrop-blur transition-all ease-in-out duration-400 z-1"
@@ -60,14 +62,14 @@
 	/>
 	<svg
 		bind:this={circleSvg}
-		class="absolute right-0 top-0 w-full h-full transition-all ease-in-out duration-100 z-2"
+		class="absolute right-0 top-0 w-full h-full transition-all ease-in-out duration-100 z-2 pointer-events-none"
 	>
 		<circle bind:this={circle} class="fill-black/20" cx="100%" cy="0" r="40" stroke-width="3" />
 	</svg>
 	{#if open}
 		{#key open}
 			<ul
-				class="flex flex-col justify-start items-start z-[99] transition-opacity duration-300 ease-in-out"
+				class="flex flex-col justify-start items-start z-[99] transition-opacity duration-300 ease-in-out pointer-events-auto"
 			>
 				{#each links as link, i}
 					<li

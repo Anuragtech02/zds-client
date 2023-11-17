@@ -32,7 +32,7 @@
 </script>
 
 <div
-	class="fixed right-20 bottom-20 z-50 floating-action-btn"
+	class="fixed right-10 md:right-20 bottom-20 z-50 floating-action-btn"
 	on:mouseenter={show}
 	on:mouseleave={hide}
 	aria-haspopup="true"

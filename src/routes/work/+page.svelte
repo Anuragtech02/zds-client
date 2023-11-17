@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import WorkVideo from '$lib/sections/Work/WorkVideo.svelte';
 	import { getImageUrl } from '$lib/utils/functions.js';
@@ -79,6 +80,7 @@
 			{/key}
 		</div>
 	</div>
+	<FloatingActionButton />
 </PageLayout>
 
 <style>

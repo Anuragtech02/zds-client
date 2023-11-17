@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import BannerCta from '$lib/sections/Home/BannerCTA.svelte';
+	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	export let data: PageData;
 
 	const { Title } = data.attributes;
@@ -65,5 +66,6 @@
 			/>
 		</div> -->
 	</div>
+	<FloatingActionButton />
 </PageLayout>
 <BannerCta />

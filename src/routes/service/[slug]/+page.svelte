@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import Button from '$lib/components/Button.svelte';
+	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import { getImageUrl } from '$lib/utils/functions';
 
@@ -47,42 +49,43 @@
 				/>
 			</button>
 		</div>
-		<div class="desc-box flex flex-col justify-between gap-8 text-lg py-16 items-start text-left">
-			<h4 class="text-left leading-10 tracking-wide">
+		<div class="desc-box flex flex-col justify-between gap-8 text-lg py-16 items-start !text-left">
+			<h4 class="!text-left leading-10 tracking-wide">
 				{service.ShortDescription}
 			</h4>
-			{@html service.LongDescription}
+			<span class="long-desc">
+				{@html service.LongDescription}
+			</span>
 		</div>
 
 		<div>
 			<h5 class="text-left">OTHER SERVICES</h5>
 			<div class="w-full flex py-8 gap-4 overflow-x-auto">
 				{#each services as ser}
-					<div
-						role="button"
-						tabindex="0"
-						on:keypress={() => {
-							goto(`/service/${ser.slug}`);
-						}}
-						on:click={() => {
-							goto(`/service/${ser.slug}`);
-						}}
-						class={`cursor-pointer min-h-[6rem] rounded-md min-w-[14rem] p-2 gap-2 flex flex-col justify-start items-start bg-[#FFFFFF1A] ${
+					<a
+						target="_self"
+						href="/service/{ser.slug}"
+						class={`p-2 bg-[#FFFFFF1A]  cursor-pointer gap-2 flex flex-col justify-start items-start min-h-[6rem] min-w-[14rem]  rounded-md ${
 							ser.slug == service.slug ? 'border-2' : ''
 						}`}
 					>
 						<img src={ser.icon} class="h-12 w-12" alt="" />
 						<p class="text-sm">{ser.title}</p>
-					</div>
+					</a>
 				{/each}
 			</div>
 			<div />
 		</div>
 	</div>
+	<FloatingActionButton />
 </PageLayout>
 
 <style>
 	div {
 		font-family: 'Montserrat', sans-serif;
+	}
+
+	.long-desc p {
+		text-align: left !important;
 	}
 </style>

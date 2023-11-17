@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import ContactForm from '$lib/sections/ContactForm.svelte';
 	export let data;
 	console.log(data);
@@ -14,3 +15,4 @@
 	class="absolute top-0 -left-[150px] pointer-events-none z-[0]"
 />
 <ContactForm data={formData} />
+<FloatingActionButton />

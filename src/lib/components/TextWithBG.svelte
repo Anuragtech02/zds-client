@@ -15,7 +15,7 @@
 					width: '5%'
 				},
 				{
-					width: '105%',
+					width: '100%',
 					duration: 1,
 					ease: 'power2.out',
 					scrollTrigger: {
@@ -45,7 +45,7 @@
 	}
 	.custom-bg-band {
 		position: absolute;
-		width: 5%;
+		width: 4%;
 		height: 40%;
 		z-index: -1;
 		bottom: 10%;

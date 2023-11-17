@@ -3,12 +3,13 @@
 	import Logo from '../Logo.svelte';
 	import MetaverseButton from '../MarketplaceButton.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
+	import MobileMenu from './MobileMenu.svelte';
 	import NavLink from './NavLinks/NavLink.svelte';
 	import NavLinks from './NavLinks/NavLinks.svelte';
 	import Searchbar from './Searchbar.svelte';
 
 	let header: HTMLElement;
-	export let data;
+	export let data: any;
 	const { links, showMarketplaceButton, showSearchBar } = data;
 	// hide on scroll down
 	let lastScroll = 0;
@@ -38,7 +39,10 @@
 		hideOnScroll();
 	}}
 />
-<header bind:this={header} class="header fixed top-0 left-0 w-full bg-bg-300 backdrop-blur-xl z-50">
+<header
+	bind:this={header}
+	class="header fixed top-0 left-0 w-full bg-bg-300 backdrop-blur-xl z-[100]"
+>
 	<div class="max-width-container">
 		<div class="flex justify-between items-center py-4">
 			<Logo title="ZERO" subTitle="DESIGN STUDIO" on:click={navigateToHome} />
@@ -60,6 +64,7 @@
 		</div>
 	</div>
 </header>
+<MobileMenu {data} />
 
 <style>
 	.nav-container {

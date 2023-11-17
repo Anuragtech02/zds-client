@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { cursorStore } from '$lib/stores/cursor.store';
+	import { onDestroy, onMount } from 'svelte';
 
 	let container: HTMLDivElement;
 
@@ -17,6 +19,23 @@
 	let src = video.thumbnail;
 	export let fixedWidth = true;
 	export let absolute = true;
+	function showCursor() {
+		$cursorStore.type = 'link';
+		$cursorStore.showCursor = true;
+	}
+	function hideCursor() {
+		$cursorStore.type = 'default';
+		$cursorStore.showCursor = false;
+	}
+	onMount(() => {
+		container?.addEventListener('mouseenter', showCursor);
+		container?.addEventListener('mouseleave', hideCursor);
+	});
+	onDestroy(() => {
+		container?.removeEventListener('mouseenter', showCursor);
+		container?.removeEventListener('mouseleave', hideCursor);
+		$cursorStore.showCursor = false;
+	});
 </script>
 
 <div

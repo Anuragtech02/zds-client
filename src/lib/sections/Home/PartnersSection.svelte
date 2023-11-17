@@ -33,7 +33,7 @@
 						class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[320px] bg-transparent"
 					>
 						<img
-							class="h-full w-full object-contain bg-transparent"
+							class="h-full w-full max-w-[100px] max-h-[100px] object-contain bg-transparent"
 							src={brand.logo}
 							alt={brand.name}
 						/>
@@ -44,7 +44,7 @@
 						class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[320px] bg-transparent"
 					>
 						<img
-							class="h-full w-full object-contain bg-transparent"
+							class="h-full w-full max-w-[100px] max-h-[100px] object-contain bg-transparent"
 							src={brand.logo}
 							alt={brand.name}
 						/>

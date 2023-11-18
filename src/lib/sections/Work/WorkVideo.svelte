@@ -13,6 +13,7 @@
 		thumbnail: string;
 		Video: string;
 	};
+	export let className: string = '';
 	// console.log(video);
 	let heading = video.title;
 	let category = video.category;
@@ -41,7 +42,7 @@
 <div
 	class={`item ${fixedWidth ? 'w-[300px] m-6 responsive-item' : 'w-full'} ${
 		absolute ? 'absolute' : ''
-	}`}
+	} ${className}`}
 	bind:this={container}
 >
 	<div class="item-content">

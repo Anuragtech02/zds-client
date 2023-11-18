@@ -1,17 +1,18 @@
 <script lang="ts">
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
+	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import WorkVideo from '$lib/sections/Work/WorkVideo.svelte';
 	import { getImageUrl } from '$lib/utils/functions.js';
-	import Muuri from 'muuri';
+	// import Muuri from 'muuri';
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 
 	export let data;
 	console.log(data);
 	const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
 	let imgSrc = getImageUrl(bgImage);
-	var focus = (node: any) => {
-		var grid = new Muuri('.grid-muuri');
-	};
+	let muuriGrid = null;
 
 	let categories = [
 		'All Categories',
@@ -43,6 +44,10 @@
 		selectedCategory = category;
 	};
 
+	// onMount(() => {
+	// 	muuriGrid = new Muuri('.grid-muuri');
+	// });
+
 	$: filteredWorks = works.filter((work: any) => {
 		if (selectedCategory === 'All Categories') {
 			return true;
@@ -53,7 +58,7 @@
 </script>
 
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
-	<div class="min-h-screen flex flex-col justify-start items-start gap-12">
+	<SectionLayout>
 		<div
 			class="w-full flex justify-start xl:justify-start gap-10 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
 		>
@@ -68,18 +73,29 @@
 				</button>
 			{/each}
 		</div>
-		{#each description.split('\n') as d}
-			<div class="lg:w-[60%] text-lg text-[#FFFFFF] font-light">{d}</div>
-		{/each}
-
-		<div use:focus class="grid-muuri w-full h-full">
-			{#key filteredWorks}
-				{#each filteredWorks as video (video.id)}
-					<WorkVideo fixedWidth={true} absolute={true} {video} />
-				{/each}
-			{/key}
+		<!-- {#each description.split('\n') as d} -->
+		<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
+			{description}
 		</div>
-	</div>
+		<!-- {/each} -->
+
+		<div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+			<!-- {#key filteredWorks} -->
+			{#each filteredWorks as video, i}
+				<!-- <div class="item"> -->
+				<div
+					in:fly={{
+						y: 100,
+						delay: i * 100
+					}}
+				>
+					<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
+				</div>
+				<!-- </div> -->
+			{/each}
+			<!-- {/key} -->
+		</div>
+	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>
 

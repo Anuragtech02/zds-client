@@ -48,7 +48,7 @@
 	}
 </script>
 
-<SectionLayout>
+<SectionLayout className="pt-0">
 	<h2 class="text-left">
 		<OutlinedText text={sectionTitle?.[0]} className="mt-4" />
 		{sectionTitle?.[1]}

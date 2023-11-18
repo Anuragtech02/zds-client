@@ -19,13 +19,14 @@
 	bind:this={container}
 	href={`/service/${service?.slug}`}
 	on:mouseenter={handleSoundPlay}
-	class="card-cont relative w-full flex flex-col md:flex-row justify-between items-start border border-[#3A3A3A] p-8 rounded-md my-2"
+	class="card-cont relative w-full flex flex-col justify-center md:justify-between md:flex-row items-start md:items-center border border-[#3A3A3A] p-8 rounded-md my-2"
 >
-	<p class="md:w-1/2 pl-2 xl:pl-8 text-left text-lg lg:text-2xl">
+	<img src={service?.Icon} class="block sm:hidden h-20 w-20 lg:h-28 lg:w-28" alt="" />
+	<p class="md:w-1/2 sm:ml-2 xl:pl-8 text-left text-lg lg:text-3xl">
 		{service?.Title}
 	</p>
-	<div class="md:w-1/2 flex flex-col items-start justify-center md:items-start">
-		<img src={service?.Icon} class="h-20 w-20 lg:h-28 lg:w-28" alt="" />
+	<div class="md:w-1/2 flex flex-col mt-2 sm:mt-0 items-start justify-center md:items-start">
+		<img src={service?.Icon} class="h-20 w-20 hidden sm:block lg:h-28 lg:w-28" alt="" />
 		<ul class="flex flex-wrap gap-2 items-center">
 			{#each service?.ShortDescriptionPoints as s, i}
 				<li class="text-sm">
@@ -36,12 +37,6 @@
 			{/each}
 		</ul>
 	</div>
-	<!-- <svg class="circle-svg" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="0" />
-        </svg> -->
-	<p class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 pointer-events-none">
-		Open {service.title} &RightArrow;
-	</p>
 </a>
 
 <style>

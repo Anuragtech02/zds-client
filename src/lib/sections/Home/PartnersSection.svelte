@@ -20,7 +20,7 @@
 <div
 	class="relative flex flex-col justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
 >
-	<SectionLayout className="w-full m-0" type="wrapper">
+	<SectionLayout className="w-full m-0" padding="pt-[0]" type="wrapper">
 		<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
 		<h2 class="uppercase max-width-container text-left">
 			{initialWords}

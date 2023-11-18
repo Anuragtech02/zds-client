@@ -22,7 +22,7 @@
 	}));
 </script>
 
-<SectionLayout padding="pb-[200px]">
+<SectionLayout padding="pb-[150px]">
 	<div class=" flex flex-col justify-center items-center">
 		<h2 class="self-start">
 			<OutlinedText text={initialWords} className="mt-4" />
@@ -40,4 +40,4 @@
 		>
 	</div>
 </SectionLayout>
-<DecorationLeft bottom={'90%'} />
+<DecorationLeft bottom={'40px'} />

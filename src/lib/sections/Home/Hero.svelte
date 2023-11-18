@@ -74,54 +74,31 @@
 
 		// let previousActiveWordIdx = -1;
 	});
-	// GSAP animation functions
-	// function animateIn(textElement: string) {
-	// 	gsap.to(textElement, {
-	// 		opacity: 1,
-	// 		x: 0,
-	// 		ease: 'power4.out',
-	// 		duration: 1.8
-	// 	});
-	// }
-
-	// function animateOut(textElement: string) {
-	// 	gsap.to(textElement, {
-	// 		opacity: 0,
-	// 		x: -100,
-	// 		ease: 'power4.in',
-	// 		duration: 1.8
-	// 	});
-	// }
-	// $: if (activeWordIdx !== undefined) {
-	// 	if (previousActiveWordIdx !== -1) {
-	// 		// Animate out the previous text element
-	// 		if (previousActiveWordIdx === 0) animateOut('.left-reveal-1');
-	// 		else if (previousActiveWordIdx === 1) animateOut('left-reveal-2');
-	// 		else if (previousActiveWordIdx === 2) animateOut('left-reveal-3');
-	// 	}
-
-	// 	// Animate in the new text element
-	// 	if (activeWordIdx === 0) animateIn('.left-reveal-1');
-	// 	else if (activeWordIdx === 1) animateIn('left-reveal-2');
-	// 	else if (activeWordIdx === 2) animateIn('left-reveal-3');
-
-	// 	previousActiveWordIdx = activeWordIdx;
-	// }
 </script>
 
 <SectionLayout type="wrapper" padding="pt-[50px]" className="py-0">
 	<img
 		src="/images/hero-gradient.png"
 		alt="hero-gradient"
-		class="absolute top-0 -left-[150px] pointer-events-none z-[0]"
+		class="absolute top-0 -left-[150px] pointer-events-none z-[1]"
 	/>
-	<video src={Background_Video} autoplay loop muted class="bg-video" />
-	<div class="max-width-container relative z-[1] flex justify-between items-center h-screen">
+	<div class="w-full h-full absolute top-0 left-0 bg-video-container pointer-events-none">
+		<video
+			src={Background_Video}
+			autoplay
+			playsinline
+			controls={false}
+			loop
+			muted
+			class="w-full h-full object-cover"
+		/>
+	</div>
+	<div class="max-width-container relative z-[2] flex justify-between items-center h-screen">
 		<div class="flex flex-col justify-between items-start w-full">
 			<div class="flex justify-start items-stretch flex-col sm:flex-row w-full">
 				<div class="w-full uppercase flex flex-col justify-center items-start">
 					<div class="relative h-[70px] md:h-[80px] lg:h-[100px] w-full overflow-hidden">
-						<h1 class="text-reveal text-left absolute">
+						<h1 class="text-reveal text-left absolute z-[2]">
 							<OutlinedText
 								text={heading[0]}
 								className="text-reveal"
@@ -199,13 +176,14 @@
 </SectionLayout>
 
 <style>
-	.bg-video {
+	.bg-video-container::after {
+		content: '';
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		z-index: -1;
+		background: linear-gradient(107deg, #000 0%, #000 53.83%, rgba(0, 0, 0, 0) 100.42%);
+		z-index: 0;
 	}
 </style>

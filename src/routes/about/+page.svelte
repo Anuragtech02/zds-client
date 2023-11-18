@@ -21,30 +21,30 @@
 
 	export let enableOurTeamCTA: boolean = true;
 	const p1 = description;
-	onMount(() => {
-		const chars = document.querySelectorAll('.char');
-		const portion = 100 / chars.length;
+	// onMount(() => {
+	// 	const chars = document.querySelectorAll('.char');
+	// 	const portion = 100 / chars.length;
 
-		chars.forEach((char, i) => {
-			gsap.to(char, {
-				color: 'white',
-				scrollTrigger: {
-					scrub: true,
-					start: `${portion * i}% top`,
-					end: `${portion * (i + 1)}% top`
-				}
-			});
-		});
+	// 	chars.forEach((char, i) => {
+	// 		gsap.to(char, {
+	// 			color: 'white',
+	// 			scrollTrigger: {
+	// 				scrub: true,
+	// 				start: `${portion * i}% top`,
+	// 				end: `${portion * (i + 1)}% top`
+	// 			}
+	// 		});
+	// 	});
 
-		// img float animation
-		gsap.to('.img-float-anim', {
-			y: 20,
-			duration: 2,
-			repeat: -1,
-			yoyo: true,
-			ease: 'power1.inOut'
-		});
-	});
+	// 	// img float animation
+	// 	gsap.to('.img-float-anim', {
+	// 		y: 20,
+	// 		duration: 2,
+	// 		repeat: -1,
+	// 		yoyo: true,
+	// 		ease: 'power1.inOut'
+	// 	});
+	// });
 	let members = data.Team_Members.data.map((member: any) => ({
 		title: member.attributes.Good_At,
 		name: member.attributes.Name,
@@ -61,7 +61,8 @@
 			<div>
 				<div class="flex justify-start items-center gap-2 md:gap-8 [&>h3]:text-left flex-wrap">
 					<h3 class="w-full sm:w-auto">
-						<OutlinedText text="ZERO DESIGN STUDIO IS A" />
+						<OutlinedText text="ZERO DESIGN" />
+						<OutlinedText text="STUDIO IS A" />
 						<TextWithBg>MULTIDISCIPLINARY</TextWithBg>
 						<OutlinedText strokeWidth="w-stroke-1" text="EXPERIENCE" />
 						<TextWithBg>DESIGN</TextWithBg>
@@ -73,7 +74,7 @@
 				<img src={image} alt="about" />
 			</div>
 		</div>
-		<div class="mt-12 [&>p]:text-justify">
+		<div class="mt-12 [&>p]:text-left">
 			<p class="text-left capitalize">
 				<!-- {#each p1.split('') as char, index}
 					<span class="char" style="transition-delay: {index * 0.05}s"
@@ -89,7 +90,7 @@
 	</div>
 </div>
 
-<div class="relative overflow-hidden py-8">
+<div class="relative overflow-hidden py-8 pt-0">
 	<h3 class="text-left">
 		<OutlinedText text="OUR" />
 		TEAM

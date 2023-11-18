@@ -18,9 +18,10 @@
 	export let bgColor = '';
 	export let tagText = '';
 	export let rightComp = false;
+	export let className: string = '';
 </script>
 
-<SectionLayout className={`bg-[${bgColor}]`}>
+<SectionLayout className={`bg-[${bgColor}] ${className}`}>
 	<div class="flex flex-wrap md:flex-nowrap justify-start items-center mt-[50px]">
 		<div class="flex flex-col w-full justify-end items-start z-[1]">
 			{#if description != ''}

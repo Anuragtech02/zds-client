@@ -3,6 +3,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
+	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import { getImageUrl } from '$lib/utils/functions';
 
 	export let data;
@@ -30,16 +31,22 @@
 	console.log(service);
 </script>
 
-<PageLayout title={service.title} icon={service.icon} description={''} bgImage="">
+<PageLayout
+	title={service.title}
+	icon={service.icon}
+	description={''}
+	bgImage=""
+	className="pb-[50px]"
+>
 	<img
 		src="/images/hero-gradient.png"
 		alt="hero-gradient"
 		class="absolute top-0 -left-[150px] pointer-events-none z-[0]"
 	/>
-	<div class="mt-[-8rem]">
+	<SectionLayout className="pt-0">
 		<div
 			style="background-image: url({service.image});"
-			class="h-[300px] lg:h-[500px] bg-no-repeat bg-center rounded-md relative"
+			class="h-[300px] w-full bg-cover lg:h-[500px] bg-no-repeat bg-center rounded-xl relative"
 		>
 			<button>
 				<img
@@ -53,30 +60,30 @@
 			<h4 class="!text-left leading-10 tracking-wide">
 				{service.ShortDescription}
 			</h4>
-			<span class="long-desc">
+			<div class="long-desc [&>*]:text-left my-10">
 				{@html service.LongDescription}
-			</span>
+			</div>
 		</div>
 
 		<div>
-			<h5 class="text-left">OTHER SERVICES</h5>
+			<h5 class="text-left">Other Services</h5>
 			<div class="w-full flex py-8 gap-4 overflow-x-auto">
 				{#each services as ser}
-					<a
-						target="_self"
-						href="/service/{ser.slug}"
-						class={`p-2 bg-[#FFFFFF1A]  cursor-pointer gap-2 flex flex-col justify-start items-start min-h-[6rem] min-w-[14rem]  rounded-md ${
-							ser.slug == service.slug ? 'border-2' : ''
-						}`}
-					>
-						<img src={ser.icon} class="h-12 w-12" alt="" />
-						<p class="text-sm">{ser.title}</p>
-					</a>
+					<div class="{ser.slug == service.slug ? 'selected-service' : ''} rounded-md p-[2px]">
+						<a
+							target="_self"
+							href="/service/{ser.slug}"
+							class={`p-2 bg-[#272727]  cursor-pointer flex flex-col justify-start items-start min-h-[6rem] min-w-[14rem]  rounded-md`}
+						>
+							<img src={ser.icon} class="h-12 w-12" alt="" />
+							<p class="text-sm mt-2">{ser.title}</p>
+						</a>
+					</div>
 				{/each}
 			</div>
 			<div />
 		</div>
-	</div>
+	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>
 
@@ -87,5 +94,10 @@
 
 	.long-desc p {
 		text-align: left !important;
+	}
+
+	.selected-service {
+		background: linear-gradient(to right, #ff439d, #2518d1 80%);
+		/* border: 2px solid #fff; */
 	}
 </style>

@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { cursorStore } from '$lib/stores/cursor.store';
 	import { gsap } from 'gsap';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let service: any;
 	let container: HTMLAnchorElement;
@@ -13,13 +14,37 @@
 	const handleSoundPlay = () => {
 		tickAudio.play();
 	};
+
+	function showCursor() {
+		$cursorStore.type = 'card';
+		$cursorStore.z = -1;
+		$cursorStore.showCursor = true;
+	}
+	function hideCursor() {
+		$cursorStore.type = 'default';
+		$cursorStore.z = 50;
+		$cursorStore.showCursor = false;
+	}
+	onMount(() => {
+		container?.addEventListener('mouseenter', showCursor);
+		container?.addEventListener('mouseleave', hideCursor);
+	});
+	onDestroy(() => {
+		container?.removeEventListener('mouseenter', showCursor);
+		container?.removeEventListener('mouseleave', hideCursor);
+		$cursorStore.showCursor = false;
+	});
+
+	function handleHover() {
+		// handleSoundPlay();
+	}
 </script>
 
 <a
 	bind:this={container}
 	href={`/service/${service?.slug}`}
-	on:mouseenter={handleSoundPlay}
-	class="card-cont relative w-full flex flex-col justify-center md:justify-between md:flex-row items-start md:items-center border border-[#3A3A3A] p-8 rounded-md my-2"
+	class="card-cont relative w-full flex flex-col justify-center md:justify-between md:flex-row items-start md:items-center border border-[#3A3A3A] p-8 py-16 rounded-md my-2
+	bg-bg-800"
 >
 	<img src={service?.Icon} class="block sm:hidden h-20 w-20 lg:h-28 lg:w-28" alt="" />
 	<p class="md:w-1/2 sm:ml-2 xl:pl-8 text-left text-lg lg:text-3xl">
@@ -65,6 +90,7 @@
 		border-radius: 0.25rem;
 		@apply bg-bg-800;
 	}
+
 	.card-cont::before {
 		content: '';
 		position: absolute;
@@ -78,10 +104,15 @@
 		opacity: 0;
 		@apply gradient-1;
 	}
+
 	.card-cont:hover {
-		margin-left: -10px;
-		margin-top: 10px;
+		scale: 0.99;
 	}
+	.card-cont:hover::before {
+		opacity: 1;
+		scale: 1.002 1.01;
+	}
+	/*
 	.card-cont:hover::after {
 		@apply bg-bg-800/20;
 		backdrop-filter: blur(10px);
@@ -90,5 +121,23 @@
 		left: 10px;
 		opacity: 1;
 		top: -10px;
+	} */
+	/* .card-cont::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background: white;
+		opacity: 0;
+		filter: blur(50px);
+		z-index: 0;
+		transition: all 0.2s ease-in-out;
 	}
+	.card-cont:hover::before {
+		opacity: 0.4;
+	} */
 </style>

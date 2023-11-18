@@ -7,7 +7,8 @@ const seed: ICursorStore = {
 		y: 0
 	},
 	type: 'default',
-	showCursor: false
+	showCursor: false,
+	z: 50
 };
 
 function initCursorStore() {

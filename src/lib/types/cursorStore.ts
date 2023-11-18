@@ -3,6 +3,7 @@ export interface ICursorStore {
 		x: number;
 		y: number;
 	};
-	type: 'default' | 'image' | 'video' | 'link' | 'submit';
+	type: 'default' | 'image' | 'video' | 'link' | 'submit' | 'card';
 	showCursor: boolean;
+	z: number;
 }

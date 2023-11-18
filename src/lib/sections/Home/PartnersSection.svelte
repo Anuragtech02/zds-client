@@ -20,7 +20,7 @@
 <div
 	class="relative flex flex-col justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
 >
-	<SectionLayout className="w-full m-0" padding="pt-[0]" type="wrapper">
+	<SectionLayout className="w-full m-0" type="wrapper">
 		<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
 		<h2 class="uppercase max-width-container text-left">
 			{initialWords}
@@ -28,76 +28,36 @@
 		</h2>
 		<div class="overflow-hidden brands-container py-16 relative">
 			<div class="flex slider-track shrink-0 relative justify-between items-center gap-4 w-full">
-				{#each brands as brand}
-					<div
-						class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[320px] bg-transparent"
-					>
-						<img
-							class="h-full w-full max-w-[100px] max-h-[100px] object-contain bg-transparent"
-							src={brand.logo}
-							alt={brand.name}
-						/>
-					</div>
-				{/each}
-				{#each brands as brand}
-					<div
-						class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[320px] bg-transparent"
-					>
-						<img
-							class="h-full w-full max-w-[100px] max-h-[100px] object-contain bg-transparent"
-							src={brand.logo}
-							alt={brand.name}
-						/>
-					</div>
-				{/each}
+				<div class="flex items-center">
+					{#each brands as brand}
+						<div
+							class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[200px] md:min-w-[280px] bg-transparent"
+						>
+							<img
+								class="h-full w-full max-w-[100px] max-h-[100px] object-contain bg-transparent"
+								src={brand.logo}
+								alt={brand.name}
+							/>
+						</div>
+					{/each}
+				</div>
+				<div class="flex items-center">
+					{#each brands as brand}
+						<div
+							class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[200px] md:min-w-[280px] bg-transparent"
+						>
+							<img
+								class="h-full w-full max-w-[100px] max-h-[100px] object-contain bg-transparent"
+								src={brand.logo}
+								alt={brand.name}
+							/>
+						</div>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</SectionLayout>
 </div>
-
-<!-- <div
-	class="relative h-screen flex justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
->
-	<PartnersCircleGlow className="absolute -top-4 -left-4" />
-	<SectionLayout className="w-full">
-		<h2 class="uppercase">
-			BRANDS
-			<OutlinedText text="we&apos;ve worked with" />
-		</h2>
-		<div
-			class="flex relative justify-between items-center gap-4 py-16 w-full brands-container overflow-hidden"
-		>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">1</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">2</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">3</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">4</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">5</div>
-			<div class=" bg-gray-200 p-4 border h-[100px] w-[280px]">6</div>
-		</div>
-	</SectionLayout>
-</div>
-
-<!-- <div
-	class="relative h-screen flex justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
->
-	<PartnersCircleGlow className="absolute -top-4 -left-4" />
-	<SectionLayout className="w-full">
-		<h2 class="uppercase">
-			Partners
-			<OutlinedText text="we&apos;ve worked with" />
-		</h2>
-		<div class="w-full rounded-xl border-2 border-borders-500 p-10 mt-10 bg-bg-300">
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-				<div class="col-span-1 bg-gray-200 p-4 border h-[150px]">1</div>
-				<div class="col-span-1 bg-gray-200 p-4 border h-[150px]">2</div>
-				<div class="col-span-1 bg-gray-200 p-4 border h-[150px]">3</div>
-				<div class="col-span-1 bg-gray-200 p-4 border h-[150px]">4</div>
-				<div class="col-span-1 bg-gray-200 p-4 border h-[150px]">5</div>
-				<div class="col-span-1 bg-gray-200 p-4 border h-[150px]">6</div>
-			</div>
-		</div>
-	</SectionLayout>
-</div> -->
 
 <style>
 	.brands-container::after {
@@ -126,7 +86,7 @@
 			transform: translateX(0);
 		}
 		100% {
-			transform: translateX(-1400px);
+			transform: translateX(-101%);
 		}
 	}
 	@media (max-width: 768px) {
@@ -137,7 +97,7 @@
 			width: 10rem;
 		}
 	}
-	.slider-track {
-		animation: scroll 15s linear infinite forwards;
+	.slider-track > div {
+		animation: scroll 10s linear infinite forwards;
 	}
 </style>

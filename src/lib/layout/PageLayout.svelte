@@ -5,6 +5,8 @@
 	import YoutubeIcon from '$lib/icons/YoutubeIcon.svelte';
 	import { onMount } from 'svelte';
 	import '../../app.css';
+	import SectionLayout from './SectionLayout.svelte';
+	import Tag from '$lib/components/Tag.svelte';
 
 	onMount(() => {
 		console.log('Page Layout mounted');
@@ -18,12 +20,9 @@
 	export let rightComp = false;
 </script>
 
-<section
-	style={`background-color: ${bgColor}`}
-	class={`bg-[${bgColor}] min-h-screen relative p-[2rem] sm:p-[4rem] md:p-[6rem] lg:py-[8rem] lg:px-[8rem]`}
->
-	<div class="flex flex-wrap md:flex-nowrap justify-between items-center">
-		<div class="flex flex-col w-full justify-end items-start pt-[5rem] mb-[12rem] lg:mb-[14rem]">
+<SectionLayout className={`bg-[${bgColor}]`}>
+	<div class="flex flex-wrap md:flex-nowrap justify-start items-center mt-[50px]">
+		<div class="flex flex-col w-full justify-end items-start z-[1]">
 			{#if description != ''}
 				<p>{description}</p>
 			{/if}
@@ -31,31 +30,27 @@
 				<img src={icon} alt="icon" class="w-20 h-20 mt-4" />
 			{/if}
 
-			<h2>{title}</h2>
+			<h2 class="text-left">{title}</h2>
 			{#if tagText != ''}
-				<p class="backdrop-blur-sm rounded-3xl px-4 py-2 mt-4 bg-[#FFFFFF1A]">
-					{tagText}
-				</p>
+				<Tag text={tagText} />
 			{/if}
 		</div>
 		{#if rightComp}
-			<div class="mt-[-10rem] lg:mt-0 flex justify-end items-end w-full">
-				<div class="w-full mb-[9rem] lg:mb-[11rem]">
-					<img
-						src="/images/hero-gradient.png"
-						alt="hero-gradient"
-						class="absolute top-0 -left-[150px] pointer-events-none z-[0]"
-					/>
-					<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
-						<p>2023-ZERO DESIGN STUDIO</p>
-						<span class="flex justify-start items-center gap-4">
-							<button>SHARE</button>
-							<FacebookIcon />
-							<InstagramIcon />
-							<VimeoIcon />
-							<YoutubeIcon />
-						</span>
-					</div>
+			<div class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left">
+				<img
+					src="/images/hero-gradient.png"
+					alt="hero-gradient"
+					class="absolute top-0 md:-left-[150px] left-0 w-[200px] opacity-60 md:opacity-100 md:w-auto pointer-events-none z-[0]"
+				/>
+				<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
+					<p class="text-left">2023-ZERO DESIGN STUDIO</p>
+					<span class="flex justify-start items-center gap-4">
+						<button>SHARE</button>
+						<FacebookIcon />
+						<InstagramIcon />
+						<VimeoIcon />
+						<YoutubeIcon />
+					</span>
 				</div>
 			</div>
 		{/if}
@@ -65,5 +60,5 @@
 		class="absolute z-[-1] w-full bg-cover bg-right h-[300px] md:h-[420px] top-0 left-0"
 		style={`background:url(${bgImage}) right;`}
 	/>
-	<slot />
-</section>
+</SectionLayout>
+<slot />

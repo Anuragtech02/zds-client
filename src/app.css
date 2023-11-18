@@ -25,6 +25,7 @@ html {
 	h5,
 	h6 {
 		font-family: 'Arimo', cursive;
+		text-align: left;
 	}
 	h1 {
 		@apply text-[2.5rem] font-black text-center;

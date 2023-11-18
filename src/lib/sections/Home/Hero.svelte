@@ -82,7 +82,7 @@
 		alt="hero-gradient"
 		class="absolute top-0 -left-[150px] pointer-events-none z-[1]"
 	/>
-	<div class="w-full h-full absolute top-0 left-0 bg-video-container pointer-events-none">
+	<div class="w-full h-full absolute sm:top-0 sm:left-0 bg-video-container pointer-events-none">
 		<video
 			src={Background_Video}
 			autoplay
@@ -126,7 +126,14 @@
 					</div>
 				</div>
 				<div class="flex flex-col justify-between w-full">
-					<div class="flex justify-start items-center h-full w-full">
+					<div class="justify-start items-center h-full w-full flex sm:hidden">
+						<div class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20">
+							<p class="left-reveal-1 px-4 text-left w-full min-w-[100%]">
+								{description[activeWordIdx]}
+							</p>
+						</div>
+					</div>
+					<div class="justify-start items-center h-full w-full hidden sm:flex">
 						<div
 							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
 							class:opacity-0={activeWordIdx !== 0}
@@ -137,7 +144,7 @@
 							</p>
 						</div>
 					</div>
-					<div class="flex justify-start items-center h-full w-full">
+					<div class="justify-start items-center h-full w-full hidden sm:flex">
 						<div
 							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
 							class:opacity-0={activeWordIdx !== 1}
@@ -148,7 +155,7 @@
 							</p>
 						</div>
 					</div>
-					<div class="flex justify-start items-center h-full w-full">
+					<div class="justify-start items-center h-full w-full hidden sm:flex">
 						<div
 							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
 							class:opacity-0={activeWordIdx !== 2}
@@ -162,7 +169,7 @@
 				</div>
 			</div>
 			<Button
-				className="mt-20 our-work-btn translate-y-[100px] opacity-0"
+				className="mt-16 sm:mt-20 our-work-btn translate-y-[100px] opacity-0"
 				onClick={() => {
 					$popupStore.isShowreelOpen = true;
 				}}>{CTAText}</Button

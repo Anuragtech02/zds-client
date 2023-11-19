@@ -40,4 +40,4 @@
 		>
 	</div>
 </SectionLayout>
-<DecorationLeft bottom={'40px'} />
+<DecorationLeft bottom={'-30px'} />

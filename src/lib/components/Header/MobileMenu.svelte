@@ -23,6 +23,7 @@
 	}
 
 	function handleUpdateMenu() {
+		console.log(open);
 		if (open) {
 			const screenWidth = window.innerWidth;
 			const screenHeight = window.innerHeight;
@@ -44,8 +45,7 @@
 			});
 		}
 	}
-
-	$: open && window && handleUpdateMenu();
+	$: handleUpdateMenu();
 	// });
 </script>
 

@@ -7,6 +7,8 @@
 	import ShowreelPopup from '$lib/components/ShowreelPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
 	import { getImageUrl } from '$lib/utils/functions';
+	import { fade, slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 
 	export let data: any;
 
@@ -126,9 +128,31 @@
 					</div>
 				</div>
 				<div class="flex flex-col justify-between w-full">
-					<div class="justify-start items-center h-full w-full flex sm:hidden">
-						<div class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20">
+					<div class="justify-start items-center relative !h-32 w-full flex sm:hidden">
+						<div
+							class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
+							class:opacity-0={activeWordIdx !== 0}
+							class:opacity-100={activeWordIdx === 0}
+						>
 							<p class="left-reveal-1 px-4 text-left w-full min-w-[100%]">
+								{description[activeWordIdx]}
+							</p>
+						</div>
+						<div
+							class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
+							class:opacity-0={activeWordIdx !== 1}
+							class:opacity-100={activeWordIdx === 1}
+						>
+							<p class="left-reveal-2 px-4 text-left w-full min-w-[100%]">
+								{description[activeWordIdx]}
+							</p>
+						</div>
+						<div
+							class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
+							class:opacity-0={activeWordIdx !== 2}
+							class:opacity-100={activeWordIdx === 2}
+						>
+							<p class="left-reveal-3 px-4 text-left w-full min-w-[100%]">
 								{description[activeWordIdx]}
 							</p>
 						</div>

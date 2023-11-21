@@ -10,9 +10,8 @@
 	import { homeSections } from '$lib/utils/contants';
 	import { homeStore } from '$lib/stores/hero.store';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
-	let data: any;
+
 	$: data = $homeStore;
-	$: console.log(data);
 </script>
 
 <Hero data={data[homeSections[0]]} />

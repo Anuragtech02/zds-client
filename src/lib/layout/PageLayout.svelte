@@ -56,10 +56,9 @@
 			</div>
 		{/if}
 	</div>
-
 	<div
-		class="absolute z-[-1] w-full bg-cover !bg-center xl:!bg-right h-[300px] md:h-[420px] top-0 left-0"
-		style={`background:url(${bgImage});`}
+		class="absolute z-[-1] w-full bg-cover !bg-center bg-no-repeat xl:!bg-right h-[300px] md:h-[420px] top-0 left-0"
+		style={`background-image:url(${bgImage});`}
 	/>
 </SectionLayout>
 <slot />

@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import '../../app.css';
 	export let data: any;
-	console.log({ data });
+
 	onMount(() => {
 		console.log('BaseLayer mounted');
 	});

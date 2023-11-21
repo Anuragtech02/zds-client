@@ -2,6 +2,8 @@
 	import BaseLayer from '$lib/layout/BaseLayer.svelte';
 	import Lenis from '@studio-freight/lenis';
 	import { onMount } from 'svelte';
+	import '../app.css';
+
 	onMount(() => {
 		const lenis = new Lenis();
 

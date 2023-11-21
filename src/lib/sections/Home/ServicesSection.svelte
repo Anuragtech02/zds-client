@@ -75,7 +75,7 @@
 	<!-- <Slider /> -->
 	<div class="card-stack w-full flex flex-col justify-between items-center gap-4 py-16 pb-8 mt-8">
 		{#each services as service}
-			<div class="w-full card">
+			<div class="w-full card gap-2">
 				<HomeServiceCard {service} />
 			</div>
 		{/each}
@@ -97,7 +97,7 @@
 	}
 	@media screen and (max-width: 768px) {
 		.card-stack {
-			min-height: 1400px;
+			min-height: 1300px;
 		}
 	}
 </style>

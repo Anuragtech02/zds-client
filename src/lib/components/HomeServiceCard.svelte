@@ -44,7 +44,7 @@
 	bind:this={container}
 	href={`/service/${service?.slug}`}
 	class="card-cont relative w-full flex flex-col justify-center md:justify-between md:flex-row items-start
-	md:items-center border border-[#3A3A3A] p-8 py-16 rounded-md my-2 bg-bg-800"
+	md:items-center border border-[#3A3A3A] p-8 py-16 rounded-md bg-bg-800"
 >
 	<img src={service?.Icon} class="block sm:hidden h-20 w-20 lg:h-28 lg:w-28" alt="" />
 	<p class="md:w-1/2 sm:ml-2 xl:pl-8 text-left text-lg lg:text-3xl">

@@ -4,7 +4,7 @@ import { fetchData } from '$lib/utils/functions.js';
 export const load: PageLoad = async ({ params, fetch }) => {
 	const { slug } = params;
 	const urlParams = new URLSearchParams();
-	let populate = ['Icon', 'Thumbnail'];
+	let populate = ['Icon', 'Thumbnail', 'MainVideo'];
 	urlParams.append(`slug`, slug);
 	populate.forEach((value, index) => {
 		urlParams.append(`populate[${index}]`, value);

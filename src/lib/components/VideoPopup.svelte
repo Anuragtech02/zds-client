@@ -1,7 +1,7 @@
 <script>
 	import { popupStore } from '$lib/stores/popup.store';
 
-	let videoUrl =
+	export let videoUrl =
 		'https://assets.adidas.land/alts/site/chapter-2/video/alts-by-adidas-chapter-2-d.mp4';
 
 	function handleClose() {

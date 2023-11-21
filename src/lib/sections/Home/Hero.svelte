@@ -4,7 +4,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
-	import ShowreelPopup from '$lib/components/ShowreelPopup.svelte';
+	import VideoPopup from '$lib/components/VideoPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
 	import { getImageUrl } from '$lib/utils/functions';
 	import { fade, slide } from 'svelte/transition';
@@ -202,7 +202,7 @@
 	</div>
 
 	{#if $popupStore.isShowreelOpen}
-		<ShowreelPopup />
+		<VideoPopup />
 	{/if}
 </SectionLayout>
 

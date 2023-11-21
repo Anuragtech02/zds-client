@@ -111,3 +111,14 @@ html {
 	/* background: linear-gradient(93.32deg, var(--color-accent1) 0%, var(--color-accent2) 118.85%); */
 	@apply bg-gradient-to-r from-accent-1 to-accent-2;
 }
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 4s;
+}
+@media (prefers-reduced-motion) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}

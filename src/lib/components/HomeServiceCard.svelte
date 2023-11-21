@@ -42,7 +42,7 @@
 
 <a
 	bind:this={container}
-	href={`/service/${service?.slug}`}
+	href={`/services/${service?.slug}`}
 	class="card-cont relative w-full flex flex-col justify-center md:justify-between md:flex-row items-start
 	md:items-center border border-[#3A3A3A] p-8 py-16 rounded-md bg-bg-800"
 >

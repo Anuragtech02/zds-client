@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
+	import { goto, onNavigate } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
@@ -7,6 +7,17 @@
 	import { getImageUrl } from '$lib/utils/functions';
 
 	export let data;
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	let services = data.services;
 	services = services.map((s: any) => {
@@ -72,7 +83,7 @@
 					<div class="{ser.slug == service.slug ? 'selected-service' : ''} rounded-md p-[2px]">
 						<a
 							target="_self"
-							href="/service/{ser.slug}"
+							href="/services/{ser.slug}"
 							class={`p-2 bg-[#272727]  cursor-pointer flex flex-col justify-start items-start min-h-[6rem] min-w-[14rem]  rounded-md`}
 						>
 							<img src={ser.icon} class="h-12 w-12" alt="" />

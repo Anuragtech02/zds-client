@@ -2,6 +2,7 @@
 	import { cursorStore } from '$lib/stores/cursor.store';
 	import { gsap } from 'gsap';
 	import { onDestroy, onMount } from 'svelte';
+	import '../../app.css';
 
 	export let service: any;
 	let container: HTMLAnchorElement;
@@ -102,7 +103,7 @@
 		border-radius: 0.25rem;
 		transition: all 0.2s ease-in-out;
 		opacity: 0;
-		@apply gradient-1;
+		@apply bg-gradient-to-r from-accent-1 to-accent-2;
 	}
 
 	.card-cont:hover {

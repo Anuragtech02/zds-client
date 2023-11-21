@@ -20,7 +20,8 @@
 		Description: string,
 		CTAText: string,
 		CTALink: string,
-		Background_Video: string;
+		Background_Video: string,
+		ShowReelVideo: string;
 	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
 	// console.log(data);
 	Title = data?.Title || '';
@@ -28,6 +29,7 @@
 	CTAText = data?.CTAText || '';
 	CTALink = data?.CTALink || '';
 	Background_Video = getImageUrl(data?.Background_Video) || '';
+	ShowReelVideo = data?.ShowReelVideo?.data?.attributes?.url || '';
 	console.log(Background_Video);
 	heading = Title.split(',');
 	description = Description.split(',');
@@ -202,7 +204,7 @@
 	</div>
 
 	{#if $popupStore.isShowreelOpen}
-		<VideoPopup />
+		<VideoPopup videoUrl={ShowReelVideo} />
 	{/if}
 </SectionLayout>
 

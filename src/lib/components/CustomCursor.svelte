@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { cursorStore } from '$lib/stores/cursor.store';
 	import { onMount } from 'svelte';
+	import '../../app.css';
 	let x: number = 0;
 	let y: number = 0;
 	let cursor: HTMLElement;

@@ -73,7 +73,7 @@
 		{sectionTitle?.[1]}
 	</h2>
 	<!-- <Slider /> -->
-	<div class="card-stack w-full flex flex-col justify-between items-center gap-4 py-16 pb-8 mt-8">
+	<div class="card-stack w-full flex flex-col justify-between items-center gap-4 py-16 pb-8">
 		{#each services as service}
 			<div class="w-full card">
 				<HomeServiceCard {service} />

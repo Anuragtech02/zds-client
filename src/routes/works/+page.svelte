@@ -20,7 +20,7 @@
 		});
 	});
 
-	export let data../work/$types.js;
+	export let data;
 	console.log(data);
 	const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
 	let imgSrc = getImageUrl(bgImage);

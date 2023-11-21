@@ -35,7 +35,7 @@
 				<WorkVideo fixedWidth={false} {video} absolute={false} />
 			{/each}
 		</div>
-		<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link="/work"
+		<Button className="mt-20 our-work-btn translate-y-[100px] opacity-0" link="/works"
 			>Explore More</Button
 		>
 	</div>

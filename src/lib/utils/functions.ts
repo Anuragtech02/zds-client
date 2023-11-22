@@ -58,3 +58,16 @@ export const fetchData = async (url: string, populate: string, fetch: any) => {
 		return null;
 	}
 };
+
+export const extractVideoID = (url: string) => {
+	// Regular expression to match various forms of YouTube URL
+	const regex = /(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+	const match = url.match(regex);
+
+	// If a match is found, the video ID is the second group in the match array
+	if (match && match[2].length == 11) {
+		return match[2];
+	} else {
+		return null; // Return null if no valid YouTube video ID could be extracted
+	}
+};

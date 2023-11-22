@@ -29,8 +29,8 @@
 	CTAText = data?.CTAText || '';
 	CTALink = data?.CTALink || '';
 	Background_Video = getImageUrl(data?.Background_Video) || '';
-	ShowReelVideo = data?.ShowReelVideo?.data?.attributes?.url || '';
-	console.log(Background_Video);
+	ShowReelVideo = data?.ShowReelVideoLink || '';
+	console.log({ data });
 	heading = Title.split(',');
 	description = Description.split(',');
 	let previousActiveWordIdx = -1;
@@ -204,7 +204,7 @@
 	</div>
 
 	{#if $popupStore.isShowreelOpen}
-		<VideoPopup videoUrl={ShowReelVideo} />
+		<VideoPopup title="showreel" videoUrl={ShowReelVideo} />
 	{/if}
 </SectionLayout>
 

@@ -45,7 +45,7 @@
 		LongDescription: service?.LongDescription,
 		icon: getImageUrl(service?.Icon),
 		slug: service?.slug,
-		MainVideo: service?.MainVideo?.data?.attributes?.url,
+		MainVideo: service?.mainVideoLink,
 		VideoPreviewUrl: service?.MainVideo?.data?.attributes?.previewUrl || ''
 	};
 </script>
@@ -64,14 +64,13 @@
 	/>
 	<SectionLayout className="pt-0">
 		<div
+			on:click={() => {
+				$popupStore.isShowreelOpen = true;
+			}}
 			style="background-image: url({service.VideoPreviewUrl || service.image});"
-			class="h-[300px] w-full bg-cover lg:h-[500px] bg-no-repeat bg-center rounded-xl relative"
+			class="h-[300px] cursor-pointer w-full bg-cover lg:h-[500px] bg-no-repeat bg-center rounded-xl relative"
 		>
-			<button
-				on:click={() => {
-					$popupStore.isShowreelOpen = true;
-				}}
-			>
+			<button>
 				<img
 					src="/images/Polygon14.png"
 					alt="play"

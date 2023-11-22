@@ -96,6 +96,24 @@
 				const data = await res.json();
 				console.log(data);
 				alert('Form submitted successfully');
+				contactForm = {
+					name: {
+						value: '',
+						error: ''
+					},
+					email: {
+						value: '',
+						error: ''
+					},
+					phone: {
+						value: '',
+						error: ''
+					},
+					message: {
+						value: '',
+						error: ''
+					}
+				};
 			} catch (error) {
 				console.log(error);
 				alert('Something went wrong');

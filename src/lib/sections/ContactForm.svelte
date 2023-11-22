@@ -72,18 +72,27 @@
 		contactForm.message.error = '';
 	}
 
-	function submitForm(e: Event) {
+	async function submitForm(e: Event) {
 		e.preventDefault();
 		resetFormErrors();
 		if (validateFields()) {
 			console.log('Form submitted');
 			try {
-				window.alert('Form submitted');
+				let res = await fetch('/contact/', {
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					method: 'POST',
+					body: JSON.stringify({
+						formData: contactForm
+					})
+				});
+				const data = await res.json();
+				console.log(data);
 			} catch (error) {
-				window.alert('ERROR');
+				console.log(error);
+				alert('Something went wrong');
 			}
-
-			// TODO: Send form data to server
 		}
 	}
 </script>

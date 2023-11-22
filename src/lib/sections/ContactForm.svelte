@@ -78,17 +78,24 @@
 		if (validateFields()) {
 			console.log('Form submitted');
 			try {
+				let formData = {
+					name: contactForm.name.value,
+					email: contactForm.email.value,
+					phone: contactForm.phone.value,
+					message: contactForm.message.value
+				};
 				let res = await fetch('/contact/', {
 					headers: {
 						'Content-Type': 'application/json'
 					},
 					method: 'POST',
 					body: JSON.stringify({
-						formData: contactForm
+						formData
 					})
 				});
 				const data = await res.json();
 				console.log(data);
+				alert('Form submitted successfully');
 			} catch (error) {
 				console.log(error);
 				alert('Something went wrong');

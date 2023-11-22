@@ -7,6 +7,8 @@
 	import type { ContactForm } from '$lib/types/components';
 	import { breakSentence, isValidEmail, isValidPhone } from '$lib/utils/functions';
 	export let data: any;
+	let showSuccess = false;
+	let loading = false;
 	// console.log(data);
 	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
@@ -84,6 +86,7 @@
 					phone: contactForm.phone.value,
 					message: contactForm.message.value
 				};
+				loading = true;
 				let res = await fetch('/contact/', {
 					headers: {
 						'Content-Type': 'application/json'
@@ -95,7 +98,11 @@
 				});
 				const data = await res.json();
 				console.log(data);
-				alert('Form submitted successfully');
+				// alert('Form submitted successfully');
+				showSuccess = true;
+				setTimeout(() => {
+					showSuccess = false;
+				}, 3000);
 				contactForm = {
 					name: {
 						value: '',
@@ -118,6 +125,7 @@
 				console.log(error);
 				alert('Something went wrong');
 			}
+			loading = false;
 		}
 	}
 </script>
@@ -172,6 +180,15 @@
 			error={contactForm.message.error}
 			bind:value={contactForm.message.value}
 		/>
+		<p
+			class="text-left pointer-events-none transition-all duration-300 ease-out"
+			class:opacity-0={!showSuccess && !loading}
+			class:opacity-1={showSuccess || loading}
+			class:text-yellow-500={loading}
+			class:text-green-500={showSuccess}
+		>
+			{loading ? 'Submiting...' : 'Form submitted successfully'}
+		</p>
 		<Button type="submit" link={CTALink} className="mt-2">{CTAText}</Button>
 	</form>
 </div>

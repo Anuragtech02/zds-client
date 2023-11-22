@@ -7,6 +7,8 @@
 	import type { ContactForm } from '$lib/types/components';
 	import { breakSentence, isValidEmail, isValidPhone } from '$lib/utils/functions';
 	export let data: any;
+	let showSuccess = false;
+	let loading = false;
 	// console.log(data);
 	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
@@ -72,18 +74,58 @@
 		contactForm.message.error = '';
 	}
 
-	function submitForm(e: Event) {
+	async function submitForm(e: Event) {
 		e.preventDefault();
 		resetFormErrors();
 		if (validateFields()) {
 			console.log('Form submitted');
 			try {
-				window.alert('Form submitted');
+				let formData = {
+					name: contactForm.name.value,
+					email: contactForm.email.value,
+					phone: contactForm.phone.value,
+					message: contactForm.message.value
+				};
+				loading = true;
+				let res = await fetch('/contact/', {
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					method: 'POST',
+					body: JSON.stringify({
+						formData
+					})
+				});
+				const data = await res.json();
+				console.log(data);
+				// alert('Form submitted successfully');
+				showSuccess = true;
+				setTimeout(() => {
+					showSuccess = false;
+				}, 3000);
+				contactForm = {
+					name: {
+						value: '',
+						error: ''
+					},
+					email: {
+						value: '',
+						error: ''
+					},
+					phone: {
+						value: '',
+						error: ''
+					},
+					message: {
+						value: '',
+						error: ''
+					}
+				};
 			} catch (error) {
-				window.alert('ERROR');
+				console.log(error);
+				alert('Something went wrong');
 			}
-
-			// TODO: Send form data to server
+			loading = false;
 		}
 	}
 </script>
@@ -138,6 +180,15 @@
 			error={contactForm.message.error}
 			bind:value={contactForm.message.value}
 		/>
+		<p
+			class="text-left pointer-events-none transition-all duration-300 ease-out"
+			class:opacity-0={!showSuccess && !loading}
+			class:opacity-1={showSuccess || loading}
+			class:text-yellow-500={loading}
+			class:text-green-500={showSuccess}
+		>
+			{loading ? 'Submiting...' : 'Form submitted successfully'}
+		</p>
 		<Button type="submit" link={CTALink} className="mt-2">{CTAText}</Button>
 	</form>
 </div>

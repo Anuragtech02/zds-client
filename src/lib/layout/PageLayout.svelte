@@ -7,6 +7,8 @@
 	import '../../app.css';
 	import SectionLayout from './SectionLayout.svelte';
 	import Tag from '$lib/components/Tag.svelte';
+	import FacebookShareButton from '$lib/components/FacebookShareButton.svelte';
+	import ShareButton from '$lib/components/ShareButton.svelte';
 
 	onMount(() => {
 		console.log('Page Layout mounted');
@@ -19,6 +21,10 @@
 	export let tagText = '';
 	export let rightComp = false;
 	export let className: string = '';
+	let url: string = '';
+	if (typeof window !== 'undefined') {
+		url = window.location.href;
+	}
 </script>
 
 <SectionLayout className={`bg-[${bgColor}] ${className}`}>
@@ -46,8 +52,8 @@
 				<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
 					<p class="text-left">2023-ZERO DESIGN STUDIO</p>
 					<span class="flex justify-start items-center gap-4">
-						<button>SHARE</button>
-						<FacebookIcon />
+						<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
+						<FacebookShareButton {url} />
 						<InstagramIcon />
 						<VimeoIcon />
 						<YoutubeIcon />

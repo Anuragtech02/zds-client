@@ -1,13 +1,15 @@
 <script>
 	import { onNavigate } from '$app/navigation';
+	import CustomHead from '$lib/components/CustomHead.svelte';
 	import DecorationLeft from '$lib/components/DecorationLeft.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
+	import AboutSection from '$lib/sections/AboutSection.svelte';
 	import { getImageUrl } from '$lib/utils/functions';
 
 	export let data;
 	console.log(data);
-	let { Page_Title, Page_Description, bgImage } = data;
+	let { Page_Title, Page_Description, bgImage, About_Description } = data;
 	let imgSrc = getImageUrl(bgImage);
 
 	onNavigate((navigation) => {
@@ -22,6 +24,7 @@
 	});
 </script>
 
+<CustomHead title={Page_Title} description={About_Description} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<SectionLayout>
 		<slot />

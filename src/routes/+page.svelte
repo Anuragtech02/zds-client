@@ -10,10 +10,12 @@
 	import { homeSections } from '$lib/utils/contants';
 	import { homeStore } from '$lib/stores/hero.store';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
+	import CustomHead from '$lib/components/CustomHead.svelte';
 
 	$: data = $homeStore;
 </script>
 
+<CustomHead />
 <Hero data={data[homeSections[0]]} />
 <!-- <HomeSecondSection /> -->
 <OurWork data={data[homeSections[1]]} />

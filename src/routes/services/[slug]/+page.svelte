@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto, onNavigate } from '$app/navigation';
 	import Button from '$lib/components/Button.svelte';
+	import CustomHead from '$lib/components/CustomHead.svelte';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import VideoPopup from '$lib/components/VideoPopup.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
@@ -49,6 +50,12 @@
 		VideoPreviewUrl: service?.MainVideo?.data?.attributes?.previewUrl || ''
 	};
 </script>
+
+<CustomHead
+	title={service.title}
+	description={service.ShortDescription}
+	image={service.VideoPreviewUrl || service.image}
+/>
 
 <PageLayout
 	title={service.title}

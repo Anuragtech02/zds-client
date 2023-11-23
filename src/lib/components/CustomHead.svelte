@@ -1,13 +1,17 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	export let title: string = 'Zero Design Studio';
 	export let url: string = '';
 	export let description: string =
 		'We are a creative studio based in New York City. We specialize in design, development, and strategy.';
 	export let image: string =
 		'https://www.zerodesignstudios.com/wp-content/uploads/2019/12/Zero-Studio-Logo-e1577710110570.png';
-	if (typeof window !== 'undefined') {
-		url = window.location.href;
-	}
+	onMount(() => {
+		if (typeof window !== 'undefined' && window) {
+			url = window.location.href;
+		}
+	});
 </script>
 
 <svelte:head>

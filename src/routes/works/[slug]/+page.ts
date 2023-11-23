@@ -6,7 +6,7 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	const urlParams = new URLSearchParams();
 	urlParams.append(`filters[slug][$eq]`, slug);
 	urlParams.append(`populate[0]`, 'category');
-	// urlParams.append(`populate[1]`, 'Video_Thumbnail');
+	urlParams.append(`populate[1]`, 'Video_Thumbnail');
 
 	// console.log('Search', urlParams.toString());
 	let data = await fetchData('works', urlParams.toString(), fetch);

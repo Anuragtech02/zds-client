@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
+	import CustomHead from '$lib/components/CustomHead.svelte';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import PageLayout from '$lib/layout/PageLayout.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
@@ -69,6 +70,7 @@
 	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
+<CustomHead title={Page_Title} description={Page_Description} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<SectionLayout>
 		<div

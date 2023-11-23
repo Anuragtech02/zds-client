@@ -1,5 +1,6 @@
 <script lang="ts">
 	import FacebookIcon from '$lib/icons/FacebookIcon.svelte';
+	import { onMount } from 'svelte';
 	export let hashtag = '';
 	export let quote = '';
 	export let url;
@@ -34,6 +35,7 @@
 			centerscreen: 'yes',
 			chrome: 'yes'
 		};
+		if (!window) return;
 		return window.open(
 			urlWithParameters,
 			'',

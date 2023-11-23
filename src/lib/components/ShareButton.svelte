@@ -2,8 +2,11 @@
 	export let title: string = '';
 	export let url = '';
 	export let siteTitle: string = '';
-
-	$: webShareAPISupported = window && typeof navigator.share !== 'undefined';
+	let webShareAPISupported = false;
+	$: {
+		if (typeof window !== 'undefined' && window)
+			webShareAPISupported = window && typeof navigator.share !== 'undefined';
+	}
 
 	$: handleWebShare;
 	const handleWebShare = async () => {

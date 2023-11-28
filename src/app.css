@@ -128,3 +128,15 @@ html {
 .custom-section > p:has(> img) > img {
 	@apply max-w-[100%] w-full;
 }
+
+.custom-section iframe {
+	@apply max-w-full w-full h-[600px] mx-auto rounded-lg;
+}
+.custom-section img {
+	@apply max-w-full w-full h-[600px] mx-auto rounded-lg;
+}
+@media screen and (max-width: 768px) {
+	.custom-section iframe {
+		@apply h-[300px];
+	}
+}

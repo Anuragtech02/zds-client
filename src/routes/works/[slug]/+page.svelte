@@ -9,7 +9,7 @@
 	export let data: PageData;
 	export let Title = '';
 	let category = data?.attributes?.category?.data?.attributes?.Name || '';
-	let image;
+	let image: string;
 	if (data) {
 		Title = data?.attributes?.Title;
 		image = getImageUrl(data?.attributes?.Video_Thumbnail);
@@ -36,7 +36,7 @@
 	bgColor="#0F0F0F"
 	tagText={category}
 >
-	<SectionLayout className="pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative" customSection>
+	<SectionLayout className="pt-0 [&>p]:text-left [&>p]:my-8 z-[1] relative" customSection>
 		{@html data.attributes.Description}
 	</SectionLayout>
 	<FloatingActionButton />

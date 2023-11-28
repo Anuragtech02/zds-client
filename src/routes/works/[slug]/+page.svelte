@@ -36,7 +36,7 @@
 	bgColor="#0F0F0F"
 	tagText={category}
 >
-	<SectionLayout className="pt-0 [&>p]:text-left z-[1] relative">
+	<SectionLayout className="pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative" customSection>
 		{@html data.attributes.Description}
 	</SectionLayout>
 	<FloatingActionButton />

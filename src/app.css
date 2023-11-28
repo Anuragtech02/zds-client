@@ -122,3 +122,9 @@ html {
 		animation: none !important;
 	}
 }
+.custom-section > p:has(> img) {
+	@apply flex justify-start items-start gap-4;
+}
+.custom-section > p:has(> img) > img {
+	@apply max-w-[100%] w-full;
+}

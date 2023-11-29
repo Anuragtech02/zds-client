@@ -31,7 +31,7 @@
 				{member.role}
 			</p>
 		</div>
-		<a href={member.linkedIn}>
+		<a href={member.linkedIn} target="_blank">
 			<LinkedinIcon height={24} width={24} className="cursor-pointer" />
 		</a>
 	</div>

@@ -140,6 +140,6 @@ html {
 		@apply h-[300px];
 	}
 	.custom-section img {
-		@apply w-full object-contain aspect-auto;
+		@apply h-auto w-full object-contain aspect-auto;
 	}
 }

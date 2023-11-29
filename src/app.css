@@ -122,24 +122,49 @@ html {
 		animation: none !important;
 	}
 }
-.custom-section > p:has(> img) {
+/* .custom-section > p:has(> img) {
 	@apply flex justify-start items-start gap-4 flex-wrap;
 }
 .custom-section > p:has(> img) > img {
-	@apply max-w-[100%] w-full;
+	@apply max-w-[100%] w-full h-auto aspect-auto;
+    display: block;
+} */
+
+/* Target only paragraphs with images */
+.custom-section > .cms-image-container {
+	margin: 2rem 0;
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+}
+
+.custom-section > .cms-image-container > img {
+	width: 100% !important;
+	height: auto;
+	@apply !aspect-auto;
 }
 
 .custom-section iframe {
 	@apply max-w-full w-full h-[600px] mx-auto rounded-lg;
 }
-.custom-section img {
-	@apply max-w-full w-full h-[600px] mx-auto rounded-lg;
-}
+
 @media screen and (max-width: 768px) {
 	.custom-section iframe {
 		@apply h-[300px];
 	}
-	.custom-section img {
+	.custom-section {
+		width: 100%;
+	}
+	/* .custom-section img {
 		@apply h-auto w-full object-contain aspect-auto;
+	} */
+	.custom-section .cms-image-container {
+		width: 100%;
+		grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+	}
+	.custom-section .cms-image-container > img {
+		max-width: 100vw !important;
+		height: auto;
+		@apply !aspect-auto;
 	}
 }

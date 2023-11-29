@@ -54,9 +54,9 @@
 					<span class="flex justify-start items-center gap-4">
 						<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
 						<FacebookShareButton {url} />
-						<InstagramIcon />
+						<!-- <InstagramIcon />
 						<VimeoIcon />
-						<YoutubeIcon />
+						<YoutubeIcon /> -->
 					</span>
 				</div>
 			</div>

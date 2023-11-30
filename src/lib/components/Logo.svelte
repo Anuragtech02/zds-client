@@ -1,16 +1,23 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { commonStore } from '$lib/stores/commons.store';
+	import { homeStore } from '$lib/stores/hero.store';
+	import { getImageUrl } from '$lib/utils/functions';
+	import { createEventDispatcher, onMount } from 'svelte';
 
-	export let url: string =
-		'https://www.zerodesignstudios.com/wp-content/uploads/2019/12/Zero-Studio-Logo-e1577710110570.png';
+	export let url: string = '/logo.png';
 	export let title: string = '';
 	export let subTitle: string = '';
+	console.log({ url });
 
 	const dispatch = createEventDispatcher();
 
 	function onClick() {
 		dispatch('click');
 	}
+
+	onMount(() => {
+		url = getImageUrl($commonStore.header.Logo);
+	});
 </script>
 
 <div

@@ -148,6 +148,13 @@ html {
 	@apply max-w-full w-full h-[600px] mx-auto rounded-lg;
 }
 
+@media screen and (max-width: 1200px) {
+	.custom-section .cms-image-container {
+		width: 100%;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)) !important;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.custom-section iframe {
 		@apply h-[300px];

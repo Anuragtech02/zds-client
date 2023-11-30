@@ -1,3 +1,4 @@
+import { commonStore } from '$lib/stores/commons.store';
 import { homeStore } from '$lib/stores/hero.store';
 import { fetchData } from '$lib/utils/functions';
 
@@ -28,6 +29,10 @@ export async function load({ params, fetch }: any) {
 	const dataFooter = await fetchData('footer', populateCommon, fetch);
 	const dataHeader = await fetchData('header', populateCommon, fetch);
 	homeStore.set(data);
+	commonStore.set({
+		header: dataHeader,
+		footer: dataFooter
+	});
 	return {
 		data,
 		footer: dataFooter,

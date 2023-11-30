@@ -3,9 +3,13 @@
 	import InstagramIcon from '$lib/icons/InstagramIcon.svelte';
 	import VimeoIcon from '$lib/icons/VimeoIcon.svelte';
 	import YoutubeIcon from '$lib/icons/YoutubeIcon.svelte';
+	import { getImageUrl } from '$lib/utils/functions';
 	import { TimelineLite, gsap } from 'gsap';
+	import { commonStore } from '$lib/stores/commons.store';
 	import { onMount } from 'svelte';
+	import LinkedinIcon from '$lib/icons/LinkedinIcon.svelte';
 
+	export let logo: string = '/logo.png';
 	let showMenu = false;
 	let menu: HTMLDivElement;
 	let listItems: {
@@ -14,6 +18,7 @@
 
 	onMount(() => {
 		gsap.set(menu, { autoAlpha: 0, y: 20 });
+		logo = getImageUrl($commonStore.header.Logo);
 	});
 
 	const show = () => {
@@ -43,7 +48,7 @@
 		class="floating-icon rounded-full bg-white bg-opacity-10 border border-neutral-500 h-16 w-16 hover:h-20 hover:w-20 flex justify-center items-center p-3 cursor-pointer transition-all duration-200 ease-out"
 	>
 		<img
-			src="https://www.zerodesignstudios.com/wp-content/uploads/2019/12/Zero-Studio-Logo-e1577710110570.png"
+			src={logo}
 			alt=""
 			class="h-full w-full object-contain"
 			class:circle-active={showMenu === true}
@@ -55,23 +60,51 @@
 		class:hidden={showMenu === false}
 		bind:this={menu}
 	>
-		<p class="pb-4 font-bold text-left">Lorem, ipsum.</p>
+		<p class="pb-4 font-bold text-left">Let's Connect</p>
 		<ul class="flex flex-col gap-6 items-start [&>li:hover]:text-accent-1">
 			<li bind:this={listItems['Facebook']} class="flex w-full items-center gap-2 cursor-pointer">
-				<FacebookIcon className="h-10 w-10" />
-				<p>Facebook</p>
+				<a
+					target="_blank"
+					rel="noreferrer"
+					href="https://www.facebook.com/zerodesignstudios?mibextid=ZbWKwL"
+					class="flex w-full items-center gap-2"
+				>
+					<FacebookIcon className="h-10 w-10" />
+					<p>Facebook</p>
+				</a>
 			</li>
 			<li bind:this={listItems['Instagram']} class="flex w-full items-center gap-2 cursor-pointer">
-				<InstagramIcon className="h-10 w-10" />
-				<p>Instagram</p>
+				<a
+					target="_blank"
+					rel="noreferrer"
+					href="https://instagram.com/zerodesignstudio?igshid=NzZlODBkYWE4Ng=="
+					class="flex w-full items-center gap-2"
+				>
+					<InstagramIcon className="h-10 w-10" />
+					<p>Instagram</p>
+				</a>
 			</li>
 			<li bind:this={listItems['Youtube']} class="flex w-full items-center gap-2 cursor-pointer">
-				<YoutubeIcon className="w-10 h-10" />
-				<p>Youtube</p>
+				<a
+					target="_blank"
+					rel="noreferrer"
+					href="https://youtube.com/@zerodesignstudio4231?si=hWojL8UxRSs61Xkl"
+					class="flex w-full items-center gap-2"
+				>
+					<YoutubeIcon className="w-10 h-10" />
+					<p>Youtube</p>
+				</a>
 			</li>
-			<li bind:this={listItems['Vimeo']} class="flex w-full items-center gap-2 cursor-pointer">
-				<VimeoIcon className="w-10 h-10" />
-				<p>Vimeo</p>
+			<li bind:this={listItems['Linkedin']} class="flex w-full items-center gap-2 cursor-pointer">
+				<a
+					target="_blank"
+					rel="noreferrer"
+					href="https://www.linkedin.com/company/zero-design-studio/"
+					class="flex w-full items-center gap-2"
+				>
+					<LinkedinIcon className="w-10 h-10" />
+					<p>Linkedin</p>
+				</a>
 			</li>
 		</ul>
 	</div>

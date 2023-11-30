@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { getImageUrl } from '$lib/utils/functions';
 	import Logo from '../Logo.svelte';
 	import MetaverseButton from '../MarketplaceButton.svelte';
 	import HamburgerMenu from './HamburgerMenu.svelte';
@@ -10,7 +11,9 @@
 
 	let header: HTMLElement;
 	export let data: any;
+
 	const { links, showMarketplaceButton, showSearchBar } = data;
+
 	// hide on scroll down
 	let lastScroll = 0;
 	const hideOnScroll = () => {

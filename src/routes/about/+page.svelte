@@ -70,7 +70,7 @@
 					</h3>
 				</div>
 			</div>
-			<div class="w-[25%] mr-0 hidden sm:block md:hidden flex justify-end">
+			<div class="w-[25%] mr-0 hidden sm:flex md:hidden justify-end">
 				<img src={image} alt="about" />
 			</div>
 		</div>

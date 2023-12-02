@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { menuStore } from '$lib/stores/menu.store';
+	import { browser } from '$app/environment';
 
 	let menu: SVGSVGElement;
 	let top: SVGPathElement;
@@ -77,19 +78,25 @@
 		};
 	}
 
-	function onClickHandler() {
-		if ($menuStore.isActive) {
-			TWEENS.top.reverse();
-			TWEENS.middle.reverse();
-			TWEENS.bottom.reverse();
-		} else {
-			TWEENS.top.play();
-			TWEENS.middle.play();
-			TWEENS.bottom.play();
+	function handleMenu() {
+		if (browser && TWEENS) {
+			if (!$menuStore.isActive) {
+				TWEENS.top.reverse();
+				TWEENS.middle.reverse();
+				TWEENS.bottom.reverse();
+			} else {
+				TWEENS.top.play();
+				TWEENS.middle.play();
+				TWEENS.bottom.play();
+			}
 		}
+	}
 
+	function onClickHandler() {
 		$menuStore.isActive = !$menuStore.isActive;
 	}
+
+	$: $menuStore.isActive, handleMenu();
 </script>
 
 <svg

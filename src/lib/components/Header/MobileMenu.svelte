@@ -4,6 +4,7 @@
 	import { gsap } from 'gsap';
 	import { menuStore } from '$lib/stores/menu.store';
 	import { fly } from 'svelte/transition';
+	import { browser } from '$app/environment';
 
 	export let data: any;
 	let open: boolean = true;
@@ -23,8 +24,8 @@
 	}
 
 	function handleUpdateMenu() {
-		console.log(open);
-		if (open) {
+		console.log({ open });
+		if (!open) {
 			const screenWidth = window.innerWidth;
 			const screenHeight = window.innerHeight;
 			const radius = Math.sqrt(Math.pow(screenWidth, 2) + Math.pow(screenHeight, 2));
@@ -45,7 +46,13 @@
 			});
 		}
 	}
-	$: handleUpdateMenu();
+
+	menuStore.subscribe((val) => {
+		if (browser) {
+			handleUpdateMenu();
+		}
+	});
+	// $: $menuStore.isActive, handleUpdateMenu();
 	// });
 </script>
 

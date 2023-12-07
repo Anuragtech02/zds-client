@@ -128,6 +128,7 @@
 			loading = false;
 		}
 	}
+	let numbers = PhoneNumber?.split(',')?.map((num: string) => num.trim()) || [];
 </script>
 
 <div class="relative w-full flex flex-col sm:flex-row">
@@ -141,11 +142,18 @@
 			<div class="mt-8">
 				<div class="flex justify-start items-center">
 					<MailIcon />
-					<p class="ml-4">{ContactEmail}</p>
+					<a href="mailto:{ContactEmail}" class="ml-4">{ContactEmail}</a>
 				</div>
 				<div class="flex justify-start items-center mt-4">
 					<CallIcon />
-					<p class="ml-4">{PhoneNumber}</p>
+					<!-- <p class="ml-4">{PhoneNumber}</p> -->
+					<div class="flex justify-start ml-4 gap-2">
+						{#each numbers as num}
+							<a href={`tel:+91${num}`}>
+								{num}
+							</a>
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>

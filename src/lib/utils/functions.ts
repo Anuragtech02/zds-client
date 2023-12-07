@@ -71,3 +71,21 @@ export const extractVideoID = (url: string) => {
 		return null; // Return null if no valid YouTube video ID could be extracted
 	}
 };
+
+export async function getAllWorks() {
+	const populate = 'populate=slug';
+	const data = await fetchData('works', populate, fetch);
+	return data;
+}
+
+export async function getAllBlogs() {
+	const populate = 'populate=slug';
+	const data = await fetchData('blogs', populate, fetch);
+	return data;
+}
+
+export async function getAllServices() {
+	const populate = 'populate=slug';
+	const data = await fetchData('services', populate, fetch);
+	return data;
+}

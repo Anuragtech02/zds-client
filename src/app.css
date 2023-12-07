@@ -104,7 +104,7 @@ html {
 	}
 
 	.max-width-container {
-		@apply max-w-[1440px] mx-auto px-4;
+		@apply max-w-[1440px] mx-auto px-6;
 	}
 }
 .gradient-1 {

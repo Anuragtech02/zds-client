@@ -10,6 +10,7 @@
 	export let data: PageData;
 	export let Title = '';
 	let category = data?.attributes?.category?.data?.attributes?.Name || '';
+	const slug = data?.attributes?.slug;
 	let image: string;
 	if (data) {
 		Title = data?.attributes?.Title;
@@ -67,7 +68,7 @@
 	});
 </script>
 
-<CustomHead title={Title} description={data.attributes.Description} {image} />
+<CustomHead title={Title} description="{Title}-{category}-ZDS" {image} url="blogs/{slug}" />
 <PageLayout
 	title={Title}
 	rightComp={true}

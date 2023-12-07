@@ -34,7 +34,7 @@
 				<p>{description}</p>
 			{/if}
 			{#if icon != ''}
-				<img src={icon} alt="icon" class="w-20 h-20 mt-4" />
+				<img src={icon} alt={title} class="w-20 h-20 mt-4" />
 			{/if}
 
 			<h2 class="text-left">{title}</h2>

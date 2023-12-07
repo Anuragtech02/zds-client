@@ -9,7 +9,7 @@
 	if (!Page_Description) Page_Description = '';
 </script>
 
-<CustomHead title={Page_Title} />
+<CustomHead title={Page_Title} url="contact" />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<slot {data} />
 </PageLayout>

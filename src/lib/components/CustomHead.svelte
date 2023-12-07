@@ -7,11 +7,11 @@
 		'We are a creative studio based in New York City. We specialize in design, development, and strategy.';
 	export let image: string =
 		'https://www.zerodesignstudios.com/wp-content/uploads/2019/12/Zero-Studio-Logo-e1577710110570.png';
-	onMount(() => {
-		if (typeof window !== 'undefined' && window) {
-			url = window.location.href;
-		}
-	});
+	// onMount(() => {
+	// 	if (typeof window !== 'undefined' && window) {
+	// 		url = window.location.href;
+	// 	}
+	// });
 </script>
 
 <svelte:head>
@@ -33,4 +33,6 @@
 	<meta property="twitter:title" content={title} />
 	<meta property="twitter:description" content={description} />
 	<meta property="twitter:image" content={image} />
+
+	<link rel="canonical" href="https://zerodesignstudios.com/{url}" />
 </svelte:head>

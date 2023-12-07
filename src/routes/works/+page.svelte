@@ -70,7 +70,7 @@
 	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
-<CustomHead title={Page_Title} description={Page_Description} />
+<CustomHead title={Page_Title} description={Page_Description} url={'works'} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<SectionLayout>
 		<div

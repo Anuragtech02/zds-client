@@ -55,6 +55,7 @@
 	title={service.title}
 	description={service.ShortDescription}
 	image={service.VideoPreviewUrl || service.image}
+	url={`services/${service.slug}`}
 />
 
 <PageLayout

@@ -15,7 +15,7 @@
 	$: data = $homeStore;
 </script>
 
-<CustomHead />
+<CustomHead url="" />
 <Hero data={data[homeSections[0]]} />
 <!-- <HomeSecondSection /> -->
 <OurWork data={data[homeSections[1]]} />

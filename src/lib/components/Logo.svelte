@@ -31,7 +31,11 @@
 		}
 	}}
 >
-	<img src={url} alt="logo" class={'w-14 h-13 sm:w-16 sm:h-15 md:w-20 md:h-18'} />
+	<img
+		src={url}
+		alt="Logo - Zero Design Studios"
+		class={'w-14 h-13 sm:w-16 sm:h-15 md:w-20 md:h-18'}
+	/>
 	<div class="flex flex-col align-stretch">
 		{#if title?.length > 0}
 			<p

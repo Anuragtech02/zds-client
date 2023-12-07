@@ -7,8 +7,6 @@
 	import VideoPopup from '$lib/components/VideoPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
 	import { getImageUrl } from '$lib/utils/functions';
-	import { fade, slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
 
 	export let data: any;
 
@@ -32,7 +30,7 @@
 	ShowReelVideo = data?.ShowReelVideoLink || '';
 	console.log({ data });
 	heading = Title.split(',');
-	description = Description.split(',');
+	description = Description.split(':');
 	let previousActiveWordIdx = -1;
 
 	$: activeWordIdx !== undefined &&

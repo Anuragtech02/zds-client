@@ -9,9 +9,11 @@
 	import { fly } from 'svelte/transition';
 
 	onNavigate((navigation) => {
+		// @ts-ignore
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
+			// @ts-ignore
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
@@ -20,44 +22,61 @@
 	});
 
 	export let data;
-	console.log(data);
-	const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
-	let imgSrc = getImageUrl(bgImage);
-	let muuriGrid = null;
+	let works: any = [];
+	let selectedCategory: any = {};
+	let imgSrc = '';
+	let Page_Title = '';
+	let Page_Description = '';
+	let description = '';
+	let Work_Categories: any = {};
+	let bgImage = '';
+	let categories: any = [];
 
-	let categories = [
-		'All Categories',
-		...Work_Categories?.data?.map((category: any) => {
-			const Category_Name = category?.attributes?.Name;
-			return Category_Name;
-		})
-	];
-	let works = Work_Categories?.data?.map((category: any) => {
-		const work = category?.attributes?.Works?.data?.map((w: any) => {
-			const work_data = w?.attributes;
-			return {
-				id: w?.id,
-				category: category?.attributes?.Name,
-				title: work_data?.Title,
-				description: work_data?.Description,
-				slug: work_data?.slug,
-				thumbnail: getImageUrl(work_data?.Video_Thumbnail),
-				Video: getImageUrl(work_data?.Video)
-			};
+	let showNoDataFound = false;
+
+	try {
+		// const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
+		Page_Title = data?.Page_Title;
+		Page_Description = data?.Page_Description;
+		description = data?.description;
+		Work_Categories = data?.Work_Categories;
+		bgImage = data?.bgImage;
+
+		imgSrc = getImageUrl(bgImage);
+
+		categories = [
+			'All Categories',
+			...Work_Categories?.data?.map((category: any) => {
+				const Category_Name = category?.attributes?.Name;
+				return Category_Name;
+			})
+		];
+		works = Work_Categories?.data?.map((category: any) => {
+			const work = category?.attributes?.Works?.data?.map((w: any) => {
+				const work_data = w?.attributes;
+				return {
+					id: w?.id,
+					category: category?.attributes?.Name,
+					title: work_data?.Title,
+					description: work_data?.Description,
+					slug: work_data?.slug,
+					thumbnail: getImageUrl(work_data?.Video_Thumbnail),
+					Video: getImageUrl(work_data?.Video)
+				};
+			});
+			return work;
 		});
-		return work;
-	});
-	works = works.flat();
-	console.log(works);
+		works = works.flat();
+		console.log(works);
 
-	let selectedCategory = categories[0];
+		selectedCategory = categories[0];
+	} catch (error) {
+		showNoDataFound = true;
+	}
+
 	let categoryChangeHandler = (category: string) => {
 		selectedCategory = category;
 	};
-
-	// onMount(() => {
-	// 	muuriGrid = new Muuri('.grid-muuri');
-	// });
 
 	$: filteredWorks = works.filter((work: any) => {
 		if (selectedCategory === 'All Categories') {
@@ -65,48 +84,52 @@
 		}
 		return work.category === selectedCategory;
 	});
-	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
 <CustomHead title={Page_Title} description={Page_Description} url="blogs" />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<SectionLayout>
-		<div
-			class="w-full flex justify-start xl:justify-start gap-10 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
-		>
-			{#each categories as category}
-				<button
-					class={`${
-						category === selectedCategory ? 'active-category text-white' : 'text-[#8D8D8D]'
-					} text-lg w-fit cursor-pointer relative whitespace-nowrap`}
-					on:click={categoryChangeHandler.bind(null, category)}
-				>
-					{category}
-				</button>
-			{/each}
-		</div>
-		<!-- {#each description.split('\n') as d} -->
-		<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
-			{description}
-		</div>
-		<!-- {/each} -->
+		{#if showNoDataFound}
+			<h4>Oops, No content yet</h4>
+			<p>No blogs to display</p>
+		{:else}
+			<div
+				class="w-full flex justify-start xl:justify-start gap-10 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
+			>
+				{#each categories as category}
+					<button
+						class={`${
+							category === selectedCategory ? 'active-category text-white' : 'text-[#8D8D8D]'
+						} text-lg w-fit cursor-pointer relative whitespace-nowrap`}
+						on:click={categoryChangeHandler.bind(null, category)}
+					>
+						{category}
+					</button>
+				{/each}
+			</div>
+			<!-- {#each description.split('\n') as d} -->
+			<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
+				{description}
+			</div>
+			<!-- {/each} -->
 
-		<div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-			<!-- {#key filteredWorks} -->
-			{#each filteredWorks as video, i}
-				<!-- <div class="item"> -->
-				<div
-					in:fly={{
-						y: 100,
-						delay: i * 100
-					}}
-				>
-					<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
-				</div>
-				<!-- </div> -->
-			{/each}
-			<!-- {/key} -->
-		</div>
+			<div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+				<!-- {#key filteredWorks} -->
+				{#each filteredWorks as video, i}
+					<!-- <div class="item"> -->
+					<div
+						in:fly={{
+							y: 100,
+							delay: i * 100
+						}}
+					>
+						<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
+					</div>
+					<!-- </div> -->
+				{/each}
+				<!-- {/key} -->
+			</div>
+		{/if}
 	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>

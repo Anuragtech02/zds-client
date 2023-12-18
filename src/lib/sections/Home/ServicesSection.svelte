@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import HomeServiceCard from '$lib/components/HomeServiceCard.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
-	import Slider from '$lib/components/Slider.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
-	import { HOME_SERVICES } from '$lib/utils/contants';
 	import { getImageUrl } from '$lib/utils/functions';
 	import { gsap } from 'gsap';
+	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import { onMount } from 'svelte';
 	export let data: {
 		title: string;
@@ -35,22 +33,34 @@
 		ShortDescriptionPoints: string[];
 	}> = [];
 
-	// onMount(() => {
-	// 	let isSmallDevice = window.innerWidth < 800;
-	// 	gsap.to('.card-stack .card', {
-	// 		stagger: 0.2, // Delay between each card's animation
-	// 		y: (i) => i * (isSmallDevice ? 350 : 320), // Adjust the position of each card (example: 30px down per card)
-	// 		ease: 'expo.out',
-	// 		duration: 0.2,
-	// 		delay: 1,
-	// 		scrollTrigger: {
-	// 			trigger: '.card-stack', // Element that triggers the animation
-	// 			start: 'top center', // When the top of '.card-stack' hits the center of the viewport
-	// 			// You can adjust 'start' and 'end' according to your needs
-	// 			toggleActions: 'play none none none' // Defines what happens when scrolling forward and backward
-	// 		}
-	// 	});
-	// });
+	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger);
+		let isSmallDevice = window.innerWidth < 800;
+		gsap.fromTo(
+			'.card-stack .card',
+			{
+				y: 100,
+				opacity: 0
+			},
+			{
+				y: 0,
+				opacity: 1,
+				duration: 0.5,
+				stagger: 0.2,
+				delay: isSmallDevice ? 1 : 0.8,
+				ease: 'power4.out',
+				scrollTrigger: {
+					trigger: '.card-stack',
+					start: 'top bottom',
+					end: 'bottom bottom',
+					scrub: false,
+					// markers: true,
+					// toggleActions: 'restart none none none'
+					toggleActions: 'play none none none'
+				}
+			}
+		);
+	});
 
 	$: {
 		if (data?.title) {

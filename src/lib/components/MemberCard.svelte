@@ -9,7 +9,7 @@
 		role: 'Founder & Creative director',
 		image:
 			'https://media.istockphoto.com/id/1434212178/photo/middle-eastern-lady-using-laptop-working-online-sitting-in-office.jpg?s=2048x2048&w=is&k=20&c=U0nKYf9Ggh8S77U7DvPlFpRE0bKiSOD9gr9naxHEpfM=',
-		linkedIn: 'https://www.linkedin.com/in/shubham-choubey-1b1b3b1b0/'
+		linkedIn: 'https://www.linkedin.com/'
 	};
 </script>
 

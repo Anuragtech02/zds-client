@@ -10,7 +10,7 @@
 	let showSuccess = false;
 	let loading = false;
 	// console.log(data);
-	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink } = data;
+	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink, address } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
 	let contactForm: ContactForm = {
 		name: {
@@ -139,6 +139,7 @@
 				<br />
 				{lastWord}
 			</h2>
+			<p class="text-left">{address}</p>
 			<div class="mt-8">
 				<div class="flex justify-start items-center">
 					<MailIcon />

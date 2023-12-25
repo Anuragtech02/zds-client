@@ -139,7 +139,7 @@
 				<br />
 				{lastWord}
 			</h2>
-			<p class="text-left">{address}</p>
+			<p class="text-left max-w-[400px] pr-2">{address}</p>
 			<div class="mt-8">
 				<div class="flex justify-start items-center">
 					<MailIcon />

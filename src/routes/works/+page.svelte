@@ -61,6 +61,18 @@
 	// 	muuriGrid = new Muuri('.grid-muuri');
 	// });
 
+	function getCategoryDescription(cat) {
+		// check for all categories
+		if (cat === 'All Categories') {
+			return description;
+		}
+		// check for other categories
+		const category = categories.find((c) => c === cat);
+		const categoryIndex = categories.indexOf(category);
+		const categoryDescription = Work_Categories?.data[categoryIndex - 1]?.attributes?.Description;
+		return categoryDescription;
+	}
+
 	$: filteredWorks = works.filter((work: any) => {
 		if (selectedCategory === 'All Categories') {
 			return true;
@@ -89,7 +101,7 @@
 		</div>
 		<!-- {#each description.split('\n') as d} -->
 		<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
-			{description}
+			{getCategoryDescription(selectedCategory)}
 		</div>
 		<!-- {/each} -->
 

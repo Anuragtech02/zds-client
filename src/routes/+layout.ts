@@ -16,7 +16,8 @@ export async function load({ params, fetch }: any) {
 		'Works.works.Video',
 		'Works.works.category',
 		'Works.works.Video_Thumbnail',
-		'Brands.brands.image'
+		'Brands.brands.image',
+		'seo'
 	];
 	const populateCommon = `populate=*`;
 

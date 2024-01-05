@@ -14,7 +14,7 @@
 	let image: string;
 	if (data) {
 		Title = data?.attributes?.Title;
-		image = getImageUrl(data?.attributes?.Video_Thumbnail);
+		image = getImageUrl(data?.attributes?.thumbnail);
 	}
 	console.log(data);
 	// let heading = 'Lorem Ipsum is simply dummy text of the printing and typesetting.';
@@ -64,7 +64,7 @@
 	}
 
 	onMount(() => {
-		modifiedHtml = convertImagesToMasonryDivs(data.attributes.Description);
+		modifiedHtml = convertImagesToMasonryDivs(data.attributes.description);
 	});
 </script>
 
@@ -82,7 +82,8 @@
 	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>
-<BannerCta />
+
+<!-- <BannerCta /> -->
 
 <style>
 	/* .work-section > p {

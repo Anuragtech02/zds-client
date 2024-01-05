@@ -13,6 +13,7 @@
 		thumbnail: string;
 		Video: string;
 	};
+	export let type: 'video' | 'blogs' = 'video';
 	export let className: string = '';
 	// console.log(video);
 	let heading = video.title;
@@ -50,10 +51,10 @@
 			role="button"
 			tabindex="0"
 			on:keypress={() => {
-				goto(`/works/${video.slug}`);
+				goto(`/${type}/${video.slug}`);
 			}}
 			on:click={() => {
-				goto(`/works/${video.slug}`);
+				goto(`/${type}/${video.slug}`);
 			}}
 			class="h-full w-full relative"
 		>

@@ -43,7 +43,7 @@
 		bgImage = data?.bgImage;
 
 		imgSrc = getImageUrl(bgImage);
-
+		console.log('Work_Categories', Work_Categories);
 		categories = [
 			'All Categories',
 			...Work_Categories?.data?.map((category: any) => {
@@ -59,7 +59,15 @@
 					category: category?.attributes?.Name,
 					title: work_data?.Title,
 					description: work_data?.Description,
-					slug: work_data?.slug
+					slug: work_data?.slug,
+					video: {
+						id: w?.id,
+						title: work_data?.Title,
+						category: category?.attributes?.Name,
+						slug: work_data?.slug,
+						thumbnail: getImageUrl(work_data?.thumbnail),
+						Video: ''
+					}
 				};
 			});
 			return work;
@@ -68,6 +76,7 @@
 
 		selectedCategory = categories[0];
 	} catch (error) {
+		console.log('Nothing found', error);
 		showNoDataFound = true;
 	}
 
@@ -120,7 +129,13 @@
 							delay: i * 100
 						}}
 					>
-						<!-- <WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" /> -->
+						<WorkVideo
+							absolute={false}
+							{video}
+							type="blogs"
+							fixedWidth={false}
+							className="!m-0 w-full"
+						/>
 					</div>
 					<!-- </div> -->
 				{/each}

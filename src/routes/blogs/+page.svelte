@@ -52,22 +52,19 @@
 			})
 		];
 		works = Work_Categories?.data?.map((category: any) => {
-			const work = category?.attributes?.Works?.data?.map((w: any) => {
+			const work = category?.attributes?.blogs?.data?.map((w: any) => {
 				const work_data = w?.attributes;
 				return {
 					id: w?.id,
 					category: category?.attributes?.Name,
 					title: work_data?.Title,
 					description: work_data?.Description,
-					slug: work_data?.slug,
-					thumbnail: getImageUrl(work_data?.Video_Thumbnail),
-					Video: getImageUrl(work_data?.Video)
+					slug: work_data?.slug
 				};
 			});
 			return work;
 		});
 		works = works.flat();
-		console.log(works);
 
 		selectedCategory = categories[0];
 	} catch (error) {
@@ -123,7 +120,7 @@
 							delay: i * 100
 						}}
 					>
-						<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
+						<!-- <WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" /> -->
 					</div>
 					<!-- </div> -->
 				{/each}

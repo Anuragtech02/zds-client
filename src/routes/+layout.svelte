@@ -16,6 +16,7 @@
 		});
 	});
 
+	export let data;
 	onMount(() => {
 		const lenis = new Lenis();
 
@@ -29,8 +30,8 @@
 		}
 
 		requestAnimationFrame(raf);
+		console.log({ homeData: data });
 	});
-	export let data;
 	let commonData = {
 		header: data?.header,
 		footer: data?.footer

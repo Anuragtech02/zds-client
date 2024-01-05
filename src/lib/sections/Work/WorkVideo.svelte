@@ -13,7 +13,7 @@
 		thumbnail: string;
 		Video: string;
 	};
-	export let type: 'video' | 'blogs' = 'video';
+	export let type: 'works' | 'blogs' = 'works';
 	export let className: string = '';
 	// console.log(video);
 	let heading = video.title;

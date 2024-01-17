@@ -23,7 +23,7 @@ export const getImageUrl = (
 	image: any,
 	size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original' = 'original'
 ) => {
-	console.log('Came here', { image });
+	// console.log('Came here', { image });
 	const host = import.meta.env.VITE_API_URI;
 	if (image) {
 		switch (size) {
@@ -88,4 +88,8 @@ export async function getAllServices() {
 	const populate = 'populate=slug';
 	const data = await fetchData('services', populate, fetch);
 	return data;
+}
+
+export function sanitizeStructuredData(data: string) {
+	return `<script type="application/ld+json">${data}</script>`;
 }

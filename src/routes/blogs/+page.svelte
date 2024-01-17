@@ -92,7 +92,7 @@
 	});
 </script>
 
-<CustomHead title={Page_Title} description={Page_Description} url="blogs" />
+<CustomHead seo={data.seo} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<SectionLayout>
 		{#if showNoDataFound}
@@ -120,26 +120,26 @@
 			<!-- {/each} -->
 
 			<div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-				<!-- {#key filteredWorks} -->
-				{#each filteredWorks as video, i}
-					<!-- <div class="item"> -->
-					<div
-						in:fly={{
-							y: 100,
-							delay: i * 100
-						}}
-					>
-						<WorkVideo
-							absolute={false}
-							{video}
-							type="blogs"
-							fixedWidth={false}
-							className="!m-0 w-full"
-						/>
-					</div>
-					<!-- </div> -->
-				{/each}
-				<!-- {/key} -->
+				{#key filteredWorks}
+					{#each filteredWorks as video, i}
+						<!-- <div class="item"> -->
+						<div
+							in:fly={{
+								y: 100,
+								delay: i * 100
+							}}
+						>
+							<WorkVideo
+								absolute={false}
+								{video}
+								type="blogs"
+								fixedWidth={false}
+								className="!m-0 w-full"
+							/>
+						</div>
+						<!-- </div> -->
+					{/each}
+				{/key}
 			</div>
 		{/if}
 	</SectionLayout>

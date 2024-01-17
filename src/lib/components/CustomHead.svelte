@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 
 	type TSEO = {
-		title?: string;
+		metaTitle?: string;
 		url?: string;
 		description?: string;
 		image?: any;
@@ -26,7 +26,7 @@
 	};
 
 	export let seo: TSEO = {
-		title: 'Zero Design Studio',
+		metaTitle: 'Zero Design Studio',
 		url: '',
 		description:
 			'We are a creative studio based in New York City. We specialize in design, development, and strategy.',
@@ -115,8 +115,8 @@
 		'Zero Design Studio, Zero Studio, Zero, Design, Studio, New York, NYC, New York City, Web Design, Web Development, Web, Development, Design, Strategy, Creative, Creative Studio, Creative Agency, Agency,';
 
 	try {
-		if (seo.title) {
-			title = seo.title;
+		if (seo.metaTitle) {
+			title = seo.metaTitle;
 		}
 		if (seo.url) {
 			url = seo.url;

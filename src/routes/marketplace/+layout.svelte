@@ -6,7 +6,7 @@
 	if (!Description) Description = '';
 </script>
 
-<CustomHead title={Title} url="marketplace" />
+<CustomHead seo={data.seo} />
 <PageLayout title={Title} description={Description}>
 	<slot {data} />
 </PageLayout>

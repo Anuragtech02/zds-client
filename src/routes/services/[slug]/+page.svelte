@@ -10,7 +10,7 @@
 	import { getImageUrl } from '$lib/utils/functions';
 	import { onMount } from 'svelte';
 
-	export let data;
+	export let data: any;
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -51,12 +51,7 @@
 	};
 </script>
 
-<CustomHead
-	title={service.title}
-	description={service.ShortDescription}
-	image={service.VideoPreviewUrl || service.image}
-	url={`services/${service.slug}`}
-/>
+<CustomHead seo={data.seo} />
 
 <PageLayout
 	title={service.title}

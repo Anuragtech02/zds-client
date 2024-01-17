@@ -24,7 +24,7 @@
 	});
 </script>
 
-<CustomHead title={Page_Title} description={About_Description} url="about" />
+<CustomHead seo={data.seo} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
 	<SectionLayout>
 		<slot />

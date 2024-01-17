@@ -68,7 +68,7 @@
 	});
 </script>
 
-<CustomHead title={Title} description="{Title}-{category}-ZDS" {image} url="blogs/{slug}" />
+<CustomHead seo={data.seo} />
 <PageLayout
 	title={Title}
 	rightComp={true}

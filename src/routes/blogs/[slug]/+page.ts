@@ -11,9 +11,10 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	urlParams.append(`populate[3]`, 'seo');
 	urlParams.append(`populate[4]`, 'seo.metaSocial.image');
 	urlParams.append(`populate[5]`, 'seo.extraScripts');
+	urlParams.append(`populate[6]`, 'seo.metaImage');
 
 	// console.log('Search', urlParams.toString());
-	let data = await fetchData('blogs', urlParams.toString(), fetch);
+	const data = await fetchData('blogs', urlParams.toString(), fetch);
 	console.log('Blog Data', data);
 	if (Array.isArray(data)) {
 		return data[0];

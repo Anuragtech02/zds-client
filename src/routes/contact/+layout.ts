@@ -10,6 +10,7 @@ export async function load({ params, fetch }: any) {
 		'Page_Description',
 		'Page_Title',
 		'seo',
+		'seo.metaImage',
 		'seo.extraScripts',
 		'seo.metaSocial.image'
 	];

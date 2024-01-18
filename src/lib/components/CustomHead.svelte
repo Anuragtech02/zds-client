@@ -5,8 +5,8 @@
 	type TSEO = {
 		metaTitle?: string;
 		url?: string;
-		description?: string;
-		image?: any;
+		metaDescription?: string;
+		metaImage?: any;
 		canonicalURL?: string;
 		metaSocial?: Array<{
 			socialNetwork: string;
@@ -28,9 +28,9 @@
 	export let seo: TSEO = {
 		metaTitle: 'Zero Design Studio',
 		url: '',
-		description:
+		metaDescription:
 			'We are a creative studio based in New York City. We specialize in design, development, and strategy.',
-		image: 'https://zezrodesignstudios.com/logo.png',
+		metaImage: {},
 		canonicalURL: 'https://zerodesignstudios.com/',
 		metaSocial: [
 			{
@@ -121,11 +121,11 @@
 		if (seo.url) {
 			url = seo.url;
 		}
-		if (seo.description) {
-			description = seo.description;
+		if (seo.metaDescription) {
+			description = seo.metaDescription;
 		}
-		if (seo.image) {
-			image = getImageUrl(seo.image);
+		if (seo.metaImage) {
+			image = getImageUrl(seo.metaImage);
 		}
 		if (seo.canonicalURL) {
 			url = seo.canonicalURL;

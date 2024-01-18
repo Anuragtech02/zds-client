@@ -15,7 +15,7 @@
 	$: data = $homeStore;
 </script>
 
-<CustomHead seo={data.seo} />
+<CustomHead seo={data?.seo} />
 <Hero data={data[homeSections[0]]} />
 <!-- <HomeSecondSection /> -->
 <OurWork data={data[homeSections[1]]} />

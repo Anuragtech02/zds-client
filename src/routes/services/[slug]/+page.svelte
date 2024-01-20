@@ -47,18 +47,19 @@
 		icon: getImageUrl(service?.Icon),
 		slug: service?.slug,
 		MainVideo: service?.mainVideoLink,
-		VideoPreviewUrl: service?.MainVideo?.data?.attributes?.previewUrl || ''
+		VideoPreviewUrl: service?.MainVideo?.data?.attributes?.previewUrl || '',
+		bgImage: getImageUrl(service?.BgImage)
 	};
 </script>
 
-<CustomHead seo={data.seo} />
+<CustomHead seo={data.service.attributes.seo} />
 
 <PageLayout
 	title={service.title}
 	icon={service.icon}
 	description={''}
-	bgImage=""
-	className="pb-[50px]"
+	bgImage={service.bgImage || '/images/services-upper.png'}
+	className="pb-[50px] [&>img]:object-cover [&>img]:h-full"
 >
 	<img
 		src="/images/hero-gradient.png"
@@ -70,6 +71,11 @@
 			on:click={() => {
 				$popupStore.isShowreelOpen = true;
 			}}
+			on:keydown={() => {
+				$popupStore.isShowreelOpen = true;
+			}}
+			role="button"
+			tabindex="0"
 			style="background-image: url({service.VideoPreviewUrl || service.image});"
 			class="h-[300px] cursor-pointer w-full bg-cover lg:h-[500px] bg-no-repeat bg-center rounded-xl relative"
 		>

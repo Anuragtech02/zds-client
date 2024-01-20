@@ -5,6 +5,6 @@
 </script>
 
 <!-- <CustomHead seo={data.seo} /> -->
-<PageLayout title="SERVICES" description="OUR" bgImage="/images/services-upper.png">
-	<slot />
-</PageLayout>
+<!-- <PageLayout title="SERVICES" description="OUR" bgImage="/images/services-upper.png"> -->
+<slot />
+<!-- </PageLayout> -->

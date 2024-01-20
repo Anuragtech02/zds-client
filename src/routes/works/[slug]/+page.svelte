@@ -76,6 +76,7 @@
 	bgImage=""
 	bgColor="#0F0F0F"
 	tagText={category}
+	className="h-[300px] md:h-[420px]"
 >
 	<SectionLayout className="pt-0 [&>p]:text-left [&>p]:my-8 z-[1] relative" customSection>
 		{@html modifiedHtml}

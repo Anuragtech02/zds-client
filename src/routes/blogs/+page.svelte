@@ -94,7 +94,7 @@
 
 <CustomHead seo={data.seo} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
-	<SectionLayout>
+	<SectionLayout className="py-[50px]">
 		{#if showNoDataFound}
 			<h4>Oops, No content yet</h4>
 			<p>No blogs to display</p>

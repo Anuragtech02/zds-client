@@ -88,9 +88,9 @@
 			</button>
 		</div>
 		<div class="desc-box flex flex-col justify-between gap-8 text-lg py-16 items-start !text-left">
-			<h4 class="!text-left leading-10 tracking-wide">
+			<h1 class="!text-left text-[1.5rem] lg:text-[2rem] leading-10 tracking-wide">
 				{service.ShortDescription}
-			</h4>
+			</h1>
 			<div class="long-desc [&>*]:text-left my-10">
 				{@html service.LongDescription}
 			</div>

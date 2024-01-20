@@ -1,13 +1,11 @@
 <script lang="ts">
-	import SocialShareIcons from './SocialShareIcons.svelte';
 	import Logo from './Logo.svelte';
 	import NavLinks from '$lib/components/Header/NavLinks/NavLinks.svelte';
-	import { NAV_LINKS } from '$lib/utils/contants';
 	export let data;
 	export let links;
 	export let showMarketplaceButton;
 
-	console.log({ data });
+	// console.log({ data });
 	const { copywrightText } = data;
 	let locations = data?.locations?.data;
 	const nav_links = links.map((l: any) => ({

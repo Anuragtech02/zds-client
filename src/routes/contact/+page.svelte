@@ -7,7 +7,7 @@
 	let formData = data?.Form;
 </script>
 
-<SectionLayout className="py-[50px]">
+<SectionLayout className="pt-0 pb-[50px]">
 	<p class="text-left my-16 mb-16">
 		{data?.description}
 	</p>

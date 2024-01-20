@@ -26,7 +26,7 @@
 
 <CustomHead seo={data.seo} />
 <PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
-	<SectionLayout>
+	<SectionLayout className="py-[50px]">
 		<slot />
 	</SectionLayout>
 </PageLayout>

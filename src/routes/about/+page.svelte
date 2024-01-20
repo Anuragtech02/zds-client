@@ -60,14 +60,14 @@
 		<div class="flex justify-between items-center gap-2">
 			<div>
 				<div class="flex justify-start items-center gap-2 md:gap-8 [&>h3]:text-left flex-wrap">
-					<h3 class="w-full sm:w-auto">
+					<h1 class="w-full text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] text-left sm:w-auto">
 						<OutlinedText text="ZERO DESIGN" />
 						<OutlinedText text="STUDIO IS A" />
 						<TextWithBg>MULTIDISCIPLINARY</TextWithBg>
 						<OutlinedText strokeWidth="w-stroke-1" text="EXPERIENCE" />
 						<TextWithBg>DESIGN</TextWithBg>
 						<OutlinedText strokeWidth="w-stroke-1" text="COMPANY" />
-					</h3>
+					</h1>
 				</div>
 			</div>
 			<div class="w-[25%] mr-0 hidden sm:flex md:hidden justify-end">

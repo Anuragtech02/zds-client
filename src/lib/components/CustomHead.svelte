@@ -170,7 +170,7 @@
 	}
 
 	onMount(() => {
-		console.log({ seo, socials });
+		// console.log({ seo, socials });
 	});
 </script>
 
@@ -199,6 +199,19 @@
 
 	<link rel="canonical" href={url} />
 	{@html sanitizeStructuredData(stringifiedData)}
+	<!-- Google tag (gtag.js) -->
+	<!-- Google tag (gtag.js) -->
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-M44K3XMMBY"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-M44K3XMMBY');
+	</script>
 	{#if extraScripts?.length}
 		{#each extraScripts as scriptObj}
 			{@html scriptObj.script}

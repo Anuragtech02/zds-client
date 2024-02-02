@@ -73,11 +73,11 @@
 	title={Title}
 	rightComp={true}
 	description=""
-	bgImage=""
+	bgImage={getImageUrl(data?.attributes?.bgImage)}
 	bgColor="#0F0F0F"
 	tagText={category}
 >
-	<SectionLayout className="pt-0 [&>p]:text-left [&>p]:my-8 z-[1] relative" customSection>
+	<SectionLayout className="mt-10 pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative" customSection>
 		{@html modifiedHtml}
 	</SectionLayout>
 	<FloatingActionButton />

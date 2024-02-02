@@ -26,10 +26,13 @@
 		if (typeof window !== 'undefined') {
 			url = window.location.href;
 		}
+		if (bgImage == '') {
+			bgImage = '/images/headingBG.png';
+		}
 	});
 </script>
 
-<div class={`bg-[${bgColor}] ${className} relative w-full`} class:h-[420px]={bgImage != ''}>
+<div class={`bg-[${bgColor}] ${className} relative w-full`} class:min-h-[420px]={bgImage != ''}>
 	<SectionLayout
 		className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 !py-0 w-full"
 	>

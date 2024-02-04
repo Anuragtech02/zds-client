@@ -38,6 +38,8 @@
 		container?.removeEventListener('mouseleave', hideCursor);
 		$cursorStore.showCursor = false;
 	});
+
+	$: console.log({ video });
 </script>
 
 <div
@@ -61,8 +63,9 @@
 			<p class="absolute top-0 left-0 w-full p-2 px-4 text-left backdrop-blur rounded-t-xl">
 				{heading}
 			</p>
-
-			<img {src} alt="img" class="rounded-xl object-cover h-full w-full" />
+			{#key video.thumbnail}
+				<img src={src || video.thumbnail} alt="img" class="rounded-xl object-cover h-full w-full" />
+			{/key}
 			<!-- <video>
 				<source src={video.Video} type="video/mp4" />
 			</video> -->

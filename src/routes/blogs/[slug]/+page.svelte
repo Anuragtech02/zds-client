@@ -65,10 +65,11 @@
 
 	onMount(() => {
 		modifiedHtml = convertImagesToMasonryDivs(data.attributes.description);
+		console.log({ blog: data });
 	});
 </script>
 
-<CustomHead seo={data.seo} />
+<CustomHead seo={data.attributes.seo} />
 <PageLayout
 	title={Title}
 	rightComp={true}

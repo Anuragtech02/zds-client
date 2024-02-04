@@ -54,11 +54,11 @@
 				<div
 					class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left"
 				>
-					<img
+					<!-- <img
 						src="/images/hero-gradient.png"
 						alt="hero-gradient"
 						class="absolute top-0 md:-left-[150px] left-0 w-[200px] opacity-60 md:opacity-100 md:w-auto pointer-events-none z-[0]"
-					/>
+					/> -->
 					<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
 						<p class="text-left">2023-ZERO DESIGN STUDIO</p>
 						<span class="flex justify-start items-center gap-4">

@@ -77,7 +77,7 @@
 			}
 		},
 		keywords:
-			'Zero Design Studio, Zero Studio, Zero, Design, Studio, New York, NYC, New York City, Web Design, Web Development, Web, Development, Design, Strategy, Creative, Creative Studio, Creative Agency, Agency,'
+			'Zero Design Studio, Zero Studio, Zero, Design, Studio, Design, Strategy, Creative, Creative Studio, Creative Agency, Agency,'
 	};
 
 	let title: string = 'Zero Design Studio';
@@ -199,6 +199,7 @@
 
 	<link rel="canonical" href={url} />
 	{@html sanitizeStructuredData(stringifiedData)}
+	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->

@@ -90,6 +90,7 @@
 		}
 		return work.category === selectedCategory;
 	});
+	$: console.log({ filteredWorks });
 </script>
 
 <CustomHead seo={data.seo} />
@@ -131,7 +132,7 @@
 						>
 							<WorkVideo
 								absolute={false}
-								{video}
+								video={video.video}
 								type="blogs"
 								fixedWidth={false}
 								className="!m-0 w-full"

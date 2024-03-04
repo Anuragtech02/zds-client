@@ -21,6 +21,7 @@
 	export let tagText = '';
 	export let rightComp = false;
 	export let className: string = '';
+	export let renderTitleAsH1: boolean = false;
 	let url: string = '';
 	onMount(() => {
 		if (typeof window !== 'undefined') {
@@ -44,8 +45,12 @@
 				{#if icon != ''}
 					<img src={icon} alt={title} class="w-20 h-20 mt-4" />
 				{/if}
-
-				<h2 class="text-left">{title}</h2>
+				{#if renderTitleAsH1}
+					<h1 class="text-left renderAsH1">{title}</h1>
+				{:else}
+					<h2 class="text-left">{title}</h2>
+				{/if}
+				<!-- <h2 class="text-left">{title}</h2> -->
 				{#if tagText != ''}
 					<Tag text={tagText} />
 				{/if}

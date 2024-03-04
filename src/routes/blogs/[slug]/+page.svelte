@@ -77,6 +77,7 @@
 	bgImage={getImageUrl(data?.attributes?.bgImage)}
 	bgColor="#0F0F0F"
 	tagText={category}
+	renderTitleAsH1
 >
 	<SectionLayout className="mt-10 pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative" customSection>
 		{@html modifiedHtml}

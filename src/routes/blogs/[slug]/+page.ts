@@ -4,15 +4,24 @@ import { fetchData } from '$lib/utils/functions.js';
 export const load: PageLoad = async ({ params, fetch }) => {
 	const { slug } = params;
 	const urlParams = new URLSearchParams();
+	const populate = [
+		'category',
+		'thumbnail',
+		'Thumbnail_File.Image',
+		'Thumbnail_File.mobileImage',
+		'Description',
+		'bgImage',
+		'Bg_Image_File.Image',
+		'Bg_Image_File.mobileImage',
+		'seo',
+		'seo.metaSocial.image',
+		'seo.extraScripts',
+		'seo.metaImage'
+	];
 	urlParams.append(`filters[slug][$eq]`, slug);
-	urlParams.append(`populate[0]`, 'category');
-	urlParams.append(`populate[1]`, 'thumbnail');
-	urlParams.append(`populate[2]`, 'Description');
-	urlParams.append(`populate[3]`, 'bgImage');
-	urlParams.append(`populate[4]`, 'seo');
-	urlParams.append(`populate[5]`, 'seo.metaSocial.image');
-	urlParams.append(`populate[6]`, 'seo.extraScripts');
-	urlParams.append(`populate[7]`, 'seo.metaImage');
+	populate.forEach((item, index) => {
+		urlParams.append(`populate[${index}]`, item);
+	});
 
 	// console.log('Search', urlParams.toString());
 	const data = await fetchData('blogs', urlParams.toString(), fetch);

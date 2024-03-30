@@ -25,11 +25,13 @@
 	let works: any = [];
 	let selectedCategory: any = {};
 	let imgSrc = '';
+	let imgSrcMobile = '';
 	let Page_Title = '';
 	let Page_Description = '';
 	let description = '';
 	let Work_Categories: any = {};
 	let bgImage = '';
+	let bgImageMobile = '';
 	let categories: any = [];
 
 	let showNoDataFound = false;
@@ -40,10 +42,11 @@
 		Page_Description = data?.Page_Description;
 		description = data?.description;
 		Work_Categories = data?.Work_Categories;
-		bgImage = data?.bgImage;
+		bgImage = data?.Bg_Image_File.Image;
+		bgImageMobile = data?.Bg_Image_File.mobileImage;
 
 		imgSrc = getImageUrl(bgImage);
-		console.log('Work_Categories', Work_Categories);
+		imgSrcMobile = getImageUrl(bgImageMobile);
 		categories = [
 			'All Categories',
 			...Work_Categories?.data?.map((category: any) => {
@@ -94,7 +97,12 @@
 </script>
 
 <CustomHead seo={data.seo} />
-<PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
+<PageLayout
+	title={Page_Title}
+	description={Page_Description}
+	bgImage={imgSrc}
+	bgImageMobile={imgSrcMobile}
+>
 	<SectionLayout className="py-[50px]">
 		{#if showNoDataFound}
 			<h4>Oops, No content yet</h4>

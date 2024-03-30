@@ -17,6 +17,7 @@
 	export let icon = '';
 	export let description = 'WE ARE PROUD TO PRESENT';
 	export let bgImage = '/images/headingBG.png';
+	export let bgImageMobile = '/images/headingBG.png';
 	export let bgColor = '';
 	export let tagText = '';
 	export let rightComp = false;
@@ -83,7 +84,12 @@
 		style={`background-image:url(${bgImage});`}
 	/> -->
 	{#if bgImage != ''}
-		<img src={bgImage} alt={'page-bg'} class="w-full" />
+		<!-- <img src={bgImage} alt={'page-bg'} class="w-full" srcset="{bgImageMobile} 500w, " /> -->
+		<picture class="block w-full">
+			<source media="(max-width: 499px)" srcset={bgImageMobile} />
+			<source media="(min-width: 500px)" srcset={bgImage} />
+			<img src={bgImage} alt="page-bg" />
+		</picture>
 	{/if}
 </div>
 <slot />

@@ -17,7 +17,7 @@
 	console.log(data);
 	let title = data.About_Title;
 	let description = data.About_Description;
-	let image = getImageUrl(data.Image);
+	let image = getImageUrl(data.Image_File.Image);
 
 	export let enableOurTeamCTA: boolean = true;
 	const p1 = description;

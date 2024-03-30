@@ -9,13 +9,16 @@
 
 	export let data;
 	console.log(data);
-	let { Page_Title, Page_Description, bgImage, About_Description } = data;
-	let imgSrc = getImageUrl(bgImage);
+	let { Page_Title, Page_Description, Bg_Image_File, About_Description } = data;
+	let imgSrc = getImageUrl(Bg_Image_File.Image);
+	let imgSrcMobile = getImageUrl(Bg_Image_File.mobileImage);
 
 	onNavigate((navigation) => {
+		// @ts-expect-error this is a sveltekit feature
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
+			// @ts-expect-error this is a sveltekit feature
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
@@ -25,7 +28,12 @@
 </script>
 
 <CustomHead seo={data.seo} />
-<PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
+<PageLayout
+	title={Page_Title}
+	description={Page_Description}
+	bgImage={imgSrc}
+	bgImageMobile={imgSrcMobile}
+>
 	<SectionLayout className="py-[50px]">
 		<slot />
 	</SectionLayout>

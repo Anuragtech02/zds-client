@@ -3,8 +3,27 @@ import { fetchData } from '$lib/utils/functions.js';
 
 export const load: PageLoad = async ({ params, fetch }) => {
 	// console.log('Search', urlParams.toString());
-	const populate =
-		'populate[0]=Work_Categories&populate[1]=Work_Categories.Works&populate[2]=Work_Categories.Works.Images&populate[3]=Work_Categories.Works.Video&populate[4]=Work_Categories.Works.Video_Thumbnail&populate[5]=bgImage&populate[6]=seo&populate[7]=seo.metaSocial.image&populate[8]=seo.extraScripts&populate[9]=seo.metaImage';
-	const data = await fetchData('work-page', populate, fetch);
+
+	const populateString = [
+		'Work_Categories',
+		'Work_Categories.Works',
+		'Work_Categories.Works.Images',
+		'Work_Categories.Works.Video',
+		'Work_Categories.Works.Video_Thumbnail',
+		'Work_Categories.Works.Video_Thumbnail_File.Image',
+		'Work_Categories.Works.Video_Thumbnail_File.mobileImage',
+		'bgImage',
+		'Bg_Image_File.Image',
+		'Bg_Image_File.mobileImage',
+		'seo',
+		'seo.metaSocial.image',
+		'seo.extraScripts',
+		'seo.metaImage'
+	];
+	const searchParams = new URLSearchParams();
+	populateString.forEach((item, index) => {
+		searchParams.append(`populate[${index}]`, item);
+	});
+	const data = await fetchData('work-page', searchParams.toString(), fetch);
 	return data;
 };

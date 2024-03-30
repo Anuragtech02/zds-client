@@ -11,6 +11,7 @@
 		category: string;
 		slug: string;
 		thumbnail: string;
+		thumbnailMobile?: string;
 		Video: string;
 	};
 	export let type: 'works' | 'blogs' = 'works';
@@ -19,6 +20,7 @@
 	let heading = video.title;
 	let category = video.category;
 	let src = video.thumbnail;
+	let srcMobile = video.thumbnailMobile;
 	export let fixedWidth = true;
 	export let absolute = true;
 	function showCursor() {
@@ -64,7 +66,12 @@
 				{heading}
 			</p>
 			{#key video.thumbnail}
-				<img src={src || video.thumbnail} alt="img" class="rounded-xl object-cover h-full w-full" />
+				<!-- <img src={src || video.thumbnail} alt="img" class="rounded-xl object-cover h-full w-full" /> -->
+				<picture class="block rounded-xl overflow-hidden object-cover h-full w-full">
+					<source media="(max-width: 499px)" srcset={srcMobile || video.thumbnailMobile} />
+					<source media="(min-width: 500px)" srcset={src || video.thumbnail} />
+					<img {src} alt={heading} class="block rounded-xl object-cover h-full w-full" />
+				</picture>
 			{/key}
 			<!-- <video>
 				<source src={video.Video} type="video/mp4" />

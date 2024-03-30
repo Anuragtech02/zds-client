@@ -11,9 +11,11 @@
 	import { fly } from 'svelte/transition';
 
 	onNavigate((navigation) => {
+		// @ts-expect-error this is a custom method
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
+			// @ts-expect-error this is a custom method
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
@@ -23,8 +25,10 @@
 
 	export let data;
 	console.log(data);
-	const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
-	let imgSrc = getImageUrl(bgImage);
+	const { Page_Title, Page_Description, description, Work_Categories, bgImage, Bg_Image_File } =
+		data;
+	let imgSrc = getImageUrl(Bg_Image_File?.Image || bgImage);
+	let imgSrcMobile = getImageUrl(Bg_Image_File?.mobileImage || bgImage);
 	let muuriGrid = null;
 
 	let categories = [
@@ -43,7 +47,12 @@
 				title: work_data?.Title,
 				description: work_data?.Description,
 				slug: work_data?.slug,
-				thumbnail: getImageUrl(work_data?.Video_Thumbnail),
+				thumbnail: getImageUrl(
+					work_data?.Video_Thumbnail_File?.Image || work_data?.Video_Thumbnail
+				),
+				thumbnailMobile: getImageUrl(
+					work_data?.Video_Thumbnail_File?.mobileImage || work_data?.Video_Thumbnail
+				),
 				Video: getImageUrl(work_data?.Video)
 			};
 		});
@@ -62,7 +71,7 @@
 	// 	muuriGrid = new Muuri('.grid-muuri');
 	// });
 
-	function getCategoryDescription(cat) {
+	function getCategoryDescription(cat: string) {
 		// check for all categories
 		if (cat === 'All Categories') {
 			return description;
@@ -84,7 +93,12 @@
 </script>
 
 <CustomHead seo={data.seo} />
-<PageLayout title={Page_Title} description={Page_Description} bgImage={imgSrc}>
+<PageLayout
+	title={Page_Title}
+	description={Page_Description}
+	bgImage={imgSrc}
+	bgImageMobile={imgSrcMobile}
+>
 	<SectionLayout>
 		<div
 			class="w-full flex justify-start xl:justify-start gap-10 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"

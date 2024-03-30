@@ -12,9 +12,21 @@
 	let category = data?.attributes?.category?.data?.attributes?.Name || '';
 	const slug = data?.attributes?.slug;
 	let image: string;
+	let imageMobile: string;
+	let bgImage: string;
+	let bgImageMobile: string;
 	if (data) {
 		Title = data?.attributes?.Title;
-		image = getImageUrl(data?.attributes?.Video_Thumbnail);
+		image = getImageUrl(
+			data?.attributes?.Video_Thumbnail_File?.Image || data?.attributes?.Video_Thumbnail
+		);
+		imageMobile = getImageUrl(
+			data?.attributes?.Video_Thumbnail_File?.mobileImage || data?.attributes?.Video_Thumbnail
+		);
+		bgImage = getImageUrl(data?.attributes?.Bg_Image_File?.Image || data?.attributes?.bgImage);
+		bgImageMobile = getImageUrl(
+			data?.attributes?.Bg_Image_File?.mobileImage || data?.attributes?.bgImage
+		);
 	}
 	console.log(data);
 	// let heading = 'Lorem Ipsum is simply dummy text of the printing and typesetting.';
@@ -73,7 +85,8 @@
 	title={Title}
 	rightComp={true}
 	description=""
-	bgImage=""
+	bgImage={bgImage || ''}
+	bgImageMobile={bgImageMobile || ''}
 	bgColor="#0F0F0F"
 	tagText={category}
 	className="h-[300px] md:h-[420px]"

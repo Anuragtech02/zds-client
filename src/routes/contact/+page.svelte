@@ -3,7 +3,7 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import ContactForm from '$lib/sections/ContactForm.svelte';
 	export let data;
-	console.log(data);
+
 	let formData = data?.Form;
 </script>
 

@@ -6,6 +6,8 @@ export async function load({ params, fetch }: any) {
 	const elements = [
 		'Form',
 		'bgImage',
+		'Bg_Image_File.Image',
+		'Bg_Image_File.mobileImage',
 		'description',
 		'Page_Description',
 		'Page_Title',

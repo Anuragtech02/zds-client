@@ -9,6 +9,8 @@
 	import Tag from '$lib/components/Tag.svelte';
 	import FacebookShareButton from '$lib/components/FacebookShareButton.svelte';
 	import ShareButton from '$lib/components/ShareButton.svelte';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 
 	onMount(() => {
 		console.log('Page Layout mounted');
@@ -38,24 +40,47 @@
 	<SectionLayout
 		className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 !py-0 w-full"
 	>
-		<div class="flex flex-wrap md:flex-nowrap justify-start items-center">
-			<!-- <div class="flex flex-col w-full justify-end items-start z-[1]">
-				{#if description != ''}
-					<p>{description}</p>
+		{#if browser && !$page.url.href?.includes('blog')}
+			<div class="flex flex-wrap md:flex-nowrap justify-start items-center">
+				<div class="flex flex-col w-full justify-end items-start z-[1]">
+					{#if description != ''}
+						<p>{description}</p>
+					{/if}
+					{#if icon != ''}
+						<img src={icon} alt={title} class="w-20 h-20 mt-4" />
+					{/if}
+					{#if renderTitleAsH1}
+						<h1 class="text-left renderAsH1">{title}</h1>
+					{:else}
+						<h2 class="text-left">{title}</h2>
+					{/if}
+					{#if tagText != ''}
+						<Tag text={tagText} />
+					{/if}
+				</div>
+				{#if rightComp}
+					<div
+						class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left"
+					>
+						<!-- <img
+						src="/images/hero-gradient.png"
+						alt="hero-gradient"
+						class="absolute top-0 md:-left-[150px] left-0 w-[200px] opacity-60 md:opacity-100 md:w-auto pointer-events-none z-[0]"
+					/> -->
+						<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
+							<p class="text-left">2023-ZERO DESIGN STUDIO</p>
+							<span class="flex justify-start items-center gap-4">
+								<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
+								<FacebookShareButton {url} />
+								<!-- <InstagramIcon />
+							<VimeoIcon />
+							<YoutubeIcon /> -->
+							</span>
+						</div>
+					</div>
 				{/if}
-				{#if icon != ''}
-					<img src={icon} alt={title} class="w-20 h-20 mt-4" />
-				{/if}
-				{#if renderTitleAsH1}
-					<h1 class="text-left renderAsH1">{title}</h1>
-				{:else}
-					<h2 class="text-left">{title}</h2>
-				{/if}
-				{#if tagText != ''}
-					<Tag text={tagText} />
-				{/if}
-			</div> -->
-		</div>
+			</div>
+		{/if}
 	</SectionLayout>
 	<!-- <div
 		class="absolute z-[-1] w-full bg-cover !bg-center bg-no-repeat xl:!bg-right h-[300px] md:h-[420px] top-0 left-0"
@@ -70,45 +95,47 @@
 		</picture>
 	{/if}
 </div>
-<SectionLayout
-	className="flex flex-col sm:flex-row justify-between items-start"
-	padding="py-4 sm:py-10"
->
-	<div class="flex flex-col w-full justify-end items-start z-[1]">
-		{#if description != ''}
-			<p>{description}</p>
-		{/if}
-		{#if icon != ''}
-			<img src={icon} alt={title} class="w-20 h-20 mt-4" />
-		{/if}
-		{#if renderTitleAsH1}
-			<h1 class="text-left renderAsH1">{title}</h1>
-		{:else}
-			<h2 class="text-left">{title}</h2>
-		{/if}
-		<!-- <h2 class="text-left">{title}</h2> -->
-		{#if tagText != ''}
-			<Tag text={tagText} />
-		{/if}
-	</div>
-	{#if rightComp}
-		<div class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left">
-			<!-- <img
+{#if browser && $page.url.href?.includes('blog')}
+	<SectionLayout
+		className="flex flex-col sm:flex-row justify-between items-start"
+		padding="py-4 sm:py-10"
+	>
+		<div class="flex flex-col w-full justify-end items-start z-[1]">
+			{#if description != ''}
+				<p>{description}</p>
+			{/if}
+			{#if icon != ''}
+				<img src={icon} alt={title} class="w-20 h-20 mt-4" />
+			{/if}
+			{#if renderTitleAsH1}
+				<h1 class="text-left renderAsH1">{title}</h1>
+			{:else}
+				<h2 class="text-left">{title}</h2>
+			{/if}
+			<!-- <h2 class="text-left">{title}</h2> -->
+			{#if tagText != ''}
+				<Tag text={tagText} />
+			{/if}
+		</div>
+		{#if rightComp}
+			<div class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left">
+				<!-- <img
 						src="/images/hero-gradient.png"
 						alt="hero-gradient"
 						class="absolute top-0 md:-left-[150px] left-0 w-[200px] opacity-60 md:opacity-100 md:w-auto pointer-events-none z-[0]"
 					/> -->
-			<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
-				<p class="text-left">2023-ZERO DESIGN STUDIO</p>
-				<span class="flex justify-start items-center gap-4">
-					<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
-					<FacebookShareButton {url} />
-					<!-- <InstagramIcon />
+				<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
+					<p class="text-left">2023-ZERO DESIGN STUDIO</p>
+					<span class="flex justify-start items-center gap-4">
+						<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
+						<FacebookShareButton {url} />
+						<!-- <InstagramIcon />
 							<VimeoIcon />
 							<YoutubeIcon /> -->
-				</span>
+					</span>
+				</div>
 			</div>
-		</div>
-	{/if}
-</SectionLayout>
+		{/if}
+	</SectionLayout>
+{/if}
 <slot />

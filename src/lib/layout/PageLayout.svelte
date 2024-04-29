@@ -100,7 +100,7 @@
 		className="flex flex-col sm:flex-row justify-between items-start"
 		padding="py-4 sm:py-10"
 	>
-		<div class="flex flex-col w-full justify-end items-start z-[1]">
+		<div class="flex flex-col w-full justify-end items-start z-[1] flex-1">
 			{#if description != ''}
 				<p>{description}</p>
 			{/if}
@@ -108,9 +108,9 @@
 				<img src={icon} alt={title} class="w-20 h-20 mt-4" />
 			{/if}
 			{#if renderTitleAsH1}
-				<h1 class="text-left renderAsH1">{title}</h1>
+				<h1 class="text-left renderAsH1 w-full">{title}</h1>
 			{:else}
-				<h2 class="text-left">{title}</h2>
+				<h2 class="text-left w-full">{title}</h2>
 			{/if}
 			<!-- <h2 class="text-left">{title}</h2> -->
 			{#if tagText != ''}
@@ -118,7 +118,7 @@
 			{/if}
 		</div>
 		{#if rightComp}
-			<div class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left">
+			<div class="flex flex-col items-start md:items-end mt-10 md:mt-0 text-left min-w-[300px]">
 				<!-- <img
 						src="/images/hero-gradient.png"
 						alt="hero-gradient"

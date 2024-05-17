@@ -54,25 +54,28 @@
 				return Category_Name;
 			})
 		];
+		console.log({ Work_Categories });
 		works = Work_Categories?.data?.map((category: any) => {
-			const work = category?.attributes?.blogs?.data?.map((w: any) => {
-				const work_data = w?.attributes;
-				return {
-					id: w?.id,
-					category: category?.attributes?.Name,
-					title: work_data?.Title,
-					description: work_data?.Description,
-					slug: work_data?.slug,
-					video: {
+			const work = category?.attributes?.blogs?.data
+				?.sort((a, b) => new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt))
+				.map((w: any) => {
+					const work_data = w?.attributes;
+					return {
 						id: w?.id,
-						title: work_data?.Title,
 						category: category?.attributes?.Name,
+						title: work_data?.Title,
+						description: work_data?.Description,
 						slug: work_data?.slug,
-						thumbnail: getImageUrl(work_data?.thumbnail),
-						Video: ''
-					}
-				};
-			});
+						video: {
+							id: w?.id,
+							title: work_data?.Title,
+							category: category?.attributes?.Name,
+							slug: work_data?.slug,
+							thumbnail: getImageUrl(work_data?.thumbnail),
+							Video: ''
+						}
+					};
+				});
 			return work;
 		});
 		works = works.flat();

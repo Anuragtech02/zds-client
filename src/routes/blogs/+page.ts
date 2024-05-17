@@ -23,6 +23,10 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		urlParams.append(`populate[${index}]`, item);
 	});
 
-	const data = await fetchData('blog-page', urlParams.toString()+`&sort[0]=createdAt:desc`, fetch);
+	const data = await fetchData(
+		'blog-page',
+		urlParams.toString() + `&sort[0]=updatedAt:desc`,
+		fetch
+	);
 	return data;
 };

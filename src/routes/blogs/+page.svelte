@@ -96,7 +96,16 @@
 		}
 		return work.category === selectedCategory;
 	});
-	$: console.log({ filteredWorks });
+
+	function getCategoryDescription(cat: string) {
+		// check for all categories
+		if (cat === 'All Categories') {
+			return description;
+		}
+		// check for other categories
+		const category = Work_Categories?.data?.find((c: any) => c.attributes.Name === cat);
+		return category?.attributes?.Description || '';
+	}
 </script>
 
 <CustomHead seo={data.seo} />
@@ -127,7 +136,7 @@
 			</div>
 			<!-- {#each description.split('\n') as d} -->
 			<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
-				{description}
+				{getCategoryDescription(selectedCategory)}
 			</div>
 			<!-- {/each} -->
 

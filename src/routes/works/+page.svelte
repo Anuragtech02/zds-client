@@ -79,10 +79,8 @@
 			return description;
 		}
 		// check for other categories
-		const category = categories.find((c) => c === cat);
-		const categoryIndex = categories.indexOf(category);
-		const categoryDescription = Work_Categories?.data[categoryIndex - 1]?.attributes?.Description;
-		return categoryDescription;
+		const category = Work_Categories?.data?.find((c: any) => c.attributes.Name === cat);
+		return category?.attributes?.Description || '';
 	}
 
 	$: filteredWorks = works.filter((work: any) => {

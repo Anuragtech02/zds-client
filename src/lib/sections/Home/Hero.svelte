@@ -38,7 +38,7 @@
 			x: -100,
 			ease: 'power4.out',
 			delay: 0.4,
-			opacity: 0
+			opacity: 0,
 		});
 
 	onMount(() => {
@@ -48,6 +48,7 @@
 			ease: 'power4.out',
 			delay: 0.2,
 			skewY: 7,
+			duration: 1.8,
 			stagger: {
 				amount: 0.3
 			}
@@ -72,7 +73,7 @@
 		// timer to update active word
 		setInterval(() => {
 			activeWordIdx = activeWordIdx === heading.length - 1 ? 0 : activeWordIdx + 1;
-		}, 3000);
+		}, 4000);
 
 		// let previousActiveWordIdx = -1;
 	});

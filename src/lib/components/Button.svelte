@@ -41,10 +41,10 @@
 		border-radius: inherit;
 		background: linear-gradient(
         90deg,
-        rgba(249, 66, 158, 0.8),  /* #f9429e */
-        rgba(37, 24, 209, 0.8),   /* #2518D1 */
-        rgba(249, 66, 158, 0.8),  /* #f9429e */
-        rgba(37, 24, 209, 0.8)    /* #2518D1 */
+        #f9429e,         /* Start color */
+        #d137b1,         /* Intermediate color closer to #f9429e */
+        #7138d2,         /* Intermediate color between #f9429e and #2518D1 */
+        #2518D1          /* End color */
     );
 		z-index: -1;
 		animation: border-animation 3s linear infinite;

@@ -1,5 +1,3 @@
-ContactSection.svelte
-
 <script lang="ts">
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import ContactForm from '../ContactForm.svelte';

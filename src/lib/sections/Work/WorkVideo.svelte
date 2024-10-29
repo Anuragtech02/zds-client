@@ -8,6 +8,7 @@
 	export let video: {
 		id: number;
 		title: string;
+		description?: string;
 		category: string;
 		slug: string;
 		thumbnail: string;
@@ -60,25 +61,32 @@
 			on:click={() => {
 				goto(`/${type}/${video.slug}`);
 			}}
-			class="h-full w-full relative"
+			class="h-full w-full p-1 rounded-xl bg-[#404040] relative"
 		>
-			<p class="absolute top-0 left-0 w-full p-2 px-4 text-left backdrop-blur rounded-t-xl">
-				{heading}
-			</p>
 			{#key video.thumbnail}
 				<!-- <img src={src || video.thumbnail} alt="img" class="rounded-xl object-cover h-full w-full" /> -->
-				<picture class="block rounded-xl overflow-hidden object-cover h-full w-full">
+				<picture class="block rounded-xl overflow-hidden object-cover h-[85%] w-full">
 					<source media="(max-width: 499px)" srcset={srcMobile || video.thumbnailMobile} />
 					<source media="(min-width: 500px)" srcset={src || video.thumbnail} />
 					<img {src} alt={heading} class="block rounded-xl object-cover h-full w-full" />
 				</picture>
 			{/key}
-			<!-- <video>
-				<source src={video.Video} type="video/mp4" />
-			</video> -->
-			<p class="absolute bottom-2 left-2 rounded-2xl px-4 py-1 backdrop-blur">
+			<p class="text-sm absolute top-3 right-3 rounded-2xl px-4 py-1 bg-[#404040]">
 				{category}
 			</p>
+			<div class="pt-[3px] px-4">
+				<p class="text-[0.8rem] w-full text-left rounded-t-xl">
+					{heading}
+				</p>
+				<!-- {#if video?.description}
+					<p class="text-sm line-clamp-2">
+						{video?.description}
+					</p>
+				{/if} -->
+				<!-- <video>
+					<source src={video.Video} type="video/mp4" />
+				</video> -->
+			</div>
 		</div>
 	</div>
 </div>

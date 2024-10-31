@@ -65,7 +65,7 @@
 		>
 			{#key video.thumbnail}
 				<!-- <img src={src || video.thumbnail} alt="img" class="rounded-xl object-cover h-full w-full" /> -->
-				<picture class="block rounded-xl overflow-hidden object-cover h-[85%] w-full">
+				<picture class="block rounded-xl overflow-hidden object-cover h-[85%] w-full aspect-[2]">
 					<source media="(max-width: 499px)" srcset={srcMobile || video.thumbnailMobile} />
 					<source media="(min-width: 500px)" srcset={src || video.thumbnail} />
 					<img {src} alt={heading} class="block rounded-xl object-cover h-full w-full" />
@@ -95,7 +95,7 @@
 	.item {
 		display: block;
 
-		aspect-ratio: 2;
+		/* aspect-ratio: 2; */
 		z-index: 1;
 		background: #000;
 		color: #fff;

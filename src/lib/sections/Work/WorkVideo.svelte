@@ -9,6 +9,7 @@
 		id: number;
 		title: string;
 		description?: string;
+		shortDescription?: string;
 		category: string;
 		slug: string;
 		thumbnail: string;
@@ -51,7 +52,7 @@
 	} ${className}`}
 	bind:this={container}
 >
-	<div class="item-content">
+	<div class="item-content h-full">
 		<div
 			role="button"
 			tabindex="0"
@@ -65,7 +66,7 @@
 		>
 			{#key video.thumbnail}
 				<!-- <img src={src || video.thumbnail} alt="img" class="rounded-xl object-cover h-full w-full" /> -->
-				<picture class="block rounded-xl overflow-hidden object-cover h-[85%] w-full aspect-[2]">
+				<picture class="block rounded-xl overflow-hidden object-cover h-[250px] w-full aspect-[2]">
 					<source media="(max-width: 499px)" srcset={srcMobile || video.thumbnailMobile} />
 					<source media="(min-width: 500px)" srcset={src || video.thumbnail} />
 					<img {src} alt={heading} class="block rounded-xl object-cover h-full w-full" />
@@ -74,8 +75,8 @@
 			<p class="text-sm absolute top-3 right-3 rounded-2xl px-4 py-1 bg-[#404040]">
 				{category}
 			</p>
-			<div class="pt-[3px] px-4">
-				<p class="text-[0.8rem] w-full text-left rounded-t-xl">
+			<div class="px-4 py-1 flex flex-col items-start justify-center">
+				<p class="text-[0.8rem] w-full text-left rounded-t-xl mt-1">
 					{heading}
 				</p>
 				<!-- {#if video?.description}
@@ -83,6 +84,11 @@
 						{video?.description}
 					</p>
 				{/if} -->
+				{#if video?.shortDescription}
+					<p class="text-sm line-clamp-2">
+						{video?.shortDescription}
+					</p>
+				{/if}
 				<!-- <video>
 					<source src={video.Video} type="video/mp4" />
 				</video> -->

@@ -57,7 +57,10 @@
 		console.log({ Work_Categories });
 		works = Work_Categories?.data?.map((category: any) => {
 			const work = category?.attributes?.blogs?.data
-				?.sort((a, b) => new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt))
+				?.sort(
+					(a: { attributes: { updatedAt: string } }, b: { attributes: { updatedAt: string } }) =>
+						new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()
+				)
 				.map((w: any) => {
 					const work_data = w?.attributes;
 					return {
@@ -72,7 +75,8 @@
 							category: category?.attributes?.Name,
 							slug: work_data?.slug,
 							thumbnail: getImageUrl(work_data?.thumbnail),
-							Video: ''
+							Video: '',
+							shortDescription: work_data?.Short_Description || null
 						}
 					};
 				});
@@ -149,13 +153,14 @@
 								y: 100,
 								delay: i * 100
 							}}
+							class="flex flex-col h-full"
 						>
 							<WorkVideo
 								absolute={false}
 								video={video.video}
 								type="blogs"
 								fixedWidth={false}
-								className="!m-0 w-full"
+								className="!m-0 w-full h-full"
 							/>
 						</div>
 						<!-- </div> -->

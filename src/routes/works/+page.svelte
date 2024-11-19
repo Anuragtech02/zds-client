@@ -11,11 +11,9 @@
 	import { fly } from 'svelte/transition';
 
 	onNavigate((navigation) => {
-		// @ts-expect-error this is a custom method
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
-			// @ts-expect-error this is a custom method
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
@@ -39,7 +37,10 @@
 		})
 	];
 	let works = Work_Categories?.data
-		?.sort((a, b) => new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt))
+		?.sort(
+			(a: { attributes: { updatedAt: string } }, b: { attributes: { updatedAt: string } }) =>
+				new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()
+		)
 		.map((category: any) => {
 			const work = category?.attributes?.Works?.data?.map((w: any) => {
 				const work_data = w?.attributes;
@@ -48,6 +49,7 @@
 					category: category?.attributes?.Name,
 					title: work_data?.Title,
 					description: work_data?.Description,
+					shortDescription: work_data?.Short_Description || null,
 					slug: work_data?.slug,
 					thumbnail: getImageUrl(
 						work_data?.Video_Thumbnail_File?.Image || work_data?.Video_Thumbnail

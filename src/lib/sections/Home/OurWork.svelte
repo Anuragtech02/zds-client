@@ -18,7 +18,8 @@
 		category: a?.attributes?.category?.data?.attributes?.Name,
 		Video: a?.attributes?.Video?.data?.attributes?.url,
 		thumbnail: getImageUrl(a?.attributes?.Video_Thumbnail, 'original'),
-		description: a?.attributes?.Description
+		description: a?.attributes?.Description,
+		shortDescription: a?.attributes?.Short_Description || null
 	}));
 </script>
 

@@ -94,7 +94,7 @@
 				{#each socialIcons as icon, index}
 					{#if index === currentIconIndex}
 						<div class="absolute inset-0 sliding-icon flex items-center justify-center">
-							<div class="w-6 h-6">
+							<div class="w-7 h-7">
 								<!-- Added size constraint for icons -->
 								<svelte:component this={icon.component} className="h-full w-full" />
 							</div>

@@ -48,7 +48,9 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
 			<!-- Logo and Description -->
 			<div class="flex flex-col items-start gap-6">
-				<Logo title="ZERO" subTitle="DESIGN STUDIO" />
+				<a href="/">
+					<Logo title="ZERO" subTitle="DESIGN STUDIO" />
+				</a>
 				<p class="text-sm text-left max-w-[250px]">{copywrightText}</p>
 			</div>
 

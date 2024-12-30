@@ -34,9 +34,9 @@
 	bgImage={imgSrc}
 	bgImageMobile={imgSrcMobile}
 >
-	<SectionLayout className="py-[50px]">
-		<slot />
-	</SectionLayout>
+	<!-- <SectionLayout className="py-[50px]"> -->
+	<slot />
+	<!-- </SectionLayout> -->
 </PageLayout>
 <DecorationLeft bottom={'90%'} />
 

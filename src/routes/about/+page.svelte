@@ -11,6 +11,7 @@
 	import CheckerLottieAnimation from './CheckerLottieAnimation.svelte';
 	import DecorationLeft from '$lib/components/DecorationLeft.svelte';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
+	import BubbleTeamLayout from '$lib/components/BubbleTeamLayout.svelte';
 
 	// gsap.registerPlugin(ScrollTrigger);
 	export let data;
@@ -55,54 +56,55 @@
 	const teamMembers = members;
 </script>
 
-<div class="flex justify-between lg:items-start xl:items-center gap-6 pb-24">
-	<div>
-		<div class="flex justify-between items-center gap-2">
-			<div>
-				<div class="flex justify-start items-center gap-2 md:gap-8 [&>h3]:text-left flex-wrap">
-					<h1 class="w-full text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] text-left sm:w-auto">
-						<OutlinedText text="ZERO DESIGN" />
-						<OutlinedText text="STUDIO IS A" />
-						<TextWithBg>MULTIDISCIPLINARY</TextWithBg>
-						<OutlinedText strokeWidth="w-stroke-1" text="EXPERIENCE" />
-						<TextWithBg>DESIGN</TextWithBg>
-						<OutlinedText strokeWidth="w-stroke-1" text="COMPANY" />
-					</h1>
+<SectionLayout className="py-[50px]">
+	<div class="flex justify-between lg:items-start xl:items-center gap-6 pb-24">
+		<div>
+			<div class="flex justify-between items-center gap-2">
+				<div>
+					<div class="flex justify-start items-center gap-2 md:gap-8 [&>h3]:text-left flex-wrap">
+						<h1
+							class="w-full text-[1.5rem] md:text-[1.875rem] lg:text-[2.5rem] text-left sm:w-auto"
+						>
+							<OutlinedText text="ZERO DESIGN" />
+							<OutlinedText text="STUDIO IS A" />
+							<TextWithBg>MULTIDISCIPLINARY</TextWithBg>
+							<OutlinedText strokeWidth="w-stroke-1" text="EXPERIENCE" />
+							<TextWithBg>DESIGN</TextWithBg>
+							<OutlinedText strokeWidth="w-stroke-1" text="COMPANY" />
+						</h1>
+					</div>
+				</div>
+				<div class="w-[25%] mr-0 hidden sm:flex md:hidden justify-end">
+					<img src={image} alt="about" />
 				</div>
 			</div>
-			<div class="w-[25%] mr-0 hidden sm:flex md:hidden justify-end">
-				<img src={image} alt="about" />
-			</div>
-		</div>
-		<div class="mt-12 [&>p]:text-left">
-			<p class="text-left capitalize">
-				<!-- {#each p1.split('') as char, index}
+			<div class="mt-12 [&>p]:text-left">
+				<p class="text-left capitalize">
+					<!-- {#each p1.split('') as char, index}
 					<span class="char" style="transition-delay: {index * 0.05}s"
 						>{char === ' ' ? '\u00a0' : char}</span
 					>
 				{/each} -->
-				{p1}
-			</p>
+					{p1}
+				</p>
+			</div>
+		</div>
+		<div class="hidden md:block lg:w-[40%] xl:w-full">
+			<img src={image} alt="about" />
 		</div>
 	</div>
-	<div class="hidden md:block lg:w-[40%] xl:w-full">
-		<img src={image} alt="about" />
-	</div>
-</div>
+</SectionLayout>
 
 <div class="relative overflow-hidden py-8 pt-0">
-	<h3 class="text-left">
-		<OutlinedText text="OUR" />
-		TEAM
-	</h3>
-	<div
-		class="bg-transparent relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-8 py-8"
-	>
-		{#each teamMembers as member}
-			<MemberCard {member} />
-		{/each}
-	</div>
+	<SectionLayout className="py-[50px]">
+		<h3 class="text-left">
+			<OutlinedText text="OUR" />
+			TEAM
+		</h3>
+	</SectionLayout>
+	<BubbleTeamLayout members={teamMembers} />
 </div>
+
 <FloatingActionButton />
 
 <style>

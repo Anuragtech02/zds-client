@@ -17,7 +17,7 @@
 	let isHovering = false;
 	let intervalId: any;
 
-	const AUTOPLAY_INTERVAL = 3000; // 3 seconds per project
+	const AUTOPLAY_INTERVAL = 4000; // 3 seconds per project
 
 	const works = arr.map((a: any) => ({
 		slug: a?.attributes.slug,

@@ -3,12 +3,16 @@
 	import InstagramIcon from '$lib/icons/InstagramIcon.svelte';
 	import YoutubeIcon from '$lib/icons/YoutubeIcon.svelte';
 	import LinkedinIcon from '$lib/icons/LinkedinIcon.svelte';
+	import WhatsappIcon from '$lib/icons/WhatsappIcon.svelte'; // You'll need to create this icon component
 	import { TimelineLite, gsap } from 'gsap';
 	import { onMount } from 'svelte';
 
 	let showMenu = false;
 	let menu: HTMLDivElement;
-	let currentIconIndex = 0;
+
+	// Phone number for WhatsApp (replace with your number)
+	const WHATSAPP_NUMBER = '+919165470007';
+	const WHATSAPP_MESSAGE = "Hi there, I'm connecting you via the website zeriodesignstudios.com";
 
 	const socialIcons = [
 		{
@@ -31,18 +35,7 @@
 
 	onMount(() => {
 		gsap.set(menu, { autoAlpha: 0, y: 20 });
-		startIconAnimation();
 	});
-
-	function startIconAnimation() {
-		const interval = setInterval(() => {
-			if (!showMenu) {
-				currentIconIndex = (currentIconIndex + 1) % socialIcons.length;
-			}
-		}, 3000); // Change icon every 3 seconds
-
-		return () => clearInterval(interval);
-	}
 
 	const show = () => {
 		showMenu = true;
@@ -57,11 +50,14 @@
 		let tl = new TimelineLite();
 		tl.staggerTo(Object.values(listItems), 0.2, { autoAlpha: 0, y: 40, ease: 'power2.in' }, 0.1);
 	};
+
+	const openWhatsApp = () => {
+		const encodedMessage = encodeURIComponent(WHATSAPP_MESSAGE);
+		window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+	};
 </script>
 
-<!-- Added a wrapper div with padding to create a larger hover area -->
 <div class="fixed right-4 md:right-8 bottom-4 z-50 p-4" on:mouseenter={show} on:mouseleave={hide}>
-	<!-- Inner container for proper positioning -->
 	<div class="relative">
 		<!-- Menu positioned above the FAB -->
 		<div
@@ -86,50 +82,19 @@
 			</ul>
 		</div>
 
-		<!-- FAB Button -->
+		<!-- WhatsApp FAB Button -->
 		<div
-			class="floating-icon rounded-full bg-white bg-opacity-10 border border-neutral-500 h-16 w-16 hover:h-20 hover:w-20 flex justify-center items-center cursor-pointer transition-all duration-200 ease-out overflow-hidden"
+			class="floating-icon rounded-full bg-white bg-opacity-10 border border-neutral-500 h-16 w-16 hover:h-20 hover:w-20 flex justify-center items-center cursor-pointer transition-all duration-200 ease-out"
+			on:click={openWhatsApp}
 		>
-			<div class="icon-container relative w-full h-full p-4">
-				{#each socialIcons as icon, index}
-					{#if index === currentIconIndex}
-						<div class="absolute inset-0 sliding-icon flex items-center justify-center">
-							<div class="w-7 h-7">
-								<!-- Added size constraint for icons -->
-								<svelte:component this={icon.component} className="h-full w-full" />
-							</div>
-						</div>
-					{/if}
-				{/each}
+			<div class="w-7 h-7">
+				<WhatsappIcon className="h-full w-full" />
 			</div>
 		</div>
 	</div>
 </div>
 
 <style>
-	.sliding-icon {
-		animation: slideIcon 3s ease-in-out;
-	}
-
-	@keyframes slideIcon {
-		0% {
-			transform: translateX(100%);
-			opacity: 0;
-		}
-		15% {
-			transform: translateX(0);
-			opacity: 1;
-		}
-		85% {
-			transform: translateX(0);
-			opacity: 1;
-		}
-		100% {
-			transform: translateX(-100%);
-			opacity: 0;
-		}
-	}
-
 	.icon-container :global(svg) {
 		width: 100%;
 		height: 100%;

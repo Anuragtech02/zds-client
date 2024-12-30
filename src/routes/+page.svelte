@@ -11,6 +11,7 @@
 	import { homeStore } from '$lib/stores/hero.store';
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import CustomHead from '$lib/components/CustomHead.svelte';
+	import InstagramIntegration from '$lib/sections/Home/InstagramIntegration.svelte';
 
 	$: data = $homeStore;
 </script>
@@ -21,6 +22,7 @@
 <OurWork data={data[homeSections[1]]} />
 <PartnersSection data={data[homeSections[2]]} />
 <ServicesSection data={data[homeSections[3]]} />
+<!-- <InstagramIntegration instagramHandle="zerodesignstudio" /> -->
 <!-- <MarketplaceSection data={data[homeSections[4]]} /> -->
 <FloatingActionButton />
 <!-- <AboutSection /> -->

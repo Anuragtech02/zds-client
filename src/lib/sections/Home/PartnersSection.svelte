@@ -4,9 +4,8 @@
 	import PartnersCircleGlow from '$lib/icons/PartnersCircleGlow.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import { breakSentence, getImageUrl } from '$lib/utils/functions';
-	import { get } from 'svelte/store';
 	export let data;
-	console.log(data);
+
 	const title = data.title;
 	let { initialWords, lastWord } = breakSentence(title);
 
@@ -21,7 +20,6 @@
 	class="relative flex flex-col justify-center items-center max-w-[100vw] max-h-[100vh] overflow-hidden"
 >
 	<SectionLayout className="w-full m-0" type="wrapper">
-		<!-- <PartnersCircleGlow className="absolute -top-4 -left-4" /> -->
 		<h2 class="uppercase max-width-container text-left">
 			{initialWords}
 			<OutlinedText text={lastWord} />
@@ -31,26 +29,22 @@
 				<div class="flex items-center">
 					{#each brands as brand}
 						<div
-							class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[200px] md:min-w-[280px] bg-transparent"
+							class="flex justify-center items-center h-[150px] min-w-[200px] md:min-w-[280px] bg-transparent logo-container"
 						>
-							<img
-								class="h-full w-full max-w-[150px] max-h-[150px] object-contain bg-transparent"
-								src={brand.logo}
-								alt={brand.name}
-							/>
+							<div class="logo-wrapper">
+								<img class="object-contain bg-transparent" src={brand.logo} alt={brand.name} />
+							</div>
 						</div>
 					{/each}
 				</div>
 				<div class="flex items-center">
 					{#each brands as brand}
 						<div
-							class="flex justify-center items-center bg-gray-200 h-[150px] min-w-[200px] md:min-w-[280px] bg-transparent"
+							class="flex justify-center items-center h-[150px] min-w-[200px] md:min-w-[280px] bg-transparent logo-container"
 						>
-							<img
-								class="h-full w-full max-w-[150px] max-h-[150px] object-contain bg-transparent"
-								src={brand.logo}
-								alt={brand.name}
-							/>
+							<div class="logo-wrapper">
+								<img class="object-contain bg-transparent" src={brand.logo} alt={brand.name} />
+							</div>
 						</div>
 					{/each}
 				</div>
@@ -78,9 +72,34 @@
 		position: absolute;
 		top: 0;
 		right: -4rem;
-
 		z-index: 1;
 	}
+
+	.logo-container {
+		padding: 1rem;
+	}
+
+	.logo-wrapper {
+		width: 120px;
+		height: 120px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+
+	.logo-wrapper img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		transition: transform 0.3s ease;
+	}
+
+	/* Optional: Add hover effect */
+	.logo-wrapper:hover img {
+		transform: scale(1.1);
+	}
+
 	@keyframes scroll {
 		0% {
 			transform: translateX(0);
@@ -89,6 +108,7 @@
 			transform: translateX(-101%);
 		}
 	}
+
 	@media (max-width: 768px) {
 		.brands-container::after {
 			width: 10rem;
@@ -96,7 +116,12 @@
 		.brands-container::before {
 			width: 10rem;
 		}
+		.logo-wrapper {
+			width: 90px;
+			height: 90px;
+		}
 	}
+
 	.slider-track > div {
 		animation: scroll 40s linear infinite forwards;
 	}

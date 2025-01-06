@@ -14,14 +14,16 @@
 </script>
 
 <div
-	class=" overflow-hidden p-6 py-8 flex flex-col gap-6 bg-transparent backdrop-blur-sm rounded-md border-[1px] border-[#3A3A3A]"
+	class="p-4 overflow-hidden flex flex-col gap-6 bg-transparent backdrop-blur-sm hover:-translate-y-8 transition-transform duration-300 ease-in-out"
 >
-	<img src={member.image} alt={member.name} class="h-[300px] object-cover" />
+	<div class="relative overflow-hidden rounded-2xl h-[300px]">
+		<img src={member.image} alt={member.name} class="h-full object-cover w-full" />
+	</div>
 	<div class="flex gap-4 justify-between">
 		<div>
-			<p class="text-left text-sm">
+			<!-- <p class="text-left text-sm">
 				{member.title}
-			</p>
+			</p> -->
 			<p class="text-md text-left">
 				<strong>
 					{member.name}

@@ -16,7 +16,7 @@
 <div
 	class="p-4 overflow-hidden flex flex-col gap-6 bg-transparent backdrop-blur-sm hover:-translate-y-8 transition-transform duration-300 ease-in-out"
 >
-	<div class="relative overflow-hidden rounded-2xl h-[300px]">
+	<div class="relative overflow-hidden rounded-3xl h-[300px] bg-gray-50">
 		<img src={member.image} alt={member.name} class="h-full object-cover w-full" />
 	</div>
 	<div class="flex gap-4 justify-between">
@@ -29,12 +29,15 @@
 					{member.name}
 				</strong>
 			</p>
-			<p class="text-sm text-left">
-				{member.role}
-			</p>
+			<div class="flex items-center gap-2">
+				<div class="w-2 h-2 rounded-full bg-white" />
+				<p class="text-sm text-left">
+					{member.role}
+				</p>
+			</div>
 		</div>
-		<a href={member.linkedIn} target="_blank" rel="noopener">
+		<!-- <a href={member.linkedIn} target="_blank" rel="noopener">
 			<LinkedinIcon height={24} width={24} className="cursor-pointer" />
-		</a>
+		</a> -->
 	</div>
 </div>

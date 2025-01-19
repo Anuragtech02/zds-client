@@ -54,7 +54,6 @@
 				return Category_Name;
 			})
 		];
-		console.log({ Work_Categories });
 		works = Work_Categories?.data?.map((category: any) => {
 			const work = category?.attributes?.blogs?.data
 				?.sort(

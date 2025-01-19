@@ -3,7 +3,6 @@
 	import MarketplaceItem from '$lib/sections/MarketPlace/MarketplaceItem.svelte';
 	import { getImageUrl } from '$lib/utils/functions.js';
 	export let data;
-	console.log(data);
 	const { ContentDescription, ContentTitle } = data;
 
 	let filters = data.market_place_items.data.map((item: any) => {
@@ -13,7 +12,6 @@
 		return f;
 	});
 	filters = Array.from(new Set(filters.flat()));
-	console.log({ filters });
 	let items = data.market_place_items.data.map((item: any) => {
 		let f = item.attributes;
 		return {
@@ -24,14 +22,11 @@
 			category: f.market_place_item_categories.data.map((cat: any) => cat.attributes.category)
 		};
 	});
-	console.log({ items });
 	let selectedFilters: Array<string> = [];
 
 	let filteredItems = items;
-	$: console.log(selectedFilters, filteredItems, filters);
 	const checkBoxChangeHandler = (e: Event, filter: string) => {
 		const target = e.target as HTMLInputElement;
-		console.log(target.checked, filter);
 		if (target.checked) {
 			selectedFilters.push(filter);
 		} else {
@@ -42,10 +37,8 @@
 				return true;
 			}
 			let bool = selectedFilters.some((selectedFilter) => item.category.includes(selectedFilter));
-			console.log(bool, selectedFilters, item.category);
 			return bool;
 		});
-		console.log(selectedFilters);
 	};
 </script>
 

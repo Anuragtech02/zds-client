@@ -22,7 +22,7 @@
 	const works = arr.map((a: any) => ({
 		slug: a?.attributes.slug,
 		title: a?.attributes.Title,
-		category: a?.attributes?.category?.data?.attributes?.Name,
+		categories: a?.attributes?.categories?.data?.map((cat: any) => cat?.attributes?.Name) || [],
 		Video: a?.attributes?.Video?.data?.attributes?.url,
 		thumbnail: getImageUrl(a?.attributes?.Video_Thumbnail, 'original'),
 		description: a?.attributes?.Description,
@@ -94,7 +94,11 @@
 							class="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm px-4 py-1 rounded-full text-sm text-white"
 							in:fade={{ duration: 500 }}
 						>
-							{video.category}
+							{#each video.categories as category}
+								<span class="text-sm rounded-2xl px-4 py-1 bg-[#404040] mx-1">
+									{category}
+								</span>
+							{/each}
 						</div>
 
 						<!-- Gradient Overlay - Only visible when expanded -->

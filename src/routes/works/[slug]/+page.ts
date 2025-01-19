@@ -5,7 +5,7 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	const { slug } = params;
 	const urlParams = new URLSearchParams();
 	const populate = [
-		'category',
+		'categories',
 		'Video_Thumbnail',
 		'Video_Thumbnail_File.Image',
 		'Video_Thumbnail_File.mobileImage',

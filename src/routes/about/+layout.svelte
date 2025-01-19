@@ -8,7 +8,6 @@
 	import { getImageUrl } from '$lib/utils/functions';
 
 	export let data;
-	console.log(data);
 	let { Page_Title, Page_Description, Bg_Image_File, About_Description } = data;
 	let imgSrc = getImageUrl(Bg_Image_File.Image);
 	let imgSrcMobile = getImageUrl(Bg_Image_File.mobileImage);

@@ -30,7 +30,6 @@
 		}
 
 		requestAnimationFrame(raf);
-		console.log({ homeData: data });
 	});
 	let commonData = {
 		header: data?.header,

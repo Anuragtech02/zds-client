@@ -55,7 +55,7 @@
 		<img src={service?.Icon} class="h-20 w-20 hidden sm:block lg:h-28 lg:w-28" alt="" />
 		<ul class="flex flex-wrap gap-2 items-center">
 			{#each service?.ShortDescriptionPoints as s, i}
-				<li class="text-sm">
+				<li class="text-sm text-left">
 					{#if i != 0}
 						•
 					{/if}{s}

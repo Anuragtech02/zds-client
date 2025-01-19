@@ -24,7 +24,6 @@
 			data: []
 		}
 	};
-	console.log(data);
 	let sectionTitle: string[] = [];
 	let services: Array<{
 		Icon: string;

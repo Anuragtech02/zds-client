@@ -14,7 +14,7 @@ export async function load({ params, fetch }: any) {
 		'Works.works',
 		'Hero.Background_Video',
 		'Works.works.Video',
-		'Works.works.category',
+		'Works.works.categories',
 		'Works.works.Video_Thumbnail',
 		'Brands.brands.image',
 		'seo',

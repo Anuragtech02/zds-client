@@ -25,7 +25,6 @@ export const load: PageLoad = async ({ params, fetch }) => {
 
 	// console.log('Search', urlParams.toString());
 	const data = await fetchData('blogs', urlParams.toString(), fetch);
-	console.log('Blog Data', data);
 	if (Array.isArray(data)) {
 		return data[0];
 	} else {

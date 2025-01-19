@@ -97,7 +97,6 @@
 					})
 				});
 				const data = await res.json();
-				console.log(data);
 				// alert('Form submitted successfully');
 				showSuccess = true;
 				setTimeout(() => {

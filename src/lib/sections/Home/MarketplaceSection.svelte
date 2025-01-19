@@ -8,7 +8,6 @@
 	export let data;
 	const { Title, Description, CTA_Text, CTA_Link } = data;
 	let { initialWords, lastWord } = breakSentence(Title);
-	console.log(data);
 
 	let images = data?.Images?.data?.map((i: any) => ({
 		id: i?.id,

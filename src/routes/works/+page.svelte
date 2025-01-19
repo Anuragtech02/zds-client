@@ -6,7 +6,6 @@
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import WorkVideo from '$lib/sections/Work/WorkVideo.svelte';
 	import { getImageUrl } from '$lib/utils/functions.js';
-	// import Muuri from 'muuri';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 
@@ -22,48 +21,62 @@
 	});
 
 	export let data;
-	console.log(data);
+
 	const { Page_Title, Page_Description, description, Work_Categories, bgImage, Bg_Image_File } =
 		data;
 	let imgSrc = getImageUrl(Bg_Image_File?.Image || bgImage);
 	let imgSrcMobile = getImageUrl(Bg_Image_File?.mobileImage || bgImage);
-	let muuriGrid = null;
 
+	// Get categories directly from Work_Categories
 	let categories = [
 		'All Categories',
-		...Work_Categories?.data?.map((category: any) => {
-			const Category_Name = category?.attributes?.Name;
-			return Category_Name;
-		})
+		...Work_Categories?.data?.map((category: any) => category?.attributes?.Name).filter(Boolean)
 	];
-	let works = Work_Categories?.data
+
+	// Process works data - with deduplication
+	let worksMap = new Map(); // Use a Map to track unique works by ID
+
+	Work_Categories?.data
 		?.sort(
 			(a: { attributes: { updatedAt: string } }, b: { attributes: { updatedAt: string } }) =>
 				new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()
 		)
-		.map((category: any) => {
-			const work = category?.attributes?.Works?.data?.map((w: any) => {
+		.forEach((category: any) => {
+			const categoryWorks = category?.attributes?.Works?.data || [];
+
+			categoryWorks.forEach((w: any) => {
 				const work_data = w?.attributes;
-				return {
-					id: w?.id,
-					category: category?.attributes?.Name,
-					title: work_data?.Title,
-					description: work_data?.Description,
-					shortDescription: work_data?.Short_Description || null,
-					slug: work_data?.slug,
-					thumbnail: getImageUrl(
-						work_data?.Video_Thumbnail_File?.Image || work_data?.Video_Thumbnail
-					),
-					thumbnailMobile: getImageUrl(
-						work_data?.Video_Thumbnail_File?.mobileImage || work_data?.Video_Thumbnail
-					),
-					Video: getImageUrl(work_data?.Video)
-				};
+				const workId = w?.id;
+
+				// If we've seen this work before, just add the category to its categories array
+				if (worksMap.has(workId)) {
+					const existingWork = worksMap.get(workId);
+					if (!existingWork.categories.includes(category?.attributes?.Name)) {
+						existingWork.categories.push(category?.attributes?.Name);
+					}
+				} else {
+					// If this is a new work, create a new entry
+					worksMap.set(workId, {
+						id: workId,
+						categories: [category?.attributes?.Name],
+						title: work_data?.Title,
+						description: work_data?.Description,
+						shortDescription: work_data?.Short_Description || null,
+						slug: work_data?.slug,
+						thumbnail: getImageUrl(
+							work_data?.Video_Thumbnail_File?.Image || work_data?.Video_Thumbnail
+						),
+						thumbnailMobile: getImageUrl(
+							work_data?.Video_Thumbnail_File?.mobileImage || work_data?.Video_Thumbnail
+						),
+						Video: getImageUrl(work_data?.Video)
+					});
+				}
 			});
-			return work;
 		});
-	works = works.flat();
-	console.log(works);
+
+	// Convert the Map back to an array
+	let works = Array.from(worksMap.values());
 
 	let selectedCategory = categories[0];
 	let categoryChangeHandler = (category: string) => {
@@ -71,16 +84,10 @@
 		selectedCategory = category;
 	};
 
-	// onMount(() => {
-	// 	muuriGrid = new Muuri('.grid-muuri');
-	// });
-
 	function getCategoryDescription(cat: string) {
-		// check for all categories
 		if (cat === 'All Categories') {
 			return description;
 		}
-		// check for other categories
 		const category = Work_Categories?.data?.find((c: any) => c.attributes.Name === cat);
 		return category?.attributes?.Description || '';
 	}
@@ -89,9 +96,8 @@
 		if (selectedCategory === 'All Categories') {
 			return true;
 		}
-		return work.category === selectedCategory;
+		return work.categories.includes(selectedCategory);
 	});
-	$: console.log(selectedCategory, works, filteredWorks);
 </script>
 
 <CustomHead seo={data.seo} />
@@ -116,22 +122,19 @@
 				</button>
 			{/each}
 		</div>
-		<!-- {#each description.split('\n') as d} -->
+
 		{#key filteredWorks}
 			<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
 				{getCategoryDescription(selectedCategory)}
 			</div>
 		{/key}
-		<!-- {/each} -->
 
 		<div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 			{#each filteredWorks as video, i}
 				{#key filteredWorks}
-					<!-- <div class="item"> -->
 					<div in:fly={{ y: 100, delay: i * 100 }}>
 						<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
 					</div>
-					<!-- </div> -->
 				{/key}
 			{/each}
 		</div>

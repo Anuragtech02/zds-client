@@ -7,7 +7,6 @@
 	export let url: string = '/logo.png';
 	export let title: string = '';
 	export let subTitle: string = '';
-	console.log({ url });
 
 	const dispatch = createEventDispatcher();
 

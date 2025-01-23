@@ -74,7 +74,7 @@
 
 		<!-- Desktop Layout -->
 		<div class="hidden md:flex w-full mt-6 h-[85vh] gap-2 bg-gray-900 rounded-2xl p-2">
-			{#each works as video, index}
+			{#each works?.slice(0, 4) as video, index}
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div

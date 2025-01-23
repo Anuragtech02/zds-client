@@ -47,6 +47,7 @@
 
 		imgSrc = getImageUrl(bgImage);
 		imgSrcMobile = getImageUrl(bgImageMobile);
+
 		categories = [
 			'All Categories',
 			...Work_Categories?.data?.map((category: any) => {
@@ -54,35 +55,42 @@
 				return Category_Name;
 			})
 		];
-		works = Work_Categories?.data?.map((category: any) => {
-			const work = category?.attributes?.blogs?.data
-				?.sort(
-					(a: { attributes: { updatedAt: string } }, b: { attributes: { updatedAt: string } }) =>
-						new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()
-				)
-				.map((w: any) => {
-					const work_data = w?.attributes;
-					return {
-						id: w?.id,
-						category: category?.attributes?.Name,
+		let blogsMap = new Map();
+
+		Work_Categories?.data?.forEach((category: any) => {
+			const blogs = category?.attributes?.blogs?.data || [];
+
+			blogs.forEach((blog: any) => {
+				const work_data = blog?.attributes;
+				const blogId = blog?.id;
+
+				if (blogsMap.has(blogId)) {
+					const existingBlog = blogsMap.get(blogId);
+					if (!existingBlog.categories.includes(category?.attributes?.Name)) {
+						existingBlog.categories.push(category?.attributes?.Name);
+					}
+				} else {
+					blogsMap.set(blogId, {
+						id: blog?.id,
+						categories: [category?.attributes?.Name],
 						title: work_data?.Title,
 						description: work_data?.Description,
 						slug: work_data?.slug,
 						video: {
-							id: w?.id,
+							id: blog?.id,
 							title: work_data?.Title,
-							category: category?.attributes?.Name,
+							categories: [category?.attributes?.Name],
 							slug: work_data?.slug,
 							thumbnail: getImageUrl(work_data?.thumbnail),
 							Video: '',
 							shortDescription: work_data?.Short_Description || null
 						}
-					};
-				});
-			return work;
+					});
+				}
+			});
 		});
-		works = works.flat();
 
+		works = Array.from(blogsMap.values());
 		selectedCategory = categories[0];
 	} catch (error) {
 		console.log('Nothing found', error);
@@ -97,7 +105,7 @@
 		if (selectedCategory === 'All Categories') {
 			return true;
 		}
-		return work.category === selectedCategory;
+		return work.categories.includes(selectedCategory);
 	});
 
 	function getCategoryDescription(cat: string) {

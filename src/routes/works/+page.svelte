@@ -69,14 +69,23 @@
 						thumbnailMobile: getImageUrl(
 							work_data?.Video_Thumbnail_File?.mobileImage || work_data?.Video_Thumbnail
 						),
-						Video: getImageUrl(work_data?.Video)
+						Video: getImageUrl(work_data?.Video),
+						order: work_data?.order || null
 					});
 				}
 			});
 		});
 
 	// Convert the Map back to an array
-	let works = Array.from(worksMap.values());
+	let works = Array.from(worksMap.values()).sort((a, b) => {
+		const orderA = a.order > 0 ? a.order : 1000;
+		const orderB = b.order > 0 ? b.order : 1000;
+		return orderA - orderB;
+	});
+
+	onMount(() => {
+		console.log(works);
+	});
 
 	let selectedCategory = categories[0];
 	let categoryChangeHandler = (category: string) => {

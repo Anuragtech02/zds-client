@@ -73,57 +73,74 @@
 		</h2>
 
 		<!-- Desktop Layout -->
-		<div class="hidden md:flex w-full mt-6 h-[85vh] gap-2 bg-gray-900 rounded-2xl p-2">
-			{#each works?.slice(0, 4) as video, index}
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					class="relative transition-all duration-700 ease-in-out cursor-pointer rounded-2xl overflow-hidden"
-					style="flex: {expandedIndex === index ? '0 0 60%' : '0 0 13.33%'}"
-					on:mouseenter={() => (expandedIndex = index)}
-					on:click={() => goto(`/works/${video.slug}`)}
-				>
-					<!-- Background Image -->
-					<div class="absolute inset-0">
-						<img src={video.thumbnail} alt={video.title} class="h-full w-full object-cover" />
-					</div>
-
-					{#if expandedIndex === index}
-						<!-- Category Tag - Only visible when expanded -->
-						<div
-							class="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm px-4 py-1 rounded-full text-sm text-white"
-							in:fade={{ duration: 500 }}
-						>
-							{#each video.categories as category}
-								<span class="text-sm rounded-2xl px-4 py-1 bg-[#404040] mx-1">
-									{category}
-								</span>
-							{/each}
+		<!-- Desktop Layout -->
+		<div class="hidden md:block w-full mt-6 h-[85vh] bg-gray-900 rounded-2xl overflow-hidden">
+			<div
+				class="grid w-full h-full p-2 gap-2"
+				style="grid-template-columns: {expandedIndex === 0
+					? 'minmax(0, 60%) minmax(0, 13.33%) minmax(0, 13.33%) minmax(0, 13.33%)'
+					: expandedIndex === 1
+					? 'minmax(0, 13.33%) minmax(0, 60%) minmax(0, 13.33%) minmax(0, 13.33%)'
+					: expandedIndex === 2
+					? 'minmax(0, 13.33%) minmax(0, 13.33%) minmax(0, 60%) minmax(0, 13.33%)'
+					: 'minmax(0, 13.33%) minmax(0, 13.33%) minmax(0, 13.33%) minmax(0, 60%)'}; transition: grid-template-columns 400ms ease-in-out;"
+			>
+				{#each works?.slice(0, 4) as video, index}
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<div
+						class="relative cursor-pointer rounded-xl overflow-hidden transition-transform duration-400 ease-in-out"
+						on:mouseenter={() => {
+							expandedIndex = index;
+							clearTimeout(intervalId);
+						}}
+						on:click={() => goto(`/works/${video.slug}`)}
+					>
+						<!-- Background Image -->
+						<div class="absolute inset-0">
+							<img src={video.thumbnail} alt={video.title} class="h-full w-full object-cover" />
 						</div>
 
-						<!-- Gradient Overlay - Only visible when expanded -->
-						<div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/90" />
-
-						<!-- Content - Only visible when expanded -->
-						<div
-							class="absolute bottom-0 left-0 right-0 p-6"
-							in:fade={{ duration: 500, delay: 100 }}
-						>
-							<h3 class="text-2xl font-medium text-white mb-4 text-left">{video.title}</h3>
-							{#if video?.shortDescription}
-								<p class="text-white/80 mb-6 line-clamp-2">
-									{video?.shortDescription}
-								</p>
-							{/if}
-							<button
-								class="px-6 py-2 bg-white text-black rounded-full hover:bg-white/90 transition-colors"
+						{#if expandedIndex === index}
+							<!-- Category Tag - Only visible when expanded -->
+							<div
+								class="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full text-sm text-white flex flex-wrap justify-end gap-1 max-w-[calc(100%-2rem)]"
+								in:fade={{ duration: 300 }}
 							>
-								More
-							</button>
-						</div>
-					{/if}
-				</div>
-			{/each}
+								{#each video.categories as category}
+									<span
+										class="text-xs md:text-sm rounded-full px-2 py-1 bg-[#404040] whitespace-nowrap"
+									>
+										{category}
+									</span>
+								{/each}
+							</div>
+
+							<!-- Gradient Overlay - Only visible when expanded -->
+							<div class="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/90" />
+
+							<!-- Content - Only visible when expanded -->
+							<div class="absolute bottom-0 left-0 right-0 p-4 md:p-6" in:fade={{ duration: 300 }}>
+								<h3
+									class="text-lg md:text-2xl font-medium text-white mb-2 md:mb-4 text-left line-clamp-2"
+								>
+									{video.title}
+								</h3>
+								{#if video?.shortDescription}
+									<p class="text-white/80 mb-3 md:mb-6 line-clamp-2 text-sm md:text-base">
+										{video?.shortDescription}
+									</p>
+								{/if}
+								<button
+									class="px-3 py-1 md:px-6 md:py-2 bg-white text-black rounded-full hover:bg-white/90 transition-colors text-sm md:text-base"
+								>
+									More
+								</button>
+							</div>
+						{/if}
+					</div>
+				{/each}
+			</div>
 		</div>
 
 		<!-- Mobile Layout -->

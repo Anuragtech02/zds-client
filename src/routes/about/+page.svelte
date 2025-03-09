@@ -15,7 +15,6 @@
 
 	// gsap.registerPlugin(ScrollTrigger);
 	export let data;
-	console.log(data);
 	let title = data.About_Title;
 	let description = data.About_Description;
 	let image = getImageUrl(data.Image_File.Image);

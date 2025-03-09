@@ -41,6 +41,10 @@
 			slug: 'entertainment-technology'
 		}
 	];
+
+	function slugifySnakeCase(str: string): string {
+		return str.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+	}
 </script>
 
 <footer class="bg-black text-white py-16">
@@ -81,7 +85,12 @@
 				<h3 class="text-sm">LOCATIONS</h3>
 				<div class="flex flex-col gap-3">
 					{#each locations as location}
-						<p>{location?.attributes?.Name}</p>
+						<a
+							href={`/works?location=${slugifySnakeCase(location?.attributes?.Name.toLowerCase())}`}
+							class="hover:opacity-70 transition-opacity"
+						>
+							{location?.attributes?.Name}
+						</a>
 					{/each}
 				</div>
 			</div>

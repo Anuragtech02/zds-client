@@ -8,9 +8,11 @@
 	import { getImageUrl } from '$lib/utils/functions.js';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
+	import { fetchData } from '$lib/utils/functions.js';
 
+	// Improve view transitions
 	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
+		if (!document.startViewTransition || navigation.type !== 'link') return;
 
 		return new Promise((resolve) => {
 			document.startViewTransition(async () => {
@@ -22,94 +24,271 @@
 
 	export let data;
 
-	const { Page_Title, Page_Description, description, Work_Categories, bgImage, Bg_Image_File } =
-		data;
+	// Add safe default values for all destructured properties
+	const {
+		Page_Title = '',
+		Page_Description = '',
+		description = '',
+		Work_Categories = { data: [] },
+		bgImage = '',
+		Bg_Image_File = {},
+		categoryEndpoint = 'work-categories',
+		locationFilter = null,
+		seo = {}
+	} = data || {};
+
 	let imgSrc = getImageUrl(Bg_Image_File?.Image || bgImage);
 	let imgSrcMobile = getImageUrl(Bg_Image_File?.mobileImage || bgImage);
 
-	// Get categories directly from Work_Categories
-	let categories = [
-		'All Categories',
-		...Work_Categories?.data?.map((category: any) => category?.attributes?.Name).filter(Boolean)
-	];
+	// Add safer extraction of categories with proper null checking
+	let categories = ['All Categories'];
 
-	// Process works data - with deduplication
-	let worksMap = new Map(); // Use a Map to track unique works by ID
+	console.log('Outer categories', Work_Categories);
 
-	Work_Categories?.data
-		?.sort(
-			(a: { attributes: { updatedAt: string } }, b: { attributes: { updatedAt: string } }) =>
-				new Date(b.attributes.updatedAt).getTime() - new Date(a.attributes.updatedAt).getTime()
-		)
-		.forEach((category: any) => {
-			const categoryWorks = category?.attributes?.Works?.data || [];
+	// Safely extract category names if Work_Categories exists and has data
+	if (Work_Categories && Array.isArray(Work_Categories.data)) {
+		const categoryNames = Work_Categories.data
+			.map((category) => category?.attributes?.Name)
+			.filter(Boolean);
 
-			categoryWorks.forEach((w: any) => {
-				const work_data = w?.attributes;
-				const workId = w?.id;
-
-				// If we've seen this work before, just add the category to its categories array
-				if (worksMap.has(workId)) {
-					const existingWork = worksMap.get(workId);
-					if (!existingWork.categories.includes(category?.attributes?.Name)) {
-						existingWork.categories.push(category?.attributes?.Name);
-					}
-				} else {
-					// If this is a new work, create a new entry
-					worksMap.set(workId, {
-						id: workId,
-						categories: [category?.attributes?.Name],
-						title: work_data?.Title,
-						description: work_data?.Description,
-						shortDescription: work_data?.Short_Description || null,
-						slug: work_data?.slug,
-						thumbnail: getImageUrl(
-							work_data?.Video_Thumbnail_File?.Image || work_data?.Video_Thumbnail
-						),
-						thumbnailMobile: getImageUrl(
-							work_data?.Video_Thumbnail_File?.mobileImage || work_data?.Video_Thumbnail
-						),
-						Video: getImageUrl(work_data?.Video),
-						order: work_data?.order || null
-					});
-				}
-			});
-		});
-
-	// Convert the Map back to an array
-	let works = Array.from(worksMap.values()).sort((a, b) => {
-		const orderA = a.order > 0 ? a.order : 1000;
-		const orderB = b.order > 0 ? b.order : 1000;
-		return orderA - orderB;
-	});
-
-	onMount(() => {
-		console.log(works);
-	});
+		categories = ['All Categories', ...categoryNames];
+	}
 
 	let selectedCategory = categories[0];
-	let categoryChangeHandler = (category: string) => {
-		filteredWorks = [];
+	let isLoading = true;
+	let works = [];
+	let filteredWorks = [];
+	let isScrolling = false;
+	let scrollTimeout;
+
+	// Function to fetch full category data with works
+	async function fetchDetailedCategoryData() {
+		isLoading = true;
+
+		try {
+			// Populate options for getting detailed category data with works
+			const categoriesSearchParams = new URLSearchParams();
+			categoriesSearchParams.append('populate[0]', 'Name');
+			categoriesSearchParams.append('populate[1]', 'Description');
+			categoriesSearchParams.append('populate[2]', 'Works');
+			categoriesSearchParams.append('populate[3]', 'Works.Video');
+			categoriesSearchParams.append('populate[4]', 'Works.Video_Thumbnail');
+			categoriesSearchParams.append('populate[5]', 'Works.Video_Thumbnail_File.Image');
+			categoriesSearchParams.append('populate[6]', 'Works.Video_Thumbnail_File.mobileImage');
+
+			// Sort by updatedAt, newest first
+			categoriesSearchParams.append('sort[0]', 'updatedAt:desc');
+
+			// Add location filter if present
+			if (locationFilter) {
+				categoriesSearchParams.append('filters[Works][location][$eq]', locationFilter);
+			}
+
+			// Fetch full categories data
+			const fullCategoriesData = await fetchData(
+				categoryEndpoint,
+				categoriesSearchParams.toString(),
+				fetch
+			);
+
+			// Process works data - with deduplication
+			let worksMap = new Map(); // Use a Map to track unique works by ID
+
+			// Safely access the data array
+			const categoriesData = fullCategoriesData || [];
+
+			const locationStats = { withLocation: 0, withoutLocation: 0, locations: new Set() };
+
+			categoriesData.forEach((category) => {
+				if (!category?.attributes) return;
+
+				const categoryName = category.attributes.Name;
+				if (!categoryName) return;
+
+				// Extract works from the correct nested structure
+				const categoryWorks = category.attributes.Works?.data || [];
+
+				categoryWorks.forEach((work) => {
+					if (!work?.id || !work?.attributes) return;
+
+					const work_data = work.attributes;
+					const workId = work.id;
+					if (work?.attributes?.location) {
+						locationStats.withLocation++;
+						locationStats.locations.add(work.attributes.location);
+					} else {
+						locationStats.withoutLocation++;
+					}
+
+					// Get video URL - nested in data.attributes structure
+					let videoUrl = '';
+					if (work_data.Video?.data?.attributes?.url) {
+						videoUrl = work_data.Video.data.attributes.url;
+					}
+
+					// Get thumbnail URL - could be in Video_Thumbnail or Video_Thumbnail_File
+					let thumbnailUrl = '';
+					if (work_data.Video_Thumbnail?.data?.attributes?.url) {
+						thumbnailUrl = work_data.Video_Thumbnail.data.attributes.url;
+					}
+
+					let thumbnailMobileUrl = thumbnailUrl;
+					if (work_data.Video_Thumbnail_File?.Image) {
+						thumbnailUrl = getImageUrl(work_data.Video_Thumbnail_File.Image);
+						thumbnailMobileUrl = getImageUrl(
+							work_data.Video_Thumbnail_File.mobileImage || work_data.Video_Thumbnail_File.Image
+						);
+					}
+
+					// If we've seen this work before, just add the category to its categories array
+					if (worksMap.has(workId)) {
+						const existingWork = worksMap.get(workId);
+						if (!existingWork.categories.includes(categoryName)) {
+							existingWork.categories.push(categoryName);
+						}
+					} else {
+						// If this is a new work, create a new entry
+						worksMap.set(workId, {
+							id: workId,
+							categories: [categoryName],
+							title: work_data?.Title || 'Untitled',
+							description: work_data?.Description || '',
+							shortDescription: work_data?.Short_Description || null,
+							slug: work_data?.slug || workId.toString(),
+							thumbnail: thumbnailUrl,
+							thumbnailMobile: thumbnailMobileUrl,
+							Video: videoUrl,
+							order: work_data?.order || null,
+							location: work_data?.location || null
+						});
+					}
+				});
+			});
+
+			// Convert the Map back to an array and sort
+			works = Array.from(worksMap.values()).sort((a, b) => {
+				const orderA = a.order > 0 ? a.order : 1000;
+				const orderB = b.order > 0 ? b.order : 1000;
+				return orderA - orderB;
+			});
+
+			console.log('Processed works:', works);
+
+			// Update filtered works
+			updateFilteredWorks();
+		} catch (error) {
+			console.error('Error fetching category data:', error);
+		} finally {
+			isLoading = false;
+		}
+	}
+
+	// Track scrolling to disable cursor during scroll
+	function handleScroll() {
+		isScrolling = true;
+		document.documentElement.classList.add('is-scrolling');
+
+		clearTimeout(scrollTimeout);
+		scrollTimeout = setTimeout(() => {
+			isScrolling = false;
+			document.documentElement.classList.remove('is-scrolling');
+		}, 150);
+	}
+
+	function updateFilteredWorks() {
+		// First, filter by category
+		let filtered = works.filter((work) => {
+			if (selectedCategory === 'All Categories') {
+				return true;
+			}
+			return work.categories.includes(selectedCategory);
+		});
+
+		// Then apply location filter if present
+		if (locationFilter) {
+			const lowerLocationFilter = locationFilter.toLowerCase();
+			filtered = filtered.filter((work) => {
+				// If work has no location and we're filtering for locations, exclude it
+				if (!work.location) return false;
+
+				// Case-insensitive matching
+				return work.location.toLowerCase() === lowerLocationFilter;
+			});
+
+			console.log(
+				`Location filtering: ${filtered.length} works match location "${locationFilter}"`
+			);
+		}
+
+		filteredWorks = filtered;
+	}
+
+	let categoryChangeHandler = (category) => {
 		selectedCategory = category;
+		updateFilteredWorks();
 	};
 
-	function getCategoryDescription(cat: string) {
+	function getCategoryDescription(cat) {
 		if (cat === 'All Categories') {
 			return description;
 		}
-		const category = Work_Categories?.data?.find((c: any) => c.attributes.Name === cat);
+
+		if (!Work_Categories?.data) return '';
+
+		const category = Work_Categories.data.find((c) => c?.attributes?.Name === cat);
 		return category?.attributes?.Description || '';
 	}
 
-	$: filteredWorks = works.filter((work: any) => {
-		if (selectedCategory === 'All Categories') {
-			return true;
-		}
-		return work.categories.includes(selectedCategory);
+	onMount(() => {
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		fetchDetailedCategoryData();
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+			clearTimeout(scrollTimeout);
+		};
 	});
+
+	$: if (selectedCategory) {
+		updateFilteredWorks();
+	}
 </script>
 
-<CustomHead seo={data.seo} />
+<!-- <svelte:head>
+	<style>
+		.is-scrolling {
+			cursor: default !important;
+		}
+
+		.is-scrolling * {
+			cursor: default !important;
+			transition: none !important;
+			animation: none !important;
+		}
+
+		/* Hide custom cursor during scroll */
+		.is-scrolling .cursor-element {
+			opacity: 0 !important;
+			visibility: hidden !important;
+		}
+
+		@keyframes pulse {
+			0%, 100% {
+				opacity: 0.5;
+			}
+			50% {
+				opacity: 0.8;
+			}
+		}
+
+		.animate-pulse {
+			animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+		}
+	</style>
+</svelte:head> -->
+
+<CustomHead {seo} />
+
 <PageLayout
 	title={Page_Title}
 	description={Page_Description}
@@ -117,6 +296,7 @@
 	bgImageMobile={imgSrcMobile}
 >
 	<SectionLayout>
+		<!-- Category tabs -->
 		<div
 			class="w-full flex justify-start xl:justify-start gap-10 items-center border-b-2 border-[#8D8D8D] pb-4 overflow-x-scroll lg:overflow-hidden"
 		>
@@ -132,21 +312,35 @@
 			{/each}
 		</div>
 
-		{#key filteredWorks}
-			<div in:fly={{ y: 100 }} class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
-				{getCategoryDescription(selectedCategory)}
+		<!-- Category description -->
+		<div class="lg:w-[60%] text-lg text-[#FFFFFF] font-light mt-8">
+			{getCategoryDescription(selectedCategory)}
+		</div>
+
+		<!-- Works grid with category transitions -->
+		{#key selectedCategory}
+			<div
+				in:fly={{ y: 50, duration: 300 }}
+				class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+			>
+				{#if isLoading}
+					<!-- Skeleton loading placeholders -->
+					{#each Array(6) as _, i}
+						<div class="h-[350px] rounded-xl bg-[#2a2a2a] animate-pulse" />
+					{/each}
+				{:else if filteredWorks.length === 0}
+					<div class="col-span-3 text-center py-12">
+						<p class="text-lg text-white">No works found in this category.</p>
+					</div>
+				{:else}
+					{#each filteredWorks as video, i (video.id)}
+						<div in:fly|local={{ y: 30, delay: Math.min(i * 50, 300), duration: 200 }}>
+							<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
+						</div>
+					{/each}
+				{/if}
 			</div>
 		{/key}
-
-		<div class="w-full mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-			{#each filteredWorks as video, i}
-				{#key filteredWorks}
-					<div in:fly={{ y: 100, delay: i * 100 }}>
-						<WorkVideo absolute={false} {video} fixedWidth={false} className="!m-0 w-full" />
-					</div>
-				{/key}
-			{/each}
-		</div>
 	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>
@@ -162,10 +356,8 @@
 		border-radius: 100%;
 		background-color: #ff00ce;
 	}
-	.grid-muuri {
-		position: relative;
-	}
 
+	/* View transitions */
 	@keyframes fade-in {
 		from {
 			opacity: 0;

@@ -14,6 +14,11 @@
 			$cursorStore.position.x = x;
 			$cursorStore.position.y = y;
 		});
+
+		document.addEventListener('scroll', (e) => {
+			// hide cursor when scrolling and re-enable when stopped
+			$cursorStore.showCursor = false;
+		});
 	});
 </script>
 

@@ -28,7 +28,6 @@
 	CTALink = data?.CTALink || '';
 	Background_Video = getImageUrl(data?.Background_Video) || '';
 	ShowReelVideo = data?.ShowReelVideoLink || '';
-	console.log({ data });
 	heading = Title.split(',');
 	description = Description.split(':');
 	let previousActiveWordIdx = -1;
@@ -38,7 +37,7 @@
 			x: -100,
 			ease: 'power4.out',
 			delay: 0.4,
-			opacity: 0,
+			opacity: 0
 		});
 
 	onMount(() => {

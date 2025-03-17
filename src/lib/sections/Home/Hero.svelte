@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import gsap from 'gsap';
 	import Button from '$lib/components/Button.svelte';
 	import OutlinedText from '$lib/components/OutlinedText.svelte';
@@ -11,7 +11,7 @@
 	export let data: any;
 
 	let container: HTMLDivElement;
-	let activeWordIdx: number;
+	let activeWordIdx: number = 0;
 	let heading: string[] = [];
 	let description: string[] = [];
 	let Title: string,
@@ -20,8 +20,7 @@
 		CTALink: string,
 		Background_Video: string,
 		ShowReelVideo: string;
-	// const { Title, Description, CTAText, CTALink, Background_Video } = data;
-	// console.log(data);
+
 	Title = data?.Title || '';
 	Description = data?.Description || '';
 	CTAText = data?.CTAText || '';
@@ -30,18 +29,40 @@
 	ShowReelVideo = data?.ShowReelVideoLink || '';
 	heading = Title.split(',');
 	description = Description.split(':');
-	let previousActiveWordIdx = -1;
 
-	$: activeWordIdx !== undefined &&
-		gsap.from(`.left-reveal-${activeWordIdx + 1}`, 1.8, {
-			x: -100,
-			ease: 'power4.out',
-			delay: 0.4,
-			opacity: 0
-		});
+	// Store interval ID for cleanup
+	let intervalId: number;
+
+	// Add visibility change detection
+	function handleVisibilityChange() {
+		if (document.visibilityState === 'visible') {
+			// When tab becomes visible again, ensure animations are in correct state
+			updateActiveDescription(activeWordIdx);
+		}
+	}
+
+	// Function to handle description animation updates
+	function updateActiveDescription(index: number) {
+		// Clear any existing animations
+		gsap.killTweensOf(`.left-reveal-${index + 1}`);
+
+		// Apply new animation
+		gsap.fromTo(
+			`.left-reveal-${index + 1}`,
+			{ x: -100, opacity: 0 },
+			{ x: 0, opacity: 1, duration: 1.8, ease: 'power4.out' }
+		);
+	}
+
+	$: if (activeWordIdx !== undefined) {
+		updateActiveDescription(activeWordIdx);
+	}
 
 	onMount(() => {
+		// Initialize with first word active
 		activeWordIdx = 0;
+
+		// Initial animations
 		gsap.from('.text-reveal', 1.8, {
 			y: 100,
 			ease: 'power4.out',
@@ -53,7 +74,7 @@
 			}
 		});
 
-		// fade in up btn
+		// Fade in button
 		gsap.to('.our-work-btn', 1.8, {
 			y: 0,
 			ease: 'power4.out',
@@ -61,20 +82,21 @@
 			opacity: 1
 		});
 
-		// left reveal
-		// gsap.from('.left-reveal-1', 1.8, {
-		// 	x: -100,
-		// 	ease: 'power4.out',
-		// 	delay: 0.4,
-		// 	opacity: 0
-		// });
-
-		// timer to update active word
-		setInterval(() => {
+		// Set up interval for word rotation
+		intervalId = setInterval(() => {
 			activeWordIdx = activeWordIdx === heading.length - 1 ? 0 : activeWordIdx + 1;
 		}, 4000);
 
-		// let previousActiveWordIdx = -1;
+		// Add visibility change listener
+		document.addEventListener('visibilitychange', handleVisibilityChange);
+	});
+
+	onDestroy(() => {
+		// Clear interval when component unmounts
+		if (intervalId) clearInterval(intervalId);
+
+		// Remove event listener
+		document.removeEventListener('visibilitychange', handleVisibilityChange);
 	});
 </script>
 
@@ -128,68 +150,35 @@
 					</div>
 				</div>
 				<div class="flex flex-col justify-between w-full">
+					<!-- Mobile description display -->
 					<div class="justify-start items-center relative !h-32 w-full flex sm:hidden">
-						<div
-							class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
-							class:opacity-0={activeWordIdx !== 0}
-							class:opacity-100={activeWordIdx === 0}
-						>
-							<p class="left-reveal-1 px-4 text-left w-full min-w-[100%]">
-								{description[activeWordIdx]}
-							</p>
-						</div>
-						<div
-							class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
-							class:opacity-0={activeWordIdx !== 1}
-							class:opacity-100={activeWordIdx === 1}
-						>
-							<p class="left-reveal-2 px-4 text-left w-full min-w-[100%]">
-								{description[activeWordIdx]}
-							</p>
-						</div>
-						<div
-							class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
-							class:opacity-0={activeWordIdx !== 2}
-							class:opacity-100={activeWordIdx === 2}
-						>
-							<p class="left-reveal-3 px-4 text-left w-full min-w-[100%]">
-								{description[activeWordIdx]}
-							</p>
-						</div>
+						{#each Array(heading.length) as _, i}
+							<div
+								class="overflow-hidden absolute left-0 top-0 border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20 transition-opacity duration-300"
+								class:opacity-0={activeWordIdx !== i}
+								class:opacity-100={activeWordIdx === i}
+							>
+								<p class={`left-reveal-${i + 1} px-4 text-left w-full min-w-[100%]`}>
+									{description[i] || ''}
+								</p>
+							</div>
+						{/each}
 					</div>
-					<div class="justify-start items-center h-full w-full hidden sm:flex">
-						<div
-							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
-							class:opacity-0={activeWordIdx !== 0}
-							class:opacity-100={activeWordIdx === 0}
-						>
-							<p class="left-reveal-1 px-4 text-left w-full min-w-[100%]">
-								{description[activeWordIdx]}
-							</p>
+
+					<!-- Desktop description display -->
+					{#each Array(heading.length) as _, i}
+						<div class="justify-start items-center h-full w-full hidden sm:flex">
+							<div
+								class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20 transition-opacity duration-300"
+								class:opacity-0={activeWordIdx !== i}
+								class:opacity-100={activeWordIdx === i}
+							>
+								<p class={`left-reveal-${i + 1} px-4 text-left w-full min-w-[100%]`}>
+									{description[i] || ''}
+								</p>
+							</div>
 						</div>
-					</div>
-					<div class="justify-start items-center h-full w-full hidden sm:flex">
-						<div
-							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
-							class:opacity-0={activeWordIdx !== 1}
-							class:opacity-100={activeWordIdx === 1}
-						>
-							<p class="left-reveal-2 px-4 text-left w-full min-w-[100%]">
-								{description[activeWordIdx]}
-							</p>
-						</div>
-					</div>
-					<div class="justify-start items-center h-full w-full hidden sm:flex">
-						<div
-							class="overflow-hidden border-l-2 max-w-[400px] w-full mt-10 sm:mt-0 md:ml-20"
-							class:opacity-0={activeWordIdx !== 2}
-							class:opacity-100={activeWordIdx === 2}
-						>
-							<p class="left-reveal-3 px-4 text-left w-full min-w-[100%]">
-								{description[activeWordIdx]}
-							</p>
-						</div>
-					</div>
+					{/each}
 				</div>
 			</div>
 			<Button

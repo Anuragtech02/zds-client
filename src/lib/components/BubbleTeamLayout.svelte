@@ -28,8 +28,8 @@
 	const getRandomOffset = () => Math.random() * 100 - 50;
 
 	onMount(() => {
-		const bubbles = container.querySelectorAll('.background-bubble');
-		bubbles.forEach((bubble) => {
+		const bubbles = container?.querySelectorAll('.background-bubble');
+		bubbles?.forEach((bubble) => {
 			gsap.to(bubble, {
 				y: getRandomOffset(),
 				x: getRandomOffset(),

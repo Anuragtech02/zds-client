@@ -14,10 +14,10 @@
 		'We are more than just animators; we are storytellers, visionaries, and creators of immersive worlds. Our relentless quest of excellence in the art of animation is at the essence of who we are.';
 
 	onMount(() => {
-		const chars = document.querySelectorAll('.char');
-		const portion = 100 / chars.length;
+		const chars = document?.querySelectorAll('.char');
+		const portion = 100 / (chars?.length || 1);
 
-		chars.forEach((char, i) => {
+		chars?.forEach((char, i) => {
 			gsap.to(char, {
 				color: 'white',
 				scrollTrigger: {

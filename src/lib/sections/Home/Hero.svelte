@@ -7,6 +7,7 @@
 	import VideoPopup from '$lib/components/VideoPopup.svelte';
 	import { popupStore } from '$lib/stores/popup.store';
 	import { getImageUrl } from '$lib/utils/functions';
+	import { browser } from '$app/environment';
 
 	export let data: any;
 
@@ -42,19 +43,26 @@
 	}
 
 	// Function to handle description animation updates
+	// Function to handle description animation updates
 	function updateActiveDescription(index: number) {
-		// Clear any existing animations
-		gsap.killTweensOf(`.left-reveal-${index + 1}`);
+		// Get the elements directly first
+		const elements = document.querySelectorAll(`.left-reveal-${index + 1}`);
 
-		// Apply new animation
-		gsap.fromTo(
-			`.left-reveal-${index + 1}`,
-			{ x: -100, opacity: 0 },
-			{ x: 0, opacity: 1, duration: 1.8, ease: 'power4.out' }
-		);
+		// Only proceed if elements exist
+		if (elements && elements.length > 0) {
+			// Clear any existing animations
+			gsap.killTweensOf(elements);
+
+			// Apply new animation
+			gsap.fromTo(
+				elements,
+				{ x: -100, opacity: 0 },
+				{ x: 0, opacity: 1, duration: 1.8, ease: 'power4.out' }
+			);
+		}
 	}
 
-	$: if (activeWordIdx !== undefined) {
+	$: if (activeWordIdx !== undefined && browser) {
 		updateActiveDescription(activeWordIdx);
 	}
 
@@ -62,41 +70,45 @@
 		// Initialize with first word active
 		activeWordIdx = 0;
 
-		// Initial animations
-		gsap.from('.text-reveal', 1.8, {
-			y: 100,
-			ease: 'power4.out',
-			delay: 0.2,
-			skewY: 7,
-			duration: 1.8,
-			stagger: {
-				amount: 0.3
-			}
-		});
+		if (browser) {
+			// Initial animations
+			gsap.from('.text-reveal', 1.8, {
+				y: 100,
+				ease: 'power4.out',
+				delay: 0.2,
+				skewY: 7,
+				duration: 1.8,
+				stagger: {
+					amount: 0.3
+				}
+			});
 
-		// Fade in button
-		gsap.to('.our-work-btn', 1.8, {
-			y: 0,
-			ease: 'power4.out',
-			delay: 0.3,
-			opacity: 1
-		});
+			// Fade in button
+			gsap.to('.our-work-btn', 1.8, {
+				y: 0,
+				ease: 'power4.out',
+				delay: 0.3,
+				opacity: 1
+			});
 
-		// Set up interval for word rotation
-		intervalId = setInterval(() => {
-			activeWordIdx = activeWordIdx === heading.length - 1 ? 0 : activeWordIdx + 1;
-		}, 4000);
+			// Set up interval for word rotation
+			intervalId = setInterval(() => {
+				activeWordIdx = activeWordIdx === heading.length - 1 ? 0 : activeWordIdx + 1;
+			}, 4000);
 
-		// Add visibility change listener
-		document.addEventListener('visibilitychange', handleVisibilityChange);
+			// Add visibility change listener
+			document.addEventListener('visibilitychange', handleVisibilityChange);
+		}
 	});
 
 	onDestroy(() => {
 		// Clear interval when component unmounts
 		if (intervalId) clearInterval(intervalId);
 
-		// Remove event listener
-		document.removeEventListener('visibilitychange', handleVisibilityChange);
+		if (browser) {
+			// Remove event listener
+			document.removeEventListener('visibilitychange', handleVisibilityChange);
+		}
 	});
 </script>
 

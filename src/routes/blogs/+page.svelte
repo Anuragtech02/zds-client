@@ -26,7 +26,7 @@
 	let selectedCategory: any = {};
 	let imgSrc = '';
 	let imgSrcMobile = '';
-	let Page_Title = '';
+	let Page_Title = 'Blogs';
 	let Page_Description = '';
 	let description = '';
 	let Work_Categories: any = {};
@@ -38,7 +38,7 @@
 
 	try {
 		// const { Page_Title, Page_Description, description, Work_Categories, bgImage } = data;
-		Page_Title = data?.Page_Title;
+		Page_Title = 'Blogs';
 		Page_Description = data?.Page_Description;
 		description = data?.description;
 		Work_Categories = data?.Work_Categories;
@@ -84,7 +84,9 @@
 							thumbnail: getImageUrl(work_data?.thumbnail),
 							Video: '',
 							shortDescription: work_data?.Short_Description || null
-						}
+						},
+						createdAt: work_data?.createdAt,
+						updatedAt: work_data?.updatedAt
 					});
 				}
 			});
@@ -101,12 +103,17 @@
 		selectedCategory = category;
 	};
 
-	$: filteredWorks = works.filter((work: any) => {
-		if (selectedCategory === 'All Categories') {
-			return true;
-		}
-		return work.categories.includes(selectedCategory);
-	});
+	$: filteredWorks = works
+		.filter((work: any) => {
+			if (selectedCategory === 'All Categories') {
+				return true;
+			}
+			return work.categories.includes(selectedCategory);
+		})
+		// @ts-expect-error - Type 'string' is not assignable to type 'number'
+		.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+	console.log(works);
 
 	function getCategoryDescription(cat: string) {
 		// check for all categories
@@ -122,8 +129,9 @@
 <CustomHead seo={data.seo} />
 <PageLayout
 	title={Page_Title}
-	description={Page_Description}
+	description={''}
 	bgImage={imgSrc}
+	renderTitleAsH1
 	bgImageMobile={imgSrcMobile}
 >
 	<SectionLayout className="py-[50px]">

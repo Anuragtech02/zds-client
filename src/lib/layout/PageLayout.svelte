@@ -36,66 +36,49 @@
 	});
 </script>
 
-<div class={`bg-[${bgColor}] ${className} relative w-full`} class:min-h-[420px]={bgImage != ''}>
-	<SectionLayout
-		className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 !py-0 w-full"
-	>
-		{#if browser && !$page.url.href?.includes('blog')}
-			<div class="flex flex-wrap md:flex-nowrap justify-start items-center">
-				<div class="flex flex-col w-full justify-end items-start z-[1]">
-					{#if description != ''}
-						<p>{description}</p>
-					{/if}
-					{#if icon != ''}
-						<img src={icon} alt={title} class="w-20 h-20 mt-4" />
-					{/if}
-					{#if renderTitleAsH1}
-						<h1 class="text-left renderAsH1">{title}</h1>
-					{:else}
-						<h2 class="text-left">{title}</h2>
-					{/if}
-					{#if tagText != ''}
-						<Tag text={tagText} />
-					{/if}
-				</div>
-				{#if rightComp}
-					<div
-						class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left"
-					>
-						<!-- <img
-						src="/images/hero-gradient.png"
-						alt="hero-gradient"
-						class="absolute top-0 md:-left-[150px] left-0 w-[200px] opacity-60 md:opacity-100 md:w-auto pointer-events-none z-[0]"
-					/> -->
-						<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
-							<p class="text-left">2023-ZERO DESIGN STUDIO</p>
-							<span class="flex justify-start items-center gap-4">
-								<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
-								<FacebookShareButton {url} />
-								<!-- <InstagramIcon />
-							<VimeoIcon />
-							<YoutubeIcon /> -->
-							</span>
-						</div>
-					</div>
+<div
+	class={`bg-[${bgColor}] ${className} flex justify-center items-center relative w-full min-h-[300px] sm:min-h-[420px] ${
+		bgImage != '' ? 'header-bg header-bg-responsive' : ''
+	}`}
+	style={bgImage != '' ? `--bg-mobile: url(${bgImageMobile}); --bg-desktop: url(${bgImage});` : ''}
+>
+	<SectionLayout className="!py-0 h-full w-full">
+		<!-- {#if browser && !$page.url.href?.includes('blog')} -->
+		<div class="flex flex-wrap md:flex-nowrap justify-start items-center h-full">
+			<div class="flex flex-col w-full justify-end items-start z-[1] pt-20">
+				{#if description != ''}
+					<p>{description}</p>
+				{/if}
+				{#if icon != ''}
+					<img src={icon} alt={title} class="w-20 h-20 mt-4" />
+				{/if}
+				{#if renderTitleAsH1}
+					<h1 class="text-left renderAsH1">{title}</h1>
+				{:else}
+					<h2 class="text-left">{title}</h2>
+				{/if}
+				{#if tagText != ''}
+					<Tag text={tagText} />
 				{/if}
 			</div>
-		{/if}
+			{#if rightComp}
+				<div
+					class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left"
+				>
+					<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
+						<p class="text-left">2023-ZERO DESIGN STUDIO</p>
+						<span class="flex justify-start items-center gap-4">
+							<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
+							<FacebookShareButton {url} />
+						</span>
+					</div>
+				</div>
+			{/if}
+		</div>
+		<!-- {/if} -->
 	</SectionLayout>
-	<!-- <div
-		class="absolute z-[-1] w-full bg-cover !bg-center bg-no-repeat xl:!bg-right h-[300px] md:h-[420px] top-0 left-0"
-		style={`background-image:url(${bgImage});`}
-	/> -->
-	{#if bgImage != ''}
-		<!-- <img src={bgImage} alt={'page-bg'} class="w-full" srcset="{bgImageMobile} 500w, " /> -->
-		<picture class="block w-full">
-			<source media="(max-width: 499px)" srcset={bgImageMobile} />
-			<source media="(min-width: 500px)" srcset={bgImage} />
-			<img src={bgImage} alt="page-bg" class="w-full" />
-		</picture>
-	{/if}
 </div>
-{#if browser && $page.url.href?.includes('blog')}
+<!-- {#if browser && $page.url.href?.includes('blog')}
 	<SectionLayout
 		className="flex flex-col sm:flex-row justify-between items-start"
 		padding="py-4 sm:py-10"
@@ -112,30 +95,40 @@
 			{:else}
 				<h2 class="text-left w-full">{title}</h2>
 			{/if}
-			<!-- <h2 class="text-left">{title}</h2> -->
 			{#if tagText != ''}
 				<Tag text={tagText} />
 			{/if}
 		</div>
 		{#if rightComp}
 			<div class="flex flex-col items-start md:items-end mt-10 md:mt-0 text-left min-w-[300px]">
-				<!-- <img
-						src="/images/hero-gradient.png"
-						alt="hero-gradient"
-						class="absolute top-0 md:-left-[150px] left-0 w-[200px] opacity-60 md:opacity-100 md:w-auto pointer-events-none z-[0]"
-					/> -->
 				<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
 					<p class="text-left">2023-ZERO DESIGN STUDIO</p>
 					<span class="flex justify-start items-center gap-4">
 						<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
 						<FacebookShareButton {url} />
-						<!-- <InstagramIcon />
-							<VimeoIcon />
-							<YoutubeIcon /> -->
 					</span>
 				</div>
 			</div>
 		{/if}
 	</SectionLayout>
-{/if}
+{/if} -->
 <slot />
+
+<style>
+	.header-bg {
+		background-size: cover;
+		background-position: center;
+	}
+
+	@media (max-width: 499px) {
+		.header-bg-responsive {
+			background-image: var(--bg-mobile);
+		}
+	}
+
+	@media (min-width: 500px) {
+		.header-bg-responsive {
+			background-image: var(--bg-desktop);
+		}
+	}
+</style>

@@ -45,7 +45,7 @@
 	<SectionLayout className="!py-0 h-full w-full">
 		<!-- {#if browser && !$page.url.href?.includes('blog')} -->
 		<div class="flex flex-wrap md:flex-nowrap justify-start items-center h-full">
-			<div class="flex flex-col w-full justify-end items-start z-[1] pt-20">
+			<div class="flex flex-col w-full md:w-2/3 justify-end items-start z-[1] pt-20">
 				{#if description != ''}
 					<p>{description}</p>
 				{/if}
@@ -53,9 +53,9 @@
 					<img src={icon} alt={title} class="w-20 h-20 mt-4" />
 				{/if}
 				{#if renderTitleAsH1}
-					<h1 class="text-left renderAsH1">{title}</h1>
+					<h1 class="text-left renderAsH1 !leading-[1.1]">{title}</h1>
 				{:else}
-					<h2 class="text-left">{title}</h2>
+					<h2 class="text-left !leading-[1.1]">{title}</h2>
 				{/if}
 				{#if tagText != ''}
 					<Tag text={tagText} />
@@ -63,7 +63,7 @@
 			</div>
 			{#if rightComp}
 				<div
-					class="flex flex-col items-start md:items-end w-full md:ml-auto mt-10 md:mt-0 text-left"
+					class="flex flex-col items-start md:items-end w-full md:w-1/3 md:ml-auto mt-10 md:mt-0 text-left"
 				>
 					<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
 						<p class="text-left">2023-ZERO DESIGN STUDIO</p>

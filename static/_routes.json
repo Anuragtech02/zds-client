@@ -1,0 +1,14 @@
+[
+    {
+      "include": [
+        "/google788582cded2b1e3e.html"
+      ],
+      "served_by": "static"
+    },
+    {
+      "include": [
+        "/*"
+      ],
+      "served_by": "worker"
+    }
+  ]

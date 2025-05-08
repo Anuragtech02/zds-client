@@ -22,6 +22,10 @@
 			url: '/marketplace'
 		});
 	}
+	footerNavLinks.push({
+		name: 'Anamorphic 3D',
+		url: '/anamorphic-3d'
+	});
 
 	const services = [
 		{

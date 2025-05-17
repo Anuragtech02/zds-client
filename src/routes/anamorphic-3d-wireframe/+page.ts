@@ -1,7 +1,7 @@
 import { fetchData } from '$lib/utils/functions.js';
-import { PageLoad } from './$types';
+// import { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ params, fetch }) => {
+export const load = async ({ params, fetch }) => {
 	// console.log('Search', urlParams.toString());
 
 	const urlParams = new URLSearchParams();

@@ -27,6 +27,11 @@
 		url: '/anamorphic-3d'
 	});
 
+	footerNavLinks.push({
+		name: 'Anamorphic 3D Wireframe',
+		url: '/anamorphic-3d-wireframe'
+	});
+
 	const services = [
 		{
 			name: 'Content Creation',

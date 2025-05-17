@@ -11,6 +11,6 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		urlParams.append(`populate[${index}]`, item);
 	});
 
-	const data = await fetchData('anamorphic-page', urlParams.toString(), fetch);
+	const data = await fetchData('anamorphic-wireframe-page', urlParams.toString(), fetch);
 	return data;
 };

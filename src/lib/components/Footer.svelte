@@ -24,12 +24,7 @@
 	}
 	footerNavLinks.push({
 		name: 'Anamorphic 3D',
-		url: '/anamorphic-3d'
-	});
-
-	footerNavLinks.push({
-		name: 'Anamorphic 3D Wireframe',
-		url: '/anamorphic-3d-wireframe'
+		url: '/anamorphic-3d-content-agency'
 	});
 
 	const services = [

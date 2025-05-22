@@ -184,3 +184,93 @@ html {
 		@apply !aspect-auto;
 	}
 }
+
+/* Main image container grid */
+.custom-section .cms-image-container {
+	margin: 2rem 0;
+	display: grid;
+	grid-gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+	width: 100%;
+}
+
+/* Ensure images fill their grid cells properly */
+.custom-section .cms-image-container img {
+	width: 100% !important;
+	height: auto !important;
+	object-fit: cover;
+	border-radius: 8px; /* Optional: add some styling */
+	aspect-ratio: auto !important;
+	max-width: none !important;
+}
+
+/* iframe styling */
+.custom-section iframe {
+	max-width: 100%;
+	width: 100%;
+	height: 600px;
+	margin: 2rem auto;
+	border-radius: 8px;
+	display: block;
+}
+
+/* Remove any existing figure/image styling that might interfere */
+.custom-section figure {
+	margin: 0;
+	padding: 0;
+}
+
+.custom-section figure.image {
+	display: none; /* Hide original figure elements since we're moving images */
+}
+
+/* Tablet breakpoint */
+@media screen and (max-width: 1200px) {
+	.custom-section .cms-image-container {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	}
+}
+
+/* Mobile breakpoint */
+@media screen and (max-width: 768px) {
+	.custom-section iframe {
+		height: 300px;
+		margin: 1rem auto;
+	}
+
+	.custom-section .cms-image-container {
+		grid-template-columns: 1fr; /* Single column on mobile */
+		grid-gap: 0.5rem;
+		margin: 1rem 0;
+	}
+
+	.custom-section .cms-image-container img {
+		width: 100% !important;
+		height: auto !important;
+		max-width: 100% !important;
+	}
+}
+
+/* Alternative: If you want a masonry-like layout */
+.custom-section .cms-image-container.masonry {
+	column-count: 3;
+	column-gap: 1rem;
+}
+
+.custom-section .cms-image-container.masonry img {
+	break-inside: avoid;
+	margin-bottom: 1rem;
+	display: block;
+}
+
+@media screen and (max-width: 1200px) {
+	.custom-section .cms-image-container.masonry {
+		column-count: 2;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.custom-section .cms-image-container.masonry {
+		column-count: 1;
+	}
+}

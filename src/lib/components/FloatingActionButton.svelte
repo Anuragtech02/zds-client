@@ -12,7 +12,7 @@
 
 	// Phone number for WhatsApp (replace with your number)
 	const WHATSAPP_NUMBER = '+919977098856';
-	const WHATSAPP_MESSAGE = "Hi there, I'm connecting you via the website zeriodesignstudios.com";
+	const WHATSAPP_MESSAGE = "Hi there, I'm connecting you via the website zerodesignstudios.com";
 
 	const socialIcons = [
 		{

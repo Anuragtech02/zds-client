@@ -21,7 +21,7 @@
 			link: 'https://www.facebook.com/zerodesignstudios'
 		},
 		{ component: InstagramIcon, name: 'Instagram', link: 'https://instagram.com/zerodesignstudio' },
-		{ component: YoutubeIcon, name: 'Youtube', link: 'https://youtube.com/@zerodesignstudio4231' },
+		{ component: YoutubeIcon, name: 'Youtube', link: 'https://www.youtube.com/@zerodesignstudio1' },
 		{
 			component: LinkedinIcon,
 			name: 'LinkedIn',

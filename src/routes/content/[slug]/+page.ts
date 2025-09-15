@@ -3,7 +3,7 @@ import { fetchData } from '$lib/utils/functions.js';
 // Dynamic content page loader
 // Fetches a single entry by slug from Strapi (collection: "content").
 // Adjust the collection name below if your Strapi uses a different UID (e.g., "content-pages").
-const COLLECTION_UID = 'content';
+const COLLECTION_UID = 'contents';
 
 export const load = async ({ params, fetch }) => {
 	const { slug } = params;

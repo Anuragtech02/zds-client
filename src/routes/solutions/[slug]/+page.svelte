@@ -10,7 +10,7 @@
 
 	// Expect fields: title (or Name), description (rich HTML), seo
 	if (data) {
-		Title = (data as any)?.Title || (data as any)?.title || (data as any)?.Name || '';
+		Title = data?.Title || data?.title || data?.Name || '';
 	}
 
 	let modifiedHtml: string = '';

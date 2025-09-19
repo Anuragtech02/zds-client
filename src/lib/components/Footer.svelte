@@ -23,8 +23,8 @@
 		});
 	}
 	footerNavLinks.push({
-		name: 'Anamorphic 3D',
-		url: '/anamorphic-3d-content-agency'
+		name: 'Other Solutions',
+		url: '/solutions'
 	});
 
 	const services = [

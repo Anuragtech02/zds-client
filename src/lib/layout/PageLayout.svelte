@@ -55,7 +55,7 @@
 				{#if renderTitleAsH1}
 					<h1 class="text-left renderAsH1 !leading-[1.1]">{title}</h1>
 				{:else}
-					<h2 class="text-left !leading-[1.1]">{title}</h2>
+					<div class="text-left !leading-[1.1] heading-h2">{title}</div>
 				{/if}
 				{#if tagText != ''}
 					<Tag text={tagText} />

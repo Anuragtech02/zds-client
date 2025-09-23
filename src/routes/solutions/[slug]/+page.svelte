@@ -72,7 +72,6 @@
 	bgImage={'/images/headingBG.png'}
 	bgImageMobile={'/images/headingBG.png'}
 	bgColor="#0F0F0F"
-	renderTitleAsH1
 >
 	<SectionLayout
 		className="custom-section mt-10 pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative"
@@ -84,4 +83,48 @@
 </PageLayout>
 
 <style>
+	/* Solution content typography */
+	:global(.custom-section h1) {
+		font-size: 1.8rem;
+		line-height: 1.3;
+	}
+
+	:global(.custom-section h2) {
+		font-size: 1.2rem;
+		line-height: 1.4;
+	}
+
+	:global(.custom-section h3) {
+		font-size: 1.1rem;
+		line-height: 1.4;
+	}
+
+	/* Responsive font sizes */
+	@media (min-width: 640px) {
+		:global(.custom-section h1) {
+			font-size: 2rem;
+		}
+
+		:global(.custom-section h2) {
+			font-size: 1.3rem;
+		}
+
+		:global(.custom-section h3) {
+			font-size: 1.2rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		:global(.custom-section h1) {
+			font-size: 2.5rem;
+		}
+
+		:global(.custom-section h2) {
+			font-size: 1.5rem;
+		}
+
+		:global(.custom-section h3) {
+			font-size: 1.3rem;
+		}
+	}
 </style>

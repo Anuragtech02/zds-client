@@ -87,16 +87,19 @@
 	:global(.custom-section h1) {
 		font-size: 1.8rem;
 		line-height: 1.3;
+		text-align: initial;
 	}
 
 	:global(.custom-section h2) {
 		font-size: 1.2rem;
 		line-height: 1.4;
+		text-align: initial;
 	}
 
 	:global(.custom-section h3) {
 		font-size: 1.1rem;
 		line-height: 1.4;
+		text-align: initial;
 	}
 
 	/* Responsive font sizes */

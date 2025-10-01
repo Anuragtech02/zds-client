@@ -74,7 +74,7 @@
 							</h3>
 
 							{#if description}
-								<p class="text-gray-400 text-sm leading-relaxed">
+								<p class="text-gray-400 text-sm leading-relaxed text-left">
 									{extractTextFromHtml(description)}
 								</p>
 							{/if}

@@ -99,6 +99,25 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Policies Section -->
+		<div class="border-t border-gray-800 mt-12 pt-8">
+			<div
+				class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm text-gray-400"
+			>
+				<a href="/terms-and-conditions" class="hover:text-white transition-colors">
+					Terms and Conditions
+				</a>
+				<span class="hidden md:inline">|</span>
+				<a href="/privacy-policy" class="hover:text-white transition-colors">Privacy Policy</a>
+				<span class="hidden md:inline">|</span>
+				<a href="/refund-policy" class="hover:text-white transition-colors">
+					Refund and Cancellation Policy
+				</a>
+				<span class="hidden md:inline">|</span>
+				<a href="/shipping-policy" class="hover:text-white transition-colors">Shipping Policy</a>
+			</div>
+		</div>
 	</SectionLayout>
 </footer>
 

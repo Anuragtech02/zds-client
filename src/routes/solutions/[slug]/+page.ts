@@ -12,7 +12,9 @@ export const load = async ({ params, fetch }) => {
 		'seo',
 		'seo.metaSocial.image',
 		'seo.extraScripts',
-		'seo.metaImage'
+		'seo.metaImage',
+		'faq',
+		'faq.items'
 	];
 	urlParams.append(`filters[slug][$eq]`, slug);
 	populate.forEach((item, index) => {

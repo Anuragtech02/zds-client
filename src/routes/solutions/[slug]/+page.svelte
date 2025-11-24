@@ -3,6 +3,7 @@
 	import FloatingActionButton from '$lib/components/FloatingActionButton.svelte';
 	import SectionLayout from '$lib/layout/SectionLayout.svelte';
 	import CustomHead from '$lib/components/CustomHead.svelte';
+	import FAQSection from '$lib/sections/FAQSection.svelte';
 	import { onMount } from 'svelte';
 
 	export let data: any;
@@ -79,6 +80,11 @@
 	>
 		{@html modifiedHtml}
 	</SectionLayout>
+
+	{#if data?.faq}
+		<FAQSection faqs={data.faq.items} title={data.faq.title} />
+	{/if}
+
 	<FloatingActionButton />
 </PageLayout>
 

@@ -74,11 +74,10 @@
 	bgImageMobile={'/images/headingBG.png'}
 	bgColor="#0F0F0F"
 >
-	<SectionLayout
-		className="custom-section mt-10 pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative"
-		customSection
-	>
-		{@html modifiedHtml}
+	<SectionLayout className="custom-section mt-10 pt-0 z-[1] relative" customSection>
+		<div class="max-w-[786px] mx-auto text-center [&>p]:my-4">
+			{@html modifiedHtml}
+		</div>
 	</SectionLayout>
 
 	{#if data?.faq}

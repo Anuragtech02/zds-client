@@ -75,7 +75,7 @@
 	bgColor="#0F0F0F"
 >
 	<SectionLayout className="custom-section mt-10 pt-0 z-[1] relative" customSection>
-		<div class="max-w-[786px] mx-auto text-center [&>p]:my-4">
+		<div class="max-w-[786px] mx-auto [&>p]:my-4">
 			{@html modifiedHtml}
 		</div>
 	</SectionLayout>

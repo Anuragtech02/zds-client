@@ -55,7 +55,7 @@
 						</button>
 						{#if activeIndex === i}
 							<div transition:slide={{ duration: 300 }} class="overflow-hidden">
-								<div class="pb-6 text-gray-300 leading-relaxed">
+								<div class="pb-6 text-gray-300 leading-relaxed [&_*]:text-left">
 									{@html faq.answer}
 								</div>
 							</div>

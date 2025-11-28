@@ -68,7 +68,8 @@
 <CustomHead seo={data?.seo} />
 <PageLayout
 	title={Title}
-	rightComp={true}
+	rightComp={false}
+	centerTitle={true}
 	description=""
 	bgImage={'/images/headingBG.png'}
 	bgImageMobile={'/images/headingBG.png'}

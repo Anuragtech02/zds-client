@@ -25,7 +25,10 @@
 	export let rightComp = false;
 	export let className: string = '';
 	export let renderTitleAsH1: boolean = false;
+	export let centerTitle: boolean = false;
 	let url: string = '';
+	let currentYear: number = new Date().getFullYear();
+
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			url = window.location.href;
@@ -45,7 +48,11 @@
 	<SectionLayout className="!py-0 h-full w-full">
 		<!-- {#if browser && !$page.url.href?.includes('blog')} -->
 		<div class="flex flex-wrap md:flex-nowrap justify-start items-center h-full">
-			<div class="flex flex-col w-full md:w-2/3 justify-end items-start z-[1] pt-20">
+			<div
+				class={`flex flex-col w-full ${
+					centerTitle ? 'items-center' : 'md:w-2/3 items-start'
+				} justify-end z-[1] pt-20`}
+			>
 				{#if description != ''}
 					<p>{description}</p>
 				{/if}
@@ -53,9 +60,13 @@
 					<img src={icon} alt={title} class="w-20 h-20 mt-4" />
 				{/if}
 				{#if renderTitleAsH1}
-					<h1 class="text-left renderAsH1 !leading-[1.1]">{title}</h1>
+					<h1 class={`${centerTitle ? 'text-center' : 'text-left'} renderAsH1 !leading-[1.1]`}>
+						{title}
+					</h1>
 				{:else}
-					<div class="text-left !leading-[1.1] heading-h2">{title}</div>
+					<div class={`${centerTitle ? 'text-center' : 'text-left'} !leading-[1.1] heading-h2`}>
+						{title}
+					</div>
 				{/if}
 				{#if tagText != ''}
 					<Tag text={tagText} />
@@ -66,7 +77,7 @@
 					class="flex flex-col items-start md:items-end w-full md:w-1/3 md:ml-auto mt-10 md:mt-0 text-left"
 				>
 					<div class="flex flex-col gap-4 lg:items-end lg:justify-end">
-						<p class="text-left">2023-ZERO DESIGN STUDIO</p>
+						<p class="text-left">{currentYear}-ZERO DESIGN STUDIO</p>
 						<span class="flex justify-start items-center gap-4">
 							<ShareButton {title} siteTitle={'Zero Design Studio'} {url} />
 							<FacebookShareButton {url} />

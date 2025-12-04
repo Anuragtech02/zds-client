@@ -1,7 +1,7 @@
 import { getAllWorks, getAllBlogs, getAllServices, getAllSolutions } from '$lib/utils/functions';
 import type { RequestHandler } from './$types';
 
-const website = 'https://zerodesignstudios.com';
+const website = 'https://www.zerodesignstudios.com';
 
 interface SitemapItem {
 	attributes: {

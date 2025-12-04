@@ -1,14 +1,23 @@
-import { getAllWorks, getAllBlogs, getAllServices } from '$lib/utils/functions';
+import { getAllWorks, getAllBlogs, getAllServices, getAllSolutions } from '$lib/utils/functions';
+import type { RequestHandler } from './$types';
 
 const website = 'https://zerodesignstudios.com';
 
-/** @type {import('./$types').RequestHandler} */
-export async function GET({ fetch, setHeaders }: any) {
+interface SitemapItem {
+	attributes: {
+		slug: string;
+		isPrivate?: boolean;
+	};
+	isPrivate?: boolean;
+}
+
+export const GET: RequestHandler = async ({ setHeaders }) => {
 	const works = await getAllWorks();
 	const blogs = await getAllBlogs();
 	const services = await getAllServices();
-	const pages = [`about`, `work`, `blogs`, 'contact'];
-	const body = sitemap(works, services, blogs, pages);
+	const solutions = await getAllSolutions();
+	const pages = ['about', 'work', 'blogs', 'contact', 'solutions'];
+	const body = sitemap(works, services, blogs, solutions, pages);
 
 	const headers = {
 		'Cache-Control': 'max-age=0, s-maxage=3600',
@@ -16,9 +25,15 @@ export async function GET({ fetch, setHeaders }: any) {
 	};
 	setHeaders(headers);
 	return new Response(body);
-}
+};
 
-const sitemap = (works, services, blogs, pages) => `<?xml version="1.0" encoding="UTF-8" ?>
+const sitemap = (
+	works: SitemapItem[],
+	services: SitemapItem[],
+	blogs: SitemapItem[] | null,
+	solutions: SitemapItem[] | null,
+	pages: string[]
+): string => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
   xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
@@ -87,4 +102,21 @@ const sitemap = (works, services, blogs, pages) => `<?xml version="1.0" encoding
 										.join('')
 								: ''
 						}
+  ${
+		solutions
+			? solutions
+					?.map((solution) =>
+						solution.isPrivate
+							? null
+							: `
+  <url>
+    <loc>${website}/solutions/${solution?.attributes.slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+					)
+					.join('')
+			: ''
+	}
 </urlset>`;

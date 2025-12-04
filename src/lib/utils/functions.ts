@@ -89,6 +89,12 @@ export async function getAllServices() {
 	return data;
 }
 
+export async function getAllSolutions() {
+	const populate = 'populate=slug';
+	const data = await fetchData('solutions', populate, fetch);
+	return data;
+}
+
 export function sanitizeStructuredData(data: string) {
 	return `<script type="application/ld+json">${data}</script>`;
 }

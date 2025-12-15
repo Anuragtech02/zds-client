@@ -95,6 +95,12 @@ export async function getAllSolutions() {
 	return data;
 }
 
+export async function getAllLocationPages() {
+	const populate = 'populate[0]=slug&populate[1]=location';
+	const data = await fetchData('location-pages', populate, fetch);
+	return data;
+}
+
 export function sanitizeStructuredData(data: string) {
 	return `<script type="application/ld+json">${data}</script>`;
 }

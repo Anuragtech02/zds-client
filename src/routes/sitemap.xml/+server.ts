@@ -1,4 +1,4 @@
-import { getAllWorks, getAllBlogs, getAllServices, getAllSolutions } from '$lib/utils/functions';
+import { getAllWorks, getAllBlogs, getAllServices, getAllSolutions, getAllLocationPages } from '$lib/utils/functions';
 import type { RequestHandler } from './$types';
 
 const website = 'https://www.zerodesignstudios.com';
@@ -11,13 +11,23 @@ interface SitemapItem {
 	isPrivate?: boolean;
 }
 
+interface LocationPageItem {
+	attributes: {
+		slug: string;
+		location: string;
+		isPrivate?: boolean;
+	};
+	isPrivate?: boolean;
+}
+
 export const GET: RequestHandler = async ({ setHeaders }) => {
 	const works = await getAllWorks();
 	const blogs = await getAllBlogs();
 	const services = await getAllServices();
 	const solutions = await getAllSolutions();
+	const locationPages = await getAllLocationPages();
 	const pages = ['about', 'work', 'blogs', 'contact', 'solutions'];
-	const body = sitemap(works, services, blogs, solutions, pages);
+	const body = sitemap(works, services, blogs, solutions, locationPages, pages);
 
 	const headers = {
 		'Cache-Control': 'max-age=0, s-maxage=3600',
@@ -32,6 +42,7 @@ const sitemap = (
 	services: SitemapItem[],
 	blogs: SitemapItem[] | null,
 	solutions: SitemapItem[] | null,
+	locationPages: LocationPageItem[] | null,
 	pages: string[]
 ): string => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
@@ -111,6 +122,23 @@ const sitemap = (
 							: `
   <url>
     <loc>${website}/solutions/${solution?.attributes.slug}</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `
+					)
+					.join('')
+			: ''
+	}
+  ${
+		locationPages
+			? locationPages
+					?.map((page) =>
+						page.isPrivate
+							? null
+							: `
+  <url>
+    <loc>${website}/${page?.attributes.location}/${page?.attributes.slug}</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

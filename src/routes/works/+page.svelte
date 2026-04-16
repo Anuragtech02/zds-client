@@ -294,6 +294,7 @@
 	description={Page_Description}
 	bgImage={imgSrc || ''}
 	bgImageMobile={imgSrcMobile || ''}
+	renderTitleAsH1
 >
 	<SectionLayout>
 		<!-- Category tabs -->

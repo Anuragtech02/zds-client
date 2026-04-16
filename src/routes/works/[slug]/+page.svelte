@@ -94,6 +94,7 @@
 	bgColor="#0F0F0F"
 	tagText={category}
 	className="h-[300px] md:h-[420px]"
+	renderTitleAsH1
 >
 	<SectionLayout className="pt-10 [&>p]:text-left [&>p]:my-8 z-[1] relative" customSection>
 		{@html isMounted ? modifiedHtml : rawDescription}

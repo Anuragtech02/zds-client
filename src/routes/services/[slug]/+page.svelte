@@ -60,6 +60,7 @@
 	description={''}
 	bgImage={service.bgImage || '/images/services-upper.png'}
 	className="pb-[50px] [&>img]:object-cover [&>img]:h-full"
+	renderTitleAsH1
 >
 	<img
 		src="/images/hero-gradient.png"

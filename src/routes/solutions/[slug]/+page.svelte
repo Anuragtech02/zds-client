@@ -79,6 +79,7 @@
 	bgImage={'/images/headingBG.png'}
 	bgImageMobile={'/images/headingBG.png'}
 	bgColor="#0F0F0F"
+	renderTitleAsH1
 >
 	<SectionLayout className="custom-section mt-10 pt-0 z-[1] relative" customSection>
 		<div class="max-w-[786px] mx-auto [&>p]:my-4">

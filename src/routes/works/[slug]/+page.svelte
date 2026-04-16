@@ -39,7 +39,9 @@
 	// 	'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 	// ];
 
+	$: rawDescription = data?.attributes?.Description || '';
 	let modifiedHtml: string = '';
+	let isMounted = false;
 
 	function convertImagesToMasonryDivs(htmlString) {
 		// Parse the HTML string into a document object
@@ -75,7 +77,10 @@
 	}
 
 	onMount(() => {
-		modifiedHtml = convertImagesToMasonryDivs(data.attributes.Description);
+		isMounted = true;
+		if (rawDescription) {
+			modifiedHtml = convertImagesToMasonryDivs(rawDescription);
+		}
 	});
 </script>
 
@@ -91,7 +96,7 @@
 	className="h-[300px] md:h-[420px]"
 >
 	<SectionLayout className="pt-10 [&>p]:text-left [&>p]:my-8 z-[1] relative" customSection>
-		{@html modifiedHtml}
+		{@html isMounted ? modifiedHtml : rawDescription}
 	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>

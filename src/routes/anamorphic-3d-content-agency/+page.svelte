@@ -13,7 +13,9 @@
 		Title = 'Anamorphic 3D';
 	}
 
+	$: rawDescription = data?.description || '';
 	let modifiedHtml: string = '';
+	let isMounted = false;
 
 	function convertImagesToMasonryDivs(htmlString) {
 		// Parse the HTML string into a document object
@@ -98,8 +100,9 @@
 	}
 
 	onMount(() => {
-		if (data?.description) {
-			modifiedHtml = convertImagesToMasonryDivs(data.description);
+		isMounted = true;
+		if (rawDescription) {
+			modifiedHtml = convertImagesToMasonryDivs(rawDescription);
 		}
 	});
 </script>
@@ -118,7 +121,7 @@
 		className="custom-section mt-10 pt-0 [&>p]:text-left [&>p]:my-4 z-[1] relative"
 		customSection
 	>
-		{@html modifiedHtml}
+		{@html isMounted ? modifiedHtml : rawDescription}
 	</SectionLayout>
 	<FloatingActionButton />
 </PageLayout>

@@ -14,7 +14,10 @@
 		Title = data?.Title || data?.title || data?.Name || '';
 	}
 
+	// Render raw description for SSR, then enhance with masonry on client
+	$: rawDescription = data?.description || data?.Description || '';
 	let modifiedHtml: string = '';
+	let isMounted = false;
 
 	function convertImagesToMasonryDivs(htmlString: string) {
 		const parser = new DOMParser();
@@ -60,8 +63,10 @@
 	}
 
 	onMount(() => {
-		const description = data?.description || data?.Description || '';
-		modifiedHtml = description ? convertImagesToMasonryDivs(description) : '';
+		isMounted = true;
+		if (rawDescription) {
+			modifiedHtml = convertImagesToMasonryDivs(rawDescription);
+		}
 	});
 </script>
 
@@ -77,7 +82,7 @@
 >
 	<SectionLayout className="custom-section mt-10 pt-0 z-[1] relative" customSection>
 		<div class="max-w-[786px] mx-auto [&>p]:my-4">
-			{@html modifiedHtml}
+			{@html isMounted ? modifiedHtml : rawDescription}
 		</div>
 	</SectionLayout>
 

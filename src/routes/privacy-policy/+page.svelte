@@ -6,9 +6,9 @@
 
 <CustomHead
 	seo={{
-		metaTitle: 'Privacy Policy - Zero Design Studios',
+		metaTitle: 'Privacy Policy - Zero Design Studio',
 		metaDescription:
-			'Privacy Policy for Zero Design Studios. Learn how we collect, use, and protect your personal information.'
+			'Privacy Policy for Zero Design Studio. Learn how we collect, use, and protect your personal information.'
 	}}
 />
 
@@ -25,7 +25,7 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">1. Introduction</h2>
 				<p>
-					At Zero Design Studios, we are committed to protecting your privacy and personal
+					At Zero Design Studio, we are committed to protecting your privacy and personal
 					information. This Privacy Policy explains how we collect, use, disclose, and safeguard
 					your information when you visit our website or use our services.
 				</p>

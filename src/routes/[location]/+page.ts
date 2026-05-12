@@ -70,8 +70,8 @@ export const load = async ({ params, fetch }) => {
 				title: locationDisplay,
 				description: `Explore our services and solutions in ${locationDisplay}`,
 				seo: {
-					metaTitle: `${locationDisplay} | Zero Design Studios`,
-					metaDescription: `Discover our innovative solutions and services in ${locationDisplay}. Zero Design Studios offers cutting-edge 3D content and digital experiences.`,
+					metaTitle: `${locationDisplay} | Zero Design Studio`,
+					metaDescription: `Discover our innovative solutions and services in ${locationDisplay}. Zero Design Studio offers cutting-edge 3D content and digital experiences.`,
 					keywords: `${location}, solutions, services, 3D content, digital agency, ${locationDisplay}`
 				}
 			}

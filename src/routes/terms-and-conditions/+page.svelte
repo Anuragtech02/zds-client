@@ -6,8 +6,8 @@
 
 <CustomHead
 	seo={{
-		metaTitle: 'Terms and Conditions - Zero Design Studios',
-		metaDescription: 'Terms and Conditions for Zero Design Studios services and website usage.'
+		metaTitle: 'Terms and Conditions - Zero Design Studio',
+		metaDescription: 'Terms and Conditions for Zero Design Studio services and website usage.'
 	}}
 />
 
@@ -24,16 +24,15 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">1. Introduction</h2>
 				<p>
-					Welcome to Zero Design Studios. These Terms and Conditions govern your use of our
-					website and services. By accessing or using our services, you agree to be bound by these
-					terms.
+					Welcome to Zero Design Studio. These Terms and Conditions govern your use of our website
+					and services. By accessing or using our services, you agree to be bound by these terms.
 				</p>
 			</div>
 
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">2. Services</h2>
 				<p>
-					Zero Design Studios provides experiential marketing, multimedia production, content
+					Zero Design Studio provides experiential marketing, multimedia production, content
 					creation, and experience design services. The specific scope, deliverables, timeline, and
 					pricing for each project will be outlined in a separate service agreement or proposal.
 				</p>
@@ -42,7 +41,7 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">3. Intellectual Property</h2>
 				<p>
-					All content, designs, code, and materials created by Zero Design Studios remain our
+					All content, designs, code, and materials created by Zero Design Studio remain our
 					intellectual property until full payment is received. Upon full payment, the agreed-upon
 					deliverables will be transferred to the client as specified in the service agreement.
 				</p>
@@ -83,9 +82,9 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">7. Cancellation Policy</h2>
 				<p>
-					Either party may cancel a project with written notice. If a client cancels a project
-					after work has begun, they will be charged for work completed up to the cancellation date,
-					plus any non-refundable expenses incurred.
+					Either party may cancel a project with written notice. If a client cancels a project after
+					work has begun, they will be charged for work completed up to the cancellation date, plus
+					any non-refundable expenses incurred.
 				</p>
 			</div>
 
@@ -101,7 +100,7 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">9. Limitation of Liability</h2>
 				<p>
-					Zero Design Studios shall not be liable for any indirect, incidental, special, or
+					Zero Design Studio shall not be liable for any indirect, incidental, special, or
 					consequential damages arising from the use of our services. Our total liability shall not
 					exceed the total amount paid by the client for the specific project in question.
 				</p>
@@ -137,7 +136,7 @@
 				<p>
 					These Terms and Conditions shall be governed by and construed in accordance with the laws
 					of India. Any disputes arising from these terms shall be subject to the exclusive
-					jurisdiction of the courts in the location where Zero Design Studios is registered.
+					jurisdiction of the courts in the location where Zero Design Studio is registered.
 				</p>
 			</div>
 

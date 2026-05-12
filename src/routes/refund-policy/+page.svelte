@@ -6,9 +6,9 @@
 
 <CustomHead
 	seo={{
-		metaTitle: 'Refund and Cancellation Policy - Zero Design Studios',
+		metaTitle: 'Refund and Cancellation Policy - Zero Design Studio',
 		metaDescription:
-			'Refund and Cancellation Policy for Zero Design Studios services. Learn about our refund process and cancellation terms.'
+			'Refund and Cancellation Policy for Zero Design Studio services. Learn about our refund process and cancellation terms.'
 	}}
 />
 
@@ -25,8 +25,8 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">1. Overview</h2>
 				<p>
-					At Zero Design Studios, we are committed to delivering high-quality services that meet
-					your expectations. This Refund and Cancellation Policy outlines the terms for canceling
+					At Zero Design Studio, we are committed to delivering high-quality services that meet your
+					expectations. This Refund and Cancellation Policy outlines the terms for canceling
 					projects and requesting refunds for our services.
 				</p>
 			</div>
@@ -64,7 +64,7 @@
 					<li>The remaining balance, if any, will be refunded</li>
 					<li>
 						All materials, concepts, and work product created up to cancellation remain the property
-						of Zero Design Studios unless otherwise agreed upon
+						of Zero Design Studio unless otherwise agreed upon
 					</li>
 				</ul>
 
@@ -76,7 +76,7 @@
 			</div>
 
 			<div class="space-y-4">
-				<h2 class="text-2xl font-bold text-white">4. Cancellation by Zero Design Studios</h2>
+				<h2 class="text-2xl font-bold text-white">4. Cancellation by Zero Design Studio</h2>
 				<p>We reserve the right to cancel a project if:</p>
 				<ul class="list-disc pl-6 space-y-2">
 					<li>The client fails to provide necessary materials or information in a timely manner</li>
@@ -105,7 +105,9 @@
 				<p>Partial refunds may be issued when:</p>
 				<ul class="list-disc pl-6 space-y-2">
 					<li>The project is canceled after work has begun</li>
-					<li>The deliverables do not meet the agreed-upon specifications and cannot be corrected</li>
+					<li>
+						The deliverables do not meet the agreed-upon specifications and cannot be corrected
+					</li>
 					<li>Mutual agreement is reached for partial project completion</li>
 				</ul>
 
@@ -167,9 +169,9 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">10. Modifications to This Policy</h2>
 				<p>
-					Zero Design Studios reserves the right to modify this Refund and Cancellation Policy at
-					any time. Changes will be effective immediately upon posting to our website. Your
-					continued use of our services constitutes acceptance of any modifications.
+					Zero Design Studio reserves the right to modify this Refund and Cancellation Policy at any
+					time. Changes will be effective immediately upon posting to our website. Your continued
+					use of our services constitutes acceptance of any modifications.
 				</p>
 			</div>
 

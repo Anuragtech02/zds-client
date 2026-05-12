@@ -17,6 +17,10 @@ export interface ContactForm {
 		value: string;
 		error?: string;
 	};
+	attachment: {
+		value: File | null;
+		error?: string;
+	};
 }
 
 export enum Socials {

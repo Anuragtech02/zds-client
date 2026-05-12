@@ -6,9 +6,9 @@
 
 <CustomHead
 	seo={{
-		metaTitle: 'Shipping Policy - Zero Design Studios',
+		metaTitle: 'Shipping Policy - Zero Design Studio',
 		metaDescription:
-			'Shipping and delivery policy for Zero Design Studios physical products and materials.'
+			'Shipping and delivery policy for Zero Design Studio physical products and materials.'
 	}}
 />
 
@@ -25,7 +25,7 @@
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold text-white">1. Overview</h2>
 				<p>
-					Zero Design Studios primarily provides digital and experiential services. However, this
+					Zero Design Studio primarily provides digital and experiential services. However, this
 					Shipping Policy applies when we deliver physical products, materials, or equipment as part
 					of our service offerings or marketplace items.
 				</p>
@@ -40,7 +40,9 @@
 				</p>
 				<ul class="list-disc pl-6 space-y-2">
 					<li>Digital files are typically delivered within the agreed project timeline</li>
-					<li>Large files may be shared via cloud storage platforms (Google Drive, Dropbox, etc.)</li>
+					<li>
+						Large files may be shared via cloud storage platforms (Google Drive, Dropbox, etc.)
+					</li>
 					<li>Access to digital deliverables will be provided upon receipt of full payment</li>
 				</ul>
 			</div>

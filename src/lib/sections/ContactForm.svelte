@@ -6,11 +6,20 @@
 	import MailIcon from '$lib/icons/MailIcon.svelte';
 	import type { ContactForm } from '$lib/types/components';
 	import { breakSentence, isValidEmail, isValidPhone } from '$lib/utils/functions';
-	export let data: any;
+	export let data: any = {};
 	let showSuccess = false;
 	let loading = false;
+	let attachmentInput: HTMLInputElement;
+	const MAX_FILE_SIZE = 10 * 1024 * 1024;
 	// console.log(data);
-	let { Title, ContactEmail, PhoneNumber, CTAText, CTALink, address } = data;
+	let {
+		Title = 'Get in touch,',
+		ContactEmail = '',
+		PhoneNumber = '',
+		CTAText = 'Submit',
+		CTALink = '',
+		address = ''
+	} = data || {};
 	let { initialWords, lastWord } = breakSentence(Title);
 	let contactForm: ContactForm = {
 		name: {
@@ -27,6 +36,10 @@
 		},
 		message: {
 			value: '',
+			error: ''
+		},
+		attachment: {
+			value: null,
 			error: ''
 		}
 	};
@@ -53,6 +66,10 @@
 			contactForm.message.error = 'Message is required';
 			isValid = false;
 		}
+		if (contactForm.attachment.value && contactForm.attachment.value.size > MAX_FILE_SIZE) {
+			contactForm.attachment.error = 'File must be under 10 MB';
+			isValid = false;
+		}
 
 		if (email !== '' && !isValidEmail(email)) {
 			contactForm.email.error = 'Invalid email address';
@@ -72,6 +89,43 @@
 		contactForm.email.error = '';
 		contactForm.phone.error = '';
 		contactForm.message.error = '';
+		contactForm.attachment.error = '';
+	}
+
+	function resetContactForm() {
+		if (attachmentInput) attachmentInput.value = '';
+
+		contactForm = {
+			name: {
+				value: '',
+				error: ''
+			},
+			email: {
+				value: '',
+				error: ''
+			},
+			phone: {
+				value: '',
+				error: ''
+			},
+			message: {
+				value: '',
+				error: ''
+			},
+			attachment: {
+				value: null,
+				error: ''
+			}
+		};
+	}
+
+	function handleFileChange(e: Event) {
+		const input = e.currentTarget as HTMLInputElement;
+		const file = input.files?.[0] || null;
+
+		contactForm.attachment.value = file;
+		contactForm.attachment.error =
+			file && file.size > MAX_FILE_SIZE ? 'File must be under 10 MB' : '';
 	}
 
 	async function submitForm(e: Event) {
@@ -80,46 +134,33 @@
 		if (validateFields()) {
 			console.log('Form submitted');
 			try {
-				let formData = {
-					name: contactForm.name.value,
-					email: contactForm.email.value,
-					phone: contactForm.phone.value,
-					message: contactForm.message.value
-				};
+				const formData = new FormData();
+				formData.append('name', contactForm.name.value);
+				formData.append('email', contactForm.email.value);
+				formData.append('phone', contactForm.phone.value);
+				formData.append('message', contactForm.message.value);
+
+				if (contactForm.attachment.value) {
+					formData.append('attachment', contactForm.attachment.value);
+				}
+
 				loading = true;
 				let res = await fetch('/contact/', {
-					headers: {
-						'Content-Type': 'application/json'
-					},
 					method: 'POST',
-					body: JSON.stringify({
-						formData
-					})
+					body: formData
 				});
-				const data = await res.json();
+
+				if (!res.ok) {
+					throw new Error('Unable to submit form');
+				}
+
+				await res.json();
 				// alert('Form submitted successfully');
 				showSuccess = true;
 				setTimeout(() => {
 					showSuccess = false;
 				}, 3000);
-				contactForm = {
-					name: {
-						value: '',
-						error: ''
-					},
-					email: {
-						value: '',
-						error: ''
-					},
-					phone: {
-						value: '',
-						error: ''
-					},
-					message: {
-						value: '',
-						error: ''
-					}
-				};
+				resetContactForm();
 			} catch (error) {
 				console.log(error);
 				alert('Something went wrong');
@@ -190,6 +231,31 @@
 			error={contactForm.message.error}
 			bind:value={contactForm.message.value}
 		/>
+		<div>
+			<label
+				for="attachment"
+				class="flex cursor-pointer items-center justify-between gap-3 rounded-md border border-borders-500 bg-bg-200 px-5 py-2 text-left transition duration-150 ease-out hover:border-borders hover:ease-in"
+				class:border-red-500={(contactForm.attachment.error || '').length > 0}
+			>
+				<span class="min-w-0 flex-1 truncate text-fg-300">
+					{contactForm.attachment.value?.name || 'Upload portfolio / resume / file'}
+				</span>
+				<span class="shrink-0 rounded-full border border-borders px-4 py-1 text-sm">Browse</span>
+			</label>
+			<input
+				id="attachment"
+				name="attachment"
+				type="file"
+				class="sr-only"
+				bind:this={attachmentInput}
+				on:change={handleFileChange}
+			/>
+			<div class="h-4 mt-1">
+				{#if (contactForm.attachment.error || '').length > 0}
+					<p class="text-xs text-red-500 text-left">{contactForm.attachment.error}</p>
+				{/if}
+			</div>
+		</div>
 		<p
 			class="text-left pointer-events-none transition-all duration-300 ease-out"
 			class:opacity-0={!showSuccess && !loading}
@@ -197,7 +263,7 @@
 			class:text-yellow-500={loading}
 			class:text-green-500={showSuccess}
 		>
-			{loading ? 'Submiting...' : 'Form submitted successfully'}
+			{loading ? 'Submitting...' : 'Form submitted successfully'}
 		</p>
 		<Button type="submit" link={CTALink} className="mt-2">{CTAText}</Button>
 	</form>

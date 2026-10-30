@@ -1,5 +1,6 @@
 import type { PageLoad } from './$types';
-import { fetchData } from '$lib/utils/functions.js';
+import { error } from '@sveltejs/kit';
+import { fetchCms, fetchData } from '$lib/utils/functions.js';
 
 export const load: PageLoad = async ({ params, fetch }) => {
 	const { slug } = params;
@@ -18,16 +19,17 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		urlParams.append(`populate[${index}]`, value);
 	});
 	// console.log('Search', urlParams.toString());
-	let data = await fetchData('services', urlParams.toString(), fetch);
-	if (Array.isArray(data) && data.length > 1) {
+	let data = await fetchCms('services', urlParams.toString(), fetch);
+	// `slug` isn't a Strapi filter, so this returns every service; pick the match.
+	if (Array.isArray(data)) {
 		data = data.filter((service) => service?.attributes?.slug === slug);
+	}
+	const service = Array.isArray(data) ? data[0] : data;
+	if (!service) {
+		throw error(404, 'Not found');
 	}
 	const servicesParams = new URLSearchParams();
 	servicesParams.append(`populate[0]`, 'Icon');
 	const Services = await fetchData('services', servicesParams.toString(), fetch);
-	if (Array.isArray(data)) {
-		return { service: data[0], services: Services };
-	} else {
-		return { service: data, services: Services };
-	}
+	return { service, services: Services };
 };

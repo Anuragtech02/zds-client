@@ -1,6 +1,6 @@
 import { commonStore } from '$lib/stores/commons.store';
 import { homeStore } from '$lib/stores/hero.store';
-import { fetchData } from '$lib/utils/functions';
+import { fetchCms } from '$lib/utils/functions';
 
 /** @type {import('./$types').PageLoad} */
 
@@ -29,9 +29,12 @@ export async function load({ params, fetch }: any) {
 		urlParams.append(`populate[${index}]`, value);
 	});
 
-	const data = await fetchData('home', urlParams.toString(), fetch);
-	const dataFooter = await fetchData('footer', populateCommon, fetch);
-	const dataHeader = await fetchData('header', populateCommon, fetch);
+	// In parallel: these three used to run back to back on every page load.
+	const [data, dataFooter, dataHeader] = await Promise.all([
+		fetchCms('home', urlParams.toString(), fetch),
+		fetchCms('footer', populateCommon, fetch),
+		fetchCms('header', populateCommon, fetch)
+	]);
 	homeStore.set(data);
 	commonStore.set({
 		header: dataHeader,

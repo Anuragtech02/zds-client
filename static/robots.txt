@@ -1,5 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 
-Disallow: /*.js$
+# SvelteKit's client-side navigation data; crawlers get full HTML instead.
 Disallow: /*.json
+
+Sitemap: https://www.zerodesignstudios.com/sitemap.xml

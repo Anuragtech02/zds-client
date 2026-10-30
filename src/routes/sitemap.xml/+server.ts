@@ -20,14 +20,18 @@ interface LocationPageItem {
 	isPrivate?: boolean;
 }
 
-export const GET: RequestHandler = async ({ setHeaders }) => {
-	const works = await getAllWorks();
-	const blogs = await getAllBlogs();
-	const services = await getAllServices();
-	const solutions = await getAllSolutions();
-	const locationPages = await getAllLocationPages();
-	const pages = ['about', 'work', 'blogs', 'contact', 'solutions'];
-	const body = sitemap(works, services, blogs, solutions, locationPages, pages);
+export const GET: RequestHandler = async ({ setHeaders, fetch }) => {
+	// If the CMS is unreachable these throw a 503, so crawlers retry later instead of
+	// receiving a 500 or a sitemap with pages missing.
+	const [works, blogs, services, solutions, locationPages] = await Promise.all([
+		getAllWorks(fetch),
+		getAllBlogs(fetch),
+		getAllServices(fetch),
+		getAllSolutions(fetch),
+		getAllLocationPages(fetch)
+	]);
+	const pages = ['about', 'works', 'blogs', 'contact', 'solutions'];
+	const body = sitemap(works ?? [], services ?? [], blogs, solutions, locationPages, pages);
 
 	const headers = {
 		'Cache-Control': 'max-age=0, s-maxage=3600',

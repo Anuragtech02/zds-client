@@ -1,4 +1,5 @@
-import { fetchData } from '$lib/utils/functions.js';
+import { error } from '@sveltejs/kit';
+import { fetchCms } from '$lib/utils/functions.js';
 
 // Dynamic solution page loader
 // Fetches a single entry by slug from Strapi (collection: "solution").
@@ -21,12 +22,12 @@ export const load = async ({ params, fetch }) => {
 		urlParams.append(`populate[${index}]`, item);
 	});
 
-	const data = await fetchData(COLLECTION_UID, urlParams.toString(), fetch);
+	const data = await fetchCms(COLLECTION_UID, urlParams.toString(), fetch);
 
 	// Normalize return shape to be attributes for a single item
-	if (Array.isArray(data)) {
-		const first = data[0];
-		return first?.attributes || first || null;
+	const item = Array.isArray(data) ? data[0] : data;
+	if (!item) {
+		throw error(404, 'Not found');
 	}
-	return data?.attributes || data || null;
+	return item?.attributes || item;
 };

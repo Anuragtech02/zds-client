@@ -91,7 +91,7 @@
 							class="absolute top-[100%] left-1/2 -translate-x-1/2 group-hover:top-0 transition-all duration-300 z-[1] w-[200px]"
 						>
 							<img
-								src="https://res.cloudinary.com/dccjqha6a/image/upload/v1701106728/zds_logo_ef2db07d5b.png"
+								src="https://cdn.zerodesignstudios.com/zds_logo_ef2db07d5b.png"
 								class="w-full aspect-square"
 								alt=""
 							/>

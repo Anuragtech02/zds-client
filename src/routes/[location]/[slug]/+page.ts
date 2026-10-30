@@ -1,4 +1,4 @@
-import { fetchData } from '$lib/utils/functions.js';
+import { fetchCms } from '$lib/utils/functions.js';
 import { error } from '@sveltejs/kit';
 
 // Reserved routes that should NOT be matched by this dynamic route
@@ -51,7 +51,7 @@ export const load = async ({ params, fetch }) => {
 		urlParams.append(`populate[${index}]`, item);
 	});
 
-	const data = await fetchData(COLLECTION_UID, urlParams.toString(), fetch);
+	const data = await fetchCms(COLLECTION_UID, urlParams.toString(), fetch);
 
 	// Normalize return shape to be attributes for a single item
 	if (Array.isArray(data)) {

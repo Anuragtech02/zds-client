@@ -1,5 +1,6 @@
 import type { PageLoad } from './$types';
-import { fetchData } from '$lib/utils/functions.js';
+import { error } from '@sveltejs/kit';
+import { fetchCms } from '$lib/utils/functions.js';
 
 export const load: PageLoad = async ({ params, fetch }) => {
 	const { slug } = params;
@@ -24,10 +25,10 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	});
 
 	// console.log('Search', urlParams.toString());
-	const data = await fetchData('blogs', urlParams.toString(), fetch);
-	if (Array.isArray(data)) {
-		return data[0];
-	} else {
-		return data;
+	const data = await fetchCms('blogs', urlParams.toString(), fetch);
+	const item = Array.isArray(data) ? data[0] : data;
+	if (!item) {
+		throw error(404, 'Not found');
 	}
+	return item;
 };
